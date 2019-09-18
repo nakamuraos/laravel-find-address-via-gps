@@ -36,7 +36,9 @@ Version: 2.1
    ---------------------------------------- */
 /* Google font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;display=swap');
-
+*{
+    box-sizing: border-box;
+}
 body,
 html,
 .wrapper {
@@ -1604,6 +1606,9 @@ a.btn-wishlist:hover, .item-meta-data li a:hover, .social-link-share li a:hover 
 .login-form form .btn-submit {margin-top: 10px;margin-bottom: 28px;}
 .booking-form form .btn-submit {
     margin-top: 10px;
+}
+.registar-form {
+    margin-left: 20px;
 }
 .single-details-navbar button.navbar-toggler {
     color: #ff3366;

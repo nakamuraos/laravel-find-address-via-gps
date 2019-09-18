@@ -13,3 +13,4 @@
 
 Route::get('/','ClientController@index');
 Route::get('/login','LoginController@getLogin');
+Route::get('/register','LoginController@getRegister');
