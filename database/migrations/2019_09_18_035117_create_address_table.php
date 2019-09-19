@@ -20,7 +20,7 @@ class CreateAddressTable extends Migration
             $table->string('detail');
             $table->integer('status');
             $table->string('location');
-            $table->integer('verifyperson_id');
+            $table->integer('user_id');
             $table->integer('addresstype_id');
             $table->timestamps();
         });

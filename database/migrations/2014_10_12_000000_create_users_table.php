@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->integer('phone');
             $table->string('email');
             $table->integer('usertype_id');
-            $table->integer('address_id');
             $table->rememberToken();
             $table->timestamps();
         });

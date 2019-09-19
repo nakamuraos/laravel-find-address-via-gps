@@ -14,3 +14,5 @@
 Route::get('/','ClientController@index');
 Route::get('/login','LoginController@getLogin');
 Route::get('/register','LoginController@getRegister');
+Route::get('/manageaddress','AddressController@index');
+Route::get('/manageuser','UserController@index');
