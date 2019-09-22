@@ -1,4 +1,4 @@
-# Find Address Project
+# Find Address by GPS Project
 
 ## Members
 
@@ -31,13 +31,13 @@
 
 - run following commands:
 
-    + `git clone https://<your_bitbucket_user_name>@github.com/HienPham1998/MyProject.git .`
+    + `git clone https://<your_github_user_name>@github.com/HienPham1998/MyProject.git`
 
     + `composer install`
 
     + `php -r "file_exists('.env') || copy('.env.example', '.env');"`
 
-    + `php artisan key:generate --ansi`
+    + `php artisan key:generate`
 
 - edit config in `.env`
 
