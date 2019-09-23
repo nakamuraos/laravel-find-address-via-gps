@@ -2,6 +2,7 @@
 <html lang="en">
 
 <!-- Mirrored from modinatheme.com/listico/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Sep 2019 03:56:17 GMT -->
+
 <head>
     <!-- ========== Meta Tags ========== -->
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
 
     <!-- ======== Page title ============ -->
     <title>Listico - Listing & Directory HTML Template</title>
-    
+
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('client/assets/img/favicon.png') }}">
 
@@ -30,14 +31,14 @@
     <!--  owl theme css plugins -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/owl.theme.css') }}">
     <!--  meanmenu css plugins -->
-    <link rel="stylesheet" href="{{ asset('client/assets/css/meanmenu.min.css') }}">    
+    <link rel="stylesheet" href="{{ asset('client/assets/css/meanmenu.min.css') }}">
     <!--  Bootstrap css plugins -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/bootstrap.min.css') }}">
     <!-- template main style css file -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/style.css') }}">
     <!-- template responsive css stylesheet -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/responsive.css') }}">
-
+    <link href="{{ asset('admin/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,15 +48,15 @@
 </head>
 
 <body class="theme_body">
-    
+
     <!-- preloader element started -->
-        <div class="loader-wrap">
-            <div class="pin"></div>
-            <div class="pulse"></div>
-        </div>
+    <div class="loader-wrap">
+        <div class="pin"></div>
+        <div class="pulse"></div>
+    </div>
     <!-- preloader element end -->
-         <!-- header section start -->
-  <header class="header-section">
+    <!-- header section start -->
+    <header class="header-section">
         <!-- top bar -->
         <div class="top-bar-header">
             <div class="container">
@@ -69,8 +70,24 @@
                         <div class="top-bar-right">
                             <div class="user-setting">
                                 <ul>
-                                    <li><a href="#"><i class="fas fa-sign-out-alt"></i>Dang Nhap</a></li>
-                                    <li><a href="#"><i class="fas fa-user"></i>Dang ky</a></li>
+                                    @if(Auth::user())
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                            href="javascript:void(0)">{{ Auth::user()->user_name }}</a>
+                                        <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                                            <a class="dropdown-item" href=""><i class="nc-icon nc-single-02"></i>&nbsp;
+                                                Profile</a>
+                                            <!-- <a class="dropdown-item" href="blog-posts.html"><i
+                                        class="nc-icon nc-bullet-list-67"></i>&nbsp; My posts</a> -->
+                                            <a class="dropdown-item" href="/logout"><i
+                                                    class="nc-icon nc-bookmark-2"></i>&nbsp;
+                                                Logout</a>
+                                        </ul>
+                                    </li>
+                                    @else
+                                    <li><a href="/login"><i class="fas fa-sign-out-alt"></i>Dang Nhap</a></li>
+                                    <li><a href="/register"><i class="fas fa-user"></i>Dang ky</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -93,8 +110,8 @@
         </div>
     </header>
     <!-- header section end -->
-   
-    
+
+
     @yield('content')
     <!-- footer section wrapper start -->
     <!-- footer section wrapper end -->
@@ -119,4 +136,5 @@
 </body>
 
 <!-- Mirrored from modinatheme.com/listico/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Sep 2019 03:56:17 GMT -->
+
 </html>

@@ -12,7 +12,13 @@
 */
 
 Route::get('/','ClientController@index');
-Route::get('/login','LoginController@getLogin');
-Route::get('/register','LoginController@getRegister');
+Route::get('login','LoginController@getLogin');
+Route::post('login','LoginController@postLogin');
+Route::get('logout', 'LoginController@logout');
+
+Route::get('register','LoginController@getRegister');
 Route::get('/manageaddress','AddressController@index');
 Route::get('/manageuser','UserController@index');
+Route::get('/registeraddress','RegisteraddressController@getregisteraddress');
+
+Route::get('/home', 'HomeController@index')->name('home');

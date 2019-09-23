@@ -34,7 +34,7 @@
                                        </form>
                                    </div>
                                </div>
-                               <div class="tab-pane container" id="event">
+                               <!-- <div class="tab-pane container" id="event">
                                     <div class="search-form-box">
                                        <h3>Discover Great Event.</h3>
                                        
@@ -51,7 +51,7 @@
                                            <button type="submit">Search request</button>
                                        </form>
                                    </div>
-                               </div>
+                               </div> -->
                             </div>
                         </div>
                     </div>

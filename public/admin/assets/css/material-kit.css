@@ -8726,7 +8726,9 @@ a.text-info:focus {
 .text-warning {
   color: #ffeb3b !important;
 }
-
+.text-success{
+  color: #4CAF50;
+}
 a.text-warning:hover,
 a.text-warning:focus {
   color: #ffe608 !important;
@@ -13999,7 +14001,7 @@ textarea {
   padding: 0.625rem 0;
   margin-bottom: 20px;
   color: #fff;
-  background-color: #ffa726  !important;
+  background-color: #4CAF50 !important;
   box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -16493,7 +16495,7 @@ footer .pull-center {
 .card.bg-warning,
 .card.card-rotate.bg-warning .front,
 .card.card-rotate.bg-warning .back {
-  background: linear-gradient(60deg, #ffa726, #f57c00);
+  background: linear-gradient(60deg, #4CAF50, #4CAF50);
 }
 
 .card .card-header-danger,

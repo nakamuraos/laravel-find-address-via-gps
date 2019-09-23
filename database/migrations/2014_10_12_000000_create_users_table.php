@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('phone');
             $table->string('email');
-            $table->integer('usertype_id');
+            $table->boolean('verified');
+            $table->boolean('status');
+            $table->integer('role_id');
             $table->rememberToken();
             $table->timestamps();
         });

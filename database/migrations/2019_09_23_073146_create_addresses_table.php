@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeuserTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateTypeuserTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeuser', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('image');
+            $table->string('detail');
+            $table->boolean('verify');
+            $table->string('location');
+            $table->integer('user_id');
+            $table->integer('addresstype_id');
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateTypeuserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeuser');
+        Schema::dropIfExists('addresses');
     }
 }

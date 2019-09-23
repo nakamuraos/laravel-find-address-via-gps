@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body table-responsive">
                     <table class="table table-hover">
-                        <thead class="text-warning">
+                        <thead class="text-success">
                             <tr>
                                 <th>ID</th>
                                 <th>Tên người dùng</th>

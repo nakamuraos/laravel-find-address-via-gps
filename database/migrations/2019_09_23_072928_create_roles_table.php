@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeaddressTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypeaddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeaddress', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypeaddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeaddress');
+        Schema::dropIfExists('roles');
     }
 }

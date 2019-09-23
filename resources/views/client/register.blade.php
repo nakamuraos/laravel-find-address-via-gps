@@ -24,20 +24,7 @@
                             <input type="text" name="user_name" class="ml-5 col-md-5 mr-3 col-12 " placeholder="Usename*">
                             <input type="text" name="full_name" class=" col-md-5 mr-3 col-12" placeholder="Your Full Name*">
                             <input type="email" name="email" class="ml-5 col-md-5 mr-3 col-12" placeholder="Your Email*">
-                            <input type="text"  name="phone" class=" col-md-5 mr-3 col-12" placeholder="Your Phone*">
-                            <!-- <input type="date" class="col-md-4 col-12" placeholder="Brith Day*"> -->
-                            <!-- <select name="gender" id="genderselect" class="col-md-4 col-12">
-                                <option value="1">Your Gendar*</option>
-                                <option value="2">Male</option>
-                                <option value="3">Female</option>
-                                <option value="4">Others</option>
-                            </select>
-                            <select name="country" id="countryselect" class="col-md-4 col-12">
-                                <option value="1">Your Conutry*</option>
-                                <option value="2">Bangladesh</option>
-                                <option value="3">India</option>
-                                <option value="4">Others</option>
-                            </select> -->
+                            <input type="text"  name="phone" class=" col-md-5 mr-3 col-12" placeholder="Your Phone*">                           
                             <input type="password" name="password" class="ml-5 col-md-5 mr-3 col-12" placeholder="Password*">
                             <input type="password" name="password_confirmation" class="col-md-5 mr-3 col-12" placeholder="Confirm password*">
                             <button type="submit" class="btn-submit col-md-5 col-12 m-auto">Register</button>

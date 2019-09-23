@@ -47,7 +47,7 @@
                     <h3>
                         <a class="my-logo text-white" href="/">Hệ thống tìm kiếm địa chỉ theo định vị</a> </h3>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse pr-5">
                     <ul class="navbar-nav ml-auto">
                     <li>
                         <form action="" method="GET" class="form-group form-inline bmd-form-group" id="search">
@@ -59,9 +59,10 @@
                             </button>
                         </form>
                     </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ml-3">
+                        @if(Auth::user())
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown"
-                                href="javascript:void(0)">Hien Pham</a>
+                                href="javascript:void(0)">{{ Auth::user()->user_name }}</a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                                 <a class="dropdown-item" href=""><i class="nc-icon nc-single-02"></i>&nbsp; Profile</a>
                                 <!-- <a class="dropdown-item" href="blog-posts.html"><i
@@ -69,6 +70,7 @@
                                 <a class="dropdown-item" href="/logout"><i class="nc-icon nc-bookmark-2"></i>&nbsp;
                                     Logout</a>
                             </ul>
+                        @endif
                         </li>
                     </ul>
                 </div>
@@ -77,7 +79,7 @@
         </div>
     </div>
     <div class="page-header header-filter" data-parallax="true"
-        style="background-image: url('{{asset('admin/assets/image/bgr-rainroad.jpeg') }}')">
+        style="background-image: url('{{asset('admin/assets/image/bg-map3.png') }}')">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
