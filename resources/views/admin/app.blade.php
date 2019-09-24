@@ -44,8 +44,7 @@
             color-on-scroll="100" id="sectionsNav">
             <div class="container-fluid">
                 <div class="navbar-translate">
-                    <h3>
-                        <a class="my-logo text-white" href="/">Hệ thống tìm kiếm địa chỉ theo định vị</a> </h3>
+                    <h3 class="text-white"><b>Hệ thống tìm kiếm địa chỉ theo định vị</b></h3>
                 </div>
                 <div class="collapse navbar-collapse pr-5">
                     <ul class="navbar-nav ml-auto">

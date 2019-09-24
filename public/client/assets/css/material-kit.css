@@ -62,6 +62,13 @@ section {
   display: block;
 }
 
+.header-section {
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
