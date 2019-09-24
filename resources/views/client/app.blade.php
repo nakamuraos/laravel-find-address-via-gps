@@ -21,7 +21,7 @@
     <!--  slick css plugins -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/slick.css') }}">
     <!--  rangeSlider css plugins -->
-    <link rel="stylesheet" href="{{ asset('client/assets/css/ion.rangeSlider.min.') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/ion.rangeSlider.min.css') }}">
     <!--  slick theme css plugins -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/slick-theme.css') }}">
     <!--  magnific-popup css plugins -->
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/style.css') }}">
     <!-- template responsive css stylesheet -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/responsive.css') }}">
-    <link href="{{ asset('admin/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
+    <link href="{{ asset('client/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -133,6 +133,20 @@
     <script src="{{ asset('client/assets/js/rater.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/meanmenu.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/main.js') }}"></script>
+    <script>
+        $('#located').click(function(e){
+            e.preventDefault();
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                $('#gps').val("Geolocation is not supported by this browser.");
+            }
+
+            function showPosition(position) {
+                $('#gps').val(position.coords.latitude +"," + position.coords.longitude);
+            }
+        });
+    </script>
 </body>
 
 <!-- Mirrored from modinatheme.com/listico/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Sep 2019 03:56:17 GMT -->

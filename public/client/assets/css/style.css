@@ -1568,8 +1568,8 @@ a.btn-wishlist:hover, .item-meta-data li a:hover, .social-link-share li a:hover 
 /* index -2  */
 .booking-form-home {
     position: absolute;
-    left: 0;
-    top: 30%;
+    left: 5%;
+    top: 50%;
     z-index: 333333;
     transform: translateY(-65%);
 }
