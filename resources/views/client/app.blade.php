@@ -38,7 +38,8 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/style.css') }}">
     <!-- template responsive css stylesheet -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/responsive.css') }}">
-    <link href="{{ asset('admin/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
+
+    <link href="{{ asset('client/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
