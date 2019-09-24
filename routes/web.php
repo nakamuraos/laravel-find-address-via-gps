@@ -17,6 +17,7 @@ Route::post('login','LoginController@postLogin');
 Route::get('logout', 'LoginController@logout');
 
 Route::get('register','LoginController@getRegister');
+Route::post('register','LoginController@postRegister');
 Route::get('/manageaddress','AddressController@index');
 Route::get('/manageuser','UserController@index');
 Route::get('/registeraddress','RegisteraddressController@getregisteraddress');

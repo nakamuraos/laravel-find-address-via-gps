@@ -18,7 +18,7 @@ class LoginController extends Controller
     }
     public function postRegister(Request $request) {
         $rules = [
-             'username' => 'required|min:6',
+             'user_name' => 'required|min:6',
              'email' => 'required|email|unique:users',
              'password' => 'required|confirmed|min:6'
          ];
@@ -31,11 +31,13 @@ class LoginController extends Controller
          }
     
          $newUser = new User();
-         $newUser->name = $request->username;
+         $newUser->user_name = $request->user_name;
+         $newUser->full_name = $request->full_name;
          $newUser->password = bcrypt($request->password);
          $newUser->email = $request->email;
          $newUser->phone = $request->phone;
-         $newUser->address = $request->address;
+         $newUser->verified = true;
+         $newUser->status  = true;
          $newUser->role_id = 2;
          $newUser->save();
     
@@ -60,7 +62,7 @@ class LoginController extends Controller
                 {
                     return redirect()->intended('/manageuser');
                 }
-                 else if(Auth::user()->role_id == 2 )
+                 else if(Auth::user()->role_id == 3 )
                 {
                     return redirect()->intended('/manageaddress');
                 }

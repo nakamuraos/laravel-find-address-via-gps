@@ -14,7 +14,9 @@
  */
 
 /*     brand Colors              */
-
+.input-group-text svg{
+  width: 23px !important;
+}
 .carousel.carousel-full-nagivation .left {
   cursor: url("../../img/arrow-left.png"), url("../../img/arrow-left.cur"), default !important;
 }
@@ -8988,7 +8990,7 @@ input::-webkit-input-placeholder {
 
 .btn.btn-primary.btn-link {
   background-color: transparent;
-  color: #9c27b0;
+  color: #4CAF50;
   box-shadow: none;
 }
 
@@ -16479,7 +16481,7 @@ footer .pull-center {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+  background: linear-gradient(60deg, #4CAF50, #1f4721);
 }
 
 .card .card-header-info,
@@ -16681,7 +16683,7 @@ footer .pull-center {
 }
 
 .card-login .form {
-  min-height: 420px;
+  min-height: 400px;
 }
 
 .card-login .social-line {

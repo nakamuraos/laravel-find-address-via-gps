@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/style.css') }}">
     <!-- template responsive css stylesheet -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/responsive.css') }}">
+<<<<<<< HEAD
+
+=======
+>>>>>>> ce8a279c9d5a40e689439c92d0987f73ee0783af
     <link href="{{ asset('client/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +67,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-8 col-12">
                         <div class="top-bar-left">
-                            <span>He Thong Tim Kiem Vi Tri Theo Dinh Vi GPS</span>
+                            <h3 class="text-white"><b>Hệ thống tìm kiếm địa chỉ theo định vị</b></h3>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-4 col-12 text-md-right">
