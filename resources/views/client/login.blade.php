@@ -10,7 +10,7 @@
                     <form class="form" method="POST" action="/login">
                         @csrf
                         <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title">Login</h4>
+                            <h4 class="card-title">Đăng nhập</h4>
                             <p></p>
                         </div>
 
@@ -27,7 +27,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="text" name="user_name" class="form-control" placeholder="UserName...">
+                                <input type="text" name="user_name" class="form-control" placeholder="Tên người dùng...">
                             </div>
 
                             <div class="input-group">
@@ -42,11 +42,11 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="password" name="password" class="form-control" placeholder="Password...">
+                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu...">
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg mt-5">Login</button>
+                            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg mt-5">Đăng nhập</button>
                         </div>
                     </form>
                 </div>
