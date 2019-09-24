@@ -66,11 +66,40 @@
                                         lng: 105.7336058
                                     },
                                     zoom: 15,
-                                    disableDefaultUI: true
+                                    disableDefaultUI: true,
+                                    styles: [
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
                                 });
                             }
                         </script>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiFv4ocQxt97_b62_XXZoI2gGpUlDHMHQ&callback=initMap" async defer></script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap" async defer></script>
                     </div>
                     <!-- end single slide -->
                 </div>
