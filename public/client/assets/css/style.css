@@ -1570,7 +1570,7 @@ a.btn-wishlist:hover, .item-meta-data li a:hover, .social-link-share li a:hover 
     position: absolute;
     left: 5%;
     top: 50%;
-    z-index: 333333;
+    z-index: 100;
     transform: translateY(-65%);
 }
 .slider-section {

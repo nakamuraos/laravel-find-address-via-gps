@@ -66,6 +66,7 @@ section {
   position:fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   width:100%;
 }
 
@@ -16186,7 +16187,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .header-filter {
-  position: relative;
+  position: fixed;
+  width: 100%;
 }
 
 .header-filter:before,
@@ -16645,6 +16647,10 @@ footer .pull-center {
 
 .card-carousel {
   overflow: hidden;
+}
+
+.card-login, .card-register {
+  top: 100px;
 }
 
 .card-login .card-header {

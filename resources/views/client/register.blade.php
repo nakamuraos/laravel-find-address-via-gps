@@ -1,7 +1,6 @@
 @extends('client.app')
 @section('content')
-<div class="page-header header-filter"
-    style="background-image: url('../client/assets/img/breadcrumb_bg.jpg'); background-size: cover; background-position: top center;">
+<div class="page-header header-filter" style="background-image: url('../client/assets/img/breadcrumb_bg.jpg'); background-size: cover; background-position: top center;"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 ml-auto mr-auto" id="register">
@@ -111,8 +110,6 @@
             </div>
         </div>
     </div>
-
-</div>
 
 
 @endsection
