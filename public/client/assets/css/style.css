@@ -425,6 +425,9 @@ a.btn-booking-start {
 .main-header {
     background: #fff;
 }
+.bg-white{
+    background-color: #fff;
+}
 a.btn-booking-start:hover {
     background: #ff3366;
     color: #fff;

@@ -8,7 +8,7 @@
                     <form class="form" method="POST" action="/register">
                         @csrf
                         <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title">Register</h4>
+                            <h4 class="card-title">Đăng ký</h4>
                             <div class="social-line">
                             </div>
                         </div>
@@ -26,7 +26,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="text" name="user_name" class="form-control" placeholder="UserName...">
+                                <input type="text" name="user_name" class="form-control" placeholder="Tên người dùng">
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -40,7 +40,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="text" name="full_name" class="form-control" placeholder="Fullname...">
+                                <input type="text" name="full_name" class="form-control" placeholder="Họ và tên">
                             </div>
 
                             <div class="input-group">
@@ -55,7 +55,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="text" name="phone" class="form-control" placeholder="Phone...">
+                                <input type="text" name="phone" class="form-control" placeholder="Điện thoại">
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -69,7 +69,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="email" name="email" class="form-control" placeholder="Email...">
+                                <input type="email" name="email" class="form-control" placeholder="Email">
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -83,7 +83,7 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <input type="password" name="password" class="form-control" placeholder="Password...">
+                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
                             </div>
 
                             <div class="input-group">
@@ -99,11 +99,11 @@
                                     </span>
                                 </div>
                                 <input type="password" name="password_confirmation" class="form-control"
-                                    placeholder="Confirm Password...">
+                                    placeholder="Xác nhận mật khẩu">
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Register</button>
+                            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Đăng ký</button>
                         </div>
                     </form>
                 </div>
