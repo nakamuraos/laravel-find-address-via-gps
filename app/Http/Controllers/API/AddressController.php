@@ -104,4 +104,8 @@ class AddressController extends BaseController
 
         return $this->sendResponse($address->toArray(), 'Address deleted successfully.');
     }
+
+    public function addressTypes() {
+        return $this->sendResponse(__('addresstypes'), 'Address types got successfully.');
+    }
 }

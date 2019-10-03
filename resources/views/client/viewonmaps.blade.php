@@ -47,78 +47,9 @@
     <![endif]-->
 </head>
 
-<body class="">
-
-    <!-- preloader element started -->
-    <div class="loader-wrap">
-        <div class="pin"></div>
-        <div class="pulse"></div>
-    </div>
-    <!-- preloader element end -->
-    <!-- header section start -->
-    <header class="header-section">
-        <!-- top bar -->
-        <div class="top-bar-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-md-8 col-12">
-                        <div class="top-bar-left">
-                            <h3 class="text-white"><b>@lang('header.title')</b></h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-4 col-12 text-md-right">
-                        <div class="top-bar-right">
-                            <div class="user-setting">
-                                <ul>
-                                    @if(Auth::user())
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
-                                            href="javascript:void(0)">{{ Auth::user()->user_name }}</a>
-                                        <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                                            <a class="dropdown-item" href=""><i class="nc-icon nc-single-02"></i>&nbsp;
-                                                Profile</a>
-                                            <!-- <a class="dropdown-item" href="blog-posts.html"><i
-                                        class="nc-icon nc-bullet-list-67"></i>&nbsp; My posts</a> -->
-                                            <a class="dropdown-item" href="/logout"><i
-                                                    class="nc-icon nc-bookmark-2"></i>&nbsp;
-                                                Logout</a>
-                                        </ul>
-                                    </li>
-                                    @else
-                                    <li><a href="/login"><i class="fas fa-sign-out-alt"></i>@lang('login.login')</a></li>
-                                    <li><a href="/register"><i class="fas fa-user"></i>@lang('register.register')</a></li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- main menu -->
-        <div class="main-header">
-            <div class="container">
-                <div class="row">
-
-
-
-                    <div class="col-12">
-                        <div class="responsive-menu"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- header section end -->
-
-
-    @yield('content')
-    <!-- footer section wrapper start -->
-    <!-- footer section wrapper end -->
-
-
-
-    <!--  ALl JS Plugins
+<body class="theme_body">
+<div id="map"></div>
+<!--  ALl JS Plugins
     ====================================== -->
     <script src="{{ asset('client/assets/js/jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/jquery.easing.1.3.js') }}"></script>
@@ -133,14 +64,92 @@
     <script src="{{ asset('client/assets/js/rater.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/meanmenu.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/main.js') }}"></script>
-    <script>
+<script>
+        var map;
+        var marker;
+                            
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 21.0537405,
+                    lng: 105.7336058
+                },
+                zoom: 15,
+                disableDefaultUI: true,
+                // styles: [
+                //     {
+                //         "featureType": "administrative.land_parcel",
+                //         "elementType": "labels",
+                //         "stylers": [
+                //         {
+                //             "visibility": "off"
+                //         }
+                //         ]
+                //     },
+                //     {
+                //         "featureType": "poi",
+                //         "elementType": "labels.text",
+                //         "stylers": [
+                //         {
+                //             "visibility": "off"
+                //         }
+                //         ]
+                //     },
+                //     {
+                //         "featureType": "road.local",
+                //         "elementType": "labels",
+                //         "stylers": [
+                //         {
+                //             "visibility": "off"
+                //         }
+                //         ]
+                //     }
+                // ]
+            });
+            map.addListener('click', function(e) {
+                placeMarker(e.latLng, map);
+            });
+
+        }
+        function placeMarker(position, map, clickOnMap = true) {
+            if(marker) {
+                marker.setMap(null);
+            }
+            //$('#gps').val(clickOnMap===true?position.lat()+','+position.lng():position.lat +"," + position.lng);
+            //console.log(position.lat +"," + position.lng);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: clickOnMap===true?'':'You are here'
+            });
+            
+            marker.addListener('click', toggleBounce);
+            map.panTo(position);
+        }
         $('#located').click(function(e){
             e.preventDefault();
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
+                navigator.geolocation.getCurrentPosition(showPosition, function(error) {
+                    if (error.code == error.PERMISSION_DENIED) {
+                        $('#myModal').modal();
+                    }
+                });
             } else {
                 $('#gps').val("Geolocation is not supported by this browser.");
             }
+        });
+
+        function showPosition(position) {
+            $('#gps').val(position.coords.latitude +"," + position.coords.longitude);
+            placeMarker({lat: position.coords.latitude,lng: position.coords.longitude}, map, false);
+        }
+        function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }
 
         $('#gps').keyup(delay(function(e){
             var val = this.value;
@@ -153,9 +162,8 @@
                         //var data = findplacefromtext(location, val);
                         $.get("/api/google/nearbysearch?location="+location+"&keyword="+val+"&type=nha+hang", function(d, status){
                             var data = JSON.parse(d);
-                            console.log(data);
                             var list = '<div class="list-group" style="padding:0;">';
-                            data.data.forEach(function(element, i){
+                            data.results.forEach(function(element, i){
                                 list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-location="'+element.geometry.location.lat+','+element.geometry.location.lng+'">'+element.name+'</a>';
                             });
                             list+='</div>';
@@ -171,9 +179,46 @@
                     });
                 }
             }
-        });
+        }, 500));
+        function delay(callback, ms) {
+            var timer = 0;
+            return function() {
+                var context = this, args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                callback.apply(context, args);
+                }, ms || 0);
+            };
+        }
+        async function findplacefromtext(location, input) {
+            var data = '';
+            await $.get("/api/google/findplacefromtext?location="+location+"&input="+input, function(d, status){
+                data = JSON.parse(d);
+            });
+            return data;
+        }
+        function getLocation() {
+            var location = '';
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(e){
+                    location = e.coords.latitude +"," + e.coords.longitude;
+                }, function(error) {
+                    if (error.code == error.PERMISSION_DENIED) {
+                        $('#myModal').modal();
+                    }
+                });
+            }
+            return location;
+        }
+        function choosePlace(e) {
+            $('#gps').val(e.textContent);
+            var location = e.getAttribute('data-location');
+            $('#gps').attr('data-location', location);
+            $('#listPlaces').css('display','none');
+            placeMarker({lat: parseFloat(location.split(',')[0]), lng: parseFloat(location.split(',')[1])}, map, false);
+        }
     </script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap&language={{ Config::get('app.locale') }}" async defer></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap&language={{ Config::get('app.locale') }}" async defer></script>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">

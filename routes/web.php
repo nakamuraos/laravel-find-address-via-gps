@@ -12,6 +12,7 @@
 */
 
 Route::get('/','ClientController@index');
+Route::get('/viewonmaps','ClientController@viewonmaps');
 Route::get('login','LoginController@getLogin');
 Route::post('login','LoginController@postLogin');
 Route::get('logout', 'LoginController@logout');

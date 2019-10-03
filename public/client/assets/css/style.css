@@ -39,8 +39,6 @@ Version: 2.1
 *{
     box-sizing: border-box;
 }
-body,
-html,
 .wrapper {
     height: 100%;
 }

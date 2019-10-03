@@ -9,4 +9,8 @@ class ClientController extends Controller
     public function index(Request $request){
         return view('client.index');
     }
+
+    public function viewonmaps(Request $request){
+        return view('client.viewonmaps');
+    }
 }
