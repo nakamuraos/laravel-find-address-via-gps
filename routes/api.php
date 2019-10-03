@@ -32,16 +32,18 @@ Route::get('/google/directions', 'API\GoogleMapsApiController@directions');
 
 //Responsing config address types
 Route::get('/config/addresstypes', 'API\AddressController@addressTypes');
+//Responsing config address types from filter
+Route::get('/address/types', 'API\AddressController@filterTypes');
 
 Route::get('/insert', function(Request $request) {
-    DB::table('users')->insert([
-        "user_name" => "hien98",
-        "full_name" => "Pham Thi Hien",
-        "password" =>  bcrypt('123456'),
-        "phone" => "093284755",
-        "email" => "hienp9237@gmail.com",
-        "verified" => true,
-        "status" => true,
-        "role_id" => "2",          
-    ]);
+    // DB::table('users')->insert([
+    //     "user_name" => "hien98",
+    //     "full_name" => "Pham Thi Hien",
+    //     "password" =>  bcrypt('123456'),
+    //     "phone" => "093284755",
+    //     "email" => "hienp9237@gmail.com",
+    //     "verified" => true,
+    //     "status" => true,
+    //     "role_id" => "2",          
+    // ]);
 });

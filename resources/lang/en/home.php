@@ -14,6 +14,8 @@ return [
     */
 
     'typetosearch'            => 'Typing where you want go...',
+    'typetosearch_example'    => 'Restaurent, School,...',
     'direction'               => 'Direction',
-
+    'resultsin'               => 'Results are based on English',
+    'noresults'               => 'No results, try again with shorter keywords',
 ];

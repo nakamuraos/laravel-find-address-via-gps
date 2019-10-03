@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ======== Page title ============ -->
-    <title>Listico - Listing & Directory HTML Template</title>
+    <title>@lang('header.title')</title>
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('client/assets/img/favicon.png') }}">
@@ -95,28 +95,10 @@
                 </div>
             </div>
         </div>
-        <!-- main menu -->
-        <div class="main-header">
-            <div class="container">
-                <div class="row">
-
-
-
-                    <div class="col-12">
-                        <div class="responsive-menu"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </header>
     <!-- header section end -->
 
-
     @yield('content')
-    <!-- footer section wrapper start -->
-    <!-- footer section wrapper end -->
-
-
 
     <!--  ALl JS Plugins
     ====================================== -->
@@ -141,6 +123,12 @@
             } else {
                 $('#gps').val("Geolocation is not supported by this browser.");
             }
+        });
+
+        function showPosition(position) {
+            $('#gps').val(position.coords.latitude +"," + position.coords.longitude);
+            placeMarker({lat: position.coords.latitude,lng: position.coords.longitude}, map, false);
+        }
 
         $('#gps').keyup(delay(function(e){
             var val = this.value;
@@ -151,16 +139,16 @@
                     navigator.geolocation.getCurrentPosition(function(e){
                         var location = e.coords.latitude +"," + e.coords.longitude;
                         //var data = findplacefromtext(location, val);
-                        $.get("/api/google/nearbysearch?location="+location+"&keyword="+val+"&type=nha+hang", function(d, status){
-                            var data = JSON.parse(d);
-                            console.log(data);
-                            var list = '<div class="list-group" style="padding:0;">';
-                            data.data.forEach(function(element, i){
-                                list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-location="'+element.geometry.location.lat+','+element.geometry.location.lng+'">'+element.name+'</a>';
+                        $.get("/api/address/types?type="+val, function(d, status){
+                            var data = d.data;
+                            var list = '<div class="list-group" style="padding:0;"><a class="list-group-item list-group-item-action"><b>'+(data.length<=0?'@lang('home.noresults')':'@lang('home.resultsin'):')+'</b></a>';
+                            Object.keys(data).forEach(function(key) {
+                                list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-addresstype="'+key+'">'+data[key]+'</a>';
                             });
                             list+='</div>';
                             $('#listPlaces').css('display','block');
-                            $('#listPlaces').css('margin-top', '-11px');
+                            $('#listPlaces').css('margin-top', '-10px');
+                            $('#listPlaces').css('width', $('#gps').width()+22);
                             $('#listPlaces').html(list);
                             });
                         
@@ -171,7 +159,44 @@
                     });
                 }
             }
-        });
+        }, 200));
+        function delay(callback, ms) {
+            var timer = 0;
+            return function() {
+                var context = this, args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                callback.apply(context, args);
+                }, ms || 0);
+            };
+        }
+        async function findplacefromtext(location, input) {
+            var data = '';
+            await $.get("/api/google/findplacefromtext?location="+location+"&input="+input, function(d, status){
+                data = JSON.parse(d);
+            });
+            return data;
+        }
+        function getLocation() {
+            var location = '';
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(e){
+                    location = e.coords.latitude +"," + e.coords.longitude;
+                }, function(error) {
+                    if (error.code == error.PERMISSION_DENIED) {
+                        $('#myModal').modal();
+                    }
+                });
+            }
+            return location;
+        }
+        function choosePlace(e) {
+            $('#gps').val(e.textContent);
+            var location = e.getAttribute('data-location');
+            $('#gps').attr('data-location', location);
+            $('#listPlaces').css('display','none');
+            placeMarker({lat: parseFloat(location.split(',')[0]), lng: parseFloat(location.split(',')[1])}, map, false);
+        }
     </script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap&language={{ Config::get('app.locale') }}" async defer></script> -->
     <!-- Modal -->

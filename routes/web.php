@@ -23,3 +23,14 @@ Route::get('/manageuser','UserController@index');
 Route::get('/registeraddress','RegisteraddressController@getregisteraddress');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//change language
+Route::get('/welcome/{locale}', function ($locale) {
+  // Cookie::queue(Cookie::make('locale', $locale, 30 * 30 * 84600));
+  $locale = substr($locale, 0, 2);
+  $str = 'Language has been switched to ' . strtoupper($locale) . ', redirecting to Home page in 3 seconds...';
+  $str .= '<meta http-equiv="refresh" content="3;url=/">';
+  $response = new Illuminate\Http\Response($str);
+  $response->withCookie(cookie('locale', $locale, 30 * 84600)); //over 4 years
+  return $response;
+});
