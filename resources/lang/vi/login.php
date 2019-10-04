@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'login' => 'Đăng nhập',
-
+    'title' => 'Đăng nhập',
+    'forgot_password' => 'Quên mật khẩu?',
 ];

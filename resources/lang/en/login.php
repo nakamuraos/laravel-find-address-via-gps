@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'login' => 'Login',
-
+    'title' => 'Login',
+    'forgot_password' => 'Forgot password?',
 ];

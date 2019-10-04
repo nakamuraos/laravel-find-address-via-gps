@@ -6,33 +6,32 @@
             <div class="row">
                 <div class="col-xl-12 col-sm-12">
                     <div class="breadcrumb-inner text-center">
-                        <h2>Register</h2>
+                        <h2>@lang('register.title')</h2>
+                        <!-- register section start -->
+                        <div class="registar-area section-padding">
+                            <div class="container">
+                                <div class="row ">
+                                    <div class="col-xl-4 col-sm-12 col-md-8 offset-lg-4 offset-md-2">
+                                        <div class="registar-form ">
+                                            <form action="#" class="row">
+                                                <input type="text" name="user_name" placeholder="Usename*"> <br/>
+                                                <input type="email" name="email" placeholder="Your Email*"> <br/>
+                                                <input type="text"  name="phone" placeholder="Your Phone*"> <br/>                    
+                                                <input type="text" name="full_name" placeholder="Your Full Name*"> <br/>
+                                                <input type="password" name="password" placeholder="Password*"> <br/>
+                                                <input type="password" name="password_confirmation" placeholder="Confirm password*"> <br/>
+                                                <button type="submit" class="btn-submit">@lang('register.title')</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- register section end -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- breadcrumb section end -->
-
-    <!-- register section start -->
-    <div class="registar-area section-padding">
-        <div class="container">
-            <div class="row ">
-                <div class="col-xl-12 col-md-12">
-                    <div class="registar-form ">
-                        <form action="#" class="row">
-                            <input type="text" name="user_name" class="ml-5 col-md-5 mr-3 col-12 " placeholder="Usename*">
-                            <input type="text" name="full_name" class=" col-md-5 mr-3 col-12" placeholder="Your Full Name*">
-                            <input type="email" name="email" class="ml-5 col-md-5 mr-3 col-12" placeholder="Your Email*">
-                            <input type="text"  name="phone" class=" col-md-5 mr-3 col-12" placeholder="Your Phone*">                           
-                            <input type="password" name="password" class="ml-5 col-md-5 mr-3 col-12" placeholder="Password*">
-                            <input type="password" name="password_confirmation" class="col-md-5 mr-3 col-12" placeholder="Confirm password*">
-                            <button type="submit" class="btn-submit col-md-5 col-12 m-auto">Register</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- register section end -->
 @endsection

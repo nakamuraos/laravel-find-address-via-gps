@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'register' => 'Đăng ký',
+    'title' => 'Đăng ký',
 
 ];

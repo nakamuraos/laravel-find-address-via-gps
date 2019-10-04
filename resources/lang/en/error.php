@@ -14,6 +14,9 @@ return [
     */
 
     'gps_permission_denied' => 'Error permission',
-    'gps_permission_denied_desp' => '<p>To use this feature, system needs access permission to your location.</p><p>Please enable your location in settings.</p>',
+    'gps_permission_denied_desp' => '<p>To use the services on this site, we need access permission to your location.</p><p>Please enable your location in settings.</p>',
+    'gps_permission_prompt' => 'GPS permissions',
+    'gps_permission_prompt_desp' => '<p>To use the services on this site, we need access permission to your location.</p><p>If you agree, please click Grant to continue.</p>',
+    'grant' => 'Grant',
     'close' => 'Close'
 ];

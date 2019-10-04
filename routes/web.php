@@ -26,7 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //change language
 Route::get('/welcome/{locale}', function ($locale) {
-  // Cookie::queue(Cookie::make('locale', $locale, 30 * 30 * 84600));
   $locale = substr($locale, 0, 2);
   $str = 'Language has been switched to ' . strtoupper($locale) . ', redirecting...';
   $str .= '<meta http-equiv="refresh" content="2;url=/">';

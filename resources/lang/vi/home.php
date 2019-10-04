@@ -16,6 +16,7 @@ return [
     'typetosearch'            => 'Nhập địa điểm bạn muốn đến...',
     'typetosearch_example'    => 'Nhà hàng, quán ăn,...',
     'direction'               => 'Chỉ đường',
+    'result'                  => 'Kết quả',
     'resultsin'               => 'Kết quả dựa trên tiếng Việt',
     'noresults'               => 'Không có kết quả, thử lại với từ khóa ngắn hơn',
 ];

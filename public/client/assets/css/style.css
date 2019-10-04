@@ -68,10 +68,6 @@ input::-moz-focus-inner {
 input::-webkit-focus-inner {
     border: 0;
 }
-.navbar {
-    padding-left: 0;
-    padding-right: 0;
-}
 ul {
   padding: 0;
   margin: 0;
@@ -117,7 +113,7 @@ a:active {
    color: #666;
 }
 .section-padding {
-    padding: 120px 0px;
+    padding: 20px 0px;
 }
 .section-title {
     margin-bottom: 30px;
@@ -301,10 +297,6 @@ h2 {
     transform :scale(1.2, 1.2);
     opacity: 0;
   }
-}
-nav {
-    padding: 0 !important;
-    margin: 0 !important;
 }
 
  /* go to  up */
@@ -491,9 +483,15 @@ form.search-form button {
     box-shadow: 1px 4px 22px #6e6e6e;
     padding: 30px;
     width: 415px;
+    max-width: 90%;
     margin: auto;
     position: relative;
 }
+.navbar-brand {
+    white-space: unset;
+    max-width: 70%;
+}
+
 ul.nav.nav-tabs li a, ul.nav.nav-tabs li a.active {
     border: none;
     background: #ffffff;
