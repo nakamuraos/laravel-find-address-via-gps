@@ -140,18 +140,8 @@
                         var location = e.coords.latitude +"," + e.coords.longitude;
                         //var data = findplacefromtext(location, val);
                         $.get("/api/address/types?type="+val, function(d, status){
-                            var data = d.data;
-                            var list = '<div class="list-group" style="padding:0;"><a class="list-group-item list-group-item-action"><b>'+(data.length<=0?'@lang('home.noresults')':'@lang('home.resultsin'):')+'</b></a>';
-                            Object.keys(data).forEach(function(key) {
-                                list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-addresstype="'+key+'">'+data[key]+'</a>';
-                            });
-                            list+='</div>';
-                            $('#listPlaces').css('display','block');
-                            $('#listPlaces').css('margin-top', '-10px');
-                            $('#listPlaces').css('width', $('#gps').width()+22);
-                            $('#listPlaces').html(list);
-                            });
-                        
+                            display_list(d);
+                        });
                     }, function(error) {
                         if (error.code == error.PERMISSION_DENIED) {
                             $('#myModal').modal();
@@ -170,12 +160,17 @@
                 }, ms || 0);
             };
         }
-        async function findplacefromtext(location, input) {
-            var data = '';
-            await $.get("/api/google/findplacefromtext?location="+location+"&input="+input, function(d, status){
-                data = JSON.parse(d);
+        function display_list(d) {
+            var data = d.data;
+            var list = '<div class="list-group" style="padding:0;"><a class="list-group-item list-group-item-action"><b>'+(data.length<=0?'@lang('home.noresults')':'@lang('home.resultsin'):')+'</b></a>';
+            Object.keys(data).forEach(function(key) {
+                list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-addresstype="'+key+'">'+data[key]+'</a>';
             });
-            return data;
+            list+='</div>';
+            $('#listPlaces').css('display','block');
+            $('#listPlaces').css('margin-top', '-10px');
+            $('#listPlaces').css('width', $('#gps').width()+22);
+            $('#listPlaces').html(list);
         }
         function getLocation() {
             var location = '';
@@ -192,10 +187,8 @@
         }
         function choosePlace(e) {
             $('#gps').val(e.textContent);
-            var location = e.getAttribute('data-location');
-            $('#gps').attr('data-location', location);
+            $('#gps').attr('data-addresstype', e.getAttribute('data-addresstype'));
             $('#listPlaces').css('display','none');
-            placeMarker({lat: parseFloat(location.split(',')[0]), lng: parseFloat(location.split(',')[1])}, map, false);
         }
     </script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap&language={{ Config::get('app.locale') }}" async defer></script> -->

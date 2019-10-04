@@ -51,11 +51,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        $locale = \Crypt::decryptString(\Cookie::get('locale'));
-        if ($locale) {
-            \App::setLocale($locale);
-        }
-
         Route::middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
@@ -70,11 +65,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        $locale = \Crypt::decryptString(\Cookie::get('locale'));;
-        if ($locale) {
-            \App::setLocale($locale);
-        }
-
         Route::prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)

@@ -10,7 +10,7 @@
                     <div class="search-form-box">
                         <h3>@lang('home.typetosearch')</h3>
                         <form action="#" class="search-form">
-                            <input type="text" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" data-location="" autocomplete="off">
+                            <input type="text" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" data-addresstype="" autocomplete="off">
                             <div class="result hide" id="listPlaces" style="position: absolute;width:62.7%;background-color:white;overflow:auto;max-height:250px;"></div>
                         </form>
                     </div>
