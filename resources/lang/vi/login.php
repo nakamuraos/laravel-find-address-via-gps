@@ -15,4 +15,6 @@ return [
 
     'title' => 'Đăng nhập',
     'forgot_password' => 'Quên mật khẩu?',
+    'user_name' => 'Tài khoản*',
+    'password' => 'Mật khẩu*',
 ];

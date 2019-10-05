@@ -18,5 +18,6 @@ return [
     'gps_permission_prompt' => 'Cấp quyền truy cập vị trí',
     'gps_permission_prompt_desp' => '<p>Để các dịch vụ trên trang web này hoạt động, chúng tôi cần quyền truy cập vào vị trí của bạn.</p><p>Nếu bạn đồng ý, vui lòng nhấn vào Cấp quyền để tiếp tục.</p>',
     'grant' => 'Cấp quyền',
-    'close' => 'Đóng'
+    'close' => 'Đóng',
+    'login_error' => 'Tên hoặc mật khẩu không đúng',
 ];

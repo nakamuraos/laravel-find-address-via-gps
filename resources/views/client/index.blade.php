@@ -1,6 +1,7 @@
- @extends('client.app') @section('content')
+ @extends('layouts.app')
+ @section('content')
 <!-- hero section start -->
-<div class="page-header header-filter" style="background-image: url('../client/assets/img/breadcrumb_bg.jpg'); background-size: cover; background-position: top center; position: fixed; width: 100%; height: -webkit-fill-available;"></div>
+<section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter" style="background-image: url({{asset('client/assets/img/breadcrumb_bg.jpg')}})">
 <div class="container">
     <div class="row">
         <div class="search-tab-wrap" style="margin-top: 135px;">
@@ -19,6 +20,6 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 <!-- hero section end -->
 @endsection

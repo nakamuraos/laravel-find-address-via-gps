@@ -15,4 +15,6 @@ return [
 
     'title' => 'Login',
     'forgot_password' => 'Forgot password?',
+    'user_name' => 'Username',
+    'password' => 'Password',
 ];

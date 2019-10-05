@@ -14,5 +14,10 @@ return [
     */
 
     'title' => 'Đăng ký',
-
+    'user_name' => 'Tài khoản',
+    'password' => 'Mật khẩu',
+    'phone_number' => 'Số điện thoại',
+    'repeat_password' => 'Xác nhận mật khẩu',
+    'email' => 'Email',
+    'full_name' => 'Họ và tên',
 ];

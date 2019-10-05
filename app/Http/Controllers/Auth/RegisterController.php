@@ -39,6 +39,10 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    
+    public function index(){
+        return view('auth.register');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -69,4 +73,31 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function register(Request $request) {
+        return; //testing
+        $rules = [
+             'username' => 'required|min:6',
+             'email' => 'required|email|unique:users',
+             'password' => 'required|confirmed|min:6'
+        ];
+    
+    
+        $validator = Validator::make($request->all(), $rules);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        $newUser = new User();
+        $newUser->name = $request->username;
+        $newUser->password = bcrypt($request->password);
+        $newUser->email = $request->email;
+        $newUser->phone = $request->phone;
+        $newUser->address = $request->address;
+        $newUser->role_id = 2;
+        $newUser->save();
+    
+        return redirect('/login');
+     }
 }

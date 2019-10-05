@@ -18,5 +18,6 @@ return [
     'gps_permission_prompt' => 'GPS permissions',
     'gps_permission_prompt_desp' => '<p>To use the services on this site, we need access permission to your location.</p><p>If you agree, please click Grant to continue.</p>',
     'grant' => 'Grant',
-    'close' => 'Close'
+    'close' => 'Close',
+    'login_error' => 'Username or Password is invalid!',
 ];

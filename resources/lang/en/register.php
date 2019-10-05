@@ -14,5 +14,10 @@ return [
     */
 
     'title' => 'Register',
-
+    'user_name' => 'Username',
+    'password' => 'Password',
+    'phone_number' => 'Phone number',
+    'repeat_password' => 'Repeat password',
+    'email' => 'Your email',
+    'full_name' => 'Your full name',
 ];
