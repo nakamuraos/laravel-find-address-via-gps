@@ -20,9 +20,8 @@
                         <div class="info">
                             <div class="image">
                                 <!-- <div id="overlay"> -->
-                                    <img src="{{$address->image}}" alt="">
+                                    <img src="{{$address->photos[0]}}" alt="">
                                 <!-- </div> -->
-                               
                             </div>
                             <h4 class="info-title">{{$address->name}}</h4>
                             <p class="text-center p-0">

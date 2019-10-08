@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Address;
-use App\Typeaddress;
+use App\Models\Address;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Image;
 class AddressController extends Controller
@@ -14,7 +14,10 @@ class AddressController extends Controller
         return view('admin.address.index',compact('addresses'));
     }
     public function getAddressDetail($id){
-        $addresstypes = Typeaddress::all();
+        $addresstypes = Type::all();
+        foreach($addresstypes as $key => $value) {
+            $addresstypes[$key]['name'] = \Lang::get('addresstypes.'.$value['name']);
+        }
         $address = Address::where("id",$id)->first();
         return view('admin.address.addressdetail',compact('address','addresstypes'));
     }
@@ -30,16 +33,16 @@ class AddressController extends Controller
             $filename = time().'.'.$img->getClientOriginalExtension();
 
             Image::make($img)->resize(500, 500)->save(public_path('/admin/assets/image'.$filename));
-            $address->image = '/admin/assets/image' . $filename;
+            $address->photos = ['/admin/assets/image' . $filename];
 
         }
 
 
         $address->save();
-        $address->verify = $request->verify;
+        //$address->verify = $request->verify;
         $address->location = $request->location;
         $address->user_id = $request->user_id;
-        $address->addresstype_id = $request->addresstype_id;
+        //$address->addresstype_id = $request->addresstype_id;
         session()->flash("success", "Update Successfully");
         return redirect("/manageaddress");
     }

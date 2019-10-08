@@ -31,7 +31,7 @@ class GoogleController extends BaseController
     }
 
     public function geocode(Request $request) {
-        $temp = json_decode(file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->input('location').'&key='.env('GOOGLE_MAPS_API_KEY')));
+        $temp = json_decode(file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->input('location').'&key='.config('googlemaps.key')));
         return $this->sendResponse($temp->results, $temp->status);
     }
 
@@ -42,7 +42,7 @@ class GoogleController extends BaseController
             '@'.$request->input('location').
             '&input='.urlencode($request->input('input')) .
             '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry' . 
-            '&key='.env('GOOGLE_MAPS_API_KEY')
+            '&key='.config('googlemaps.key')
         ));
         return $this->sendResponse($temp->results, $temp->status);
     }

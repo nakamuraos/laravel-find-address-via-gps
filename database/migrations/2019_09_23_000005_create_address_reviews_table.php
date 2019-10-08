@@ -15,14 +15,15 @@ class CreateAddressReviewsTable extends Migration
     {
         Schema::create('address_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('address_id');
-            $table->foreign('address_id')->references('id')->on('addresses');
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->text('photos');
+            $table->bigInteger('address_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->text('photos')->nullable();
             $table->text('comment');
             $table->integer('rate');
             $table->timestamps();
+
+            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

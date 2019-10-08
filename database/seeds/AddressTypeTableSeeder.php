@@ -11,23 +11,13 @@ class AddressTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('typeaddresses')->insert([
-            "name" => "Bệnh viện"
-        ]);
-        DB::table('typeaddresses')->insert([
-            "name" => "Nhà hàng"
-        ]);
-        DB::table('typeaddresses')->insert([
-            "name" => "Hiệu thuốc"
-        ]);
-        DB::table('typeaddresses')->insert([
-            "name" => "Khách sạn"
-        ]);
-        DB::table('typeaddresses')->insert([
-            "name" => "Quán ăn"
-        ]);
-        DB::table('typeaddresses')->insert([
-            "name" => "Quán bar"
-        ]);
+        $types = config('addresstypes');
+        foreach($types as $key => $type) {
+            DB::table('address_type')->insert([
+                "address_id" => rand(1,4),
+                "type_id" => $key+1,
+            ]);
+            if($key > 10) break;
+        }
     }
 }

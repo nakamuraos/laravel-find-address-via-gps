@@ -18,14 +18,16 @@ class CreateAddressesTable extends Migration
             $table->string('name');
             $table->string('photos');
             $table->string('detail');
-            $table->integer('user_id');
-            $table->boolean('verified');
-            $table->integer('verified_by');
+            $table->bigInteger('user_id')->unsigned();
+            $table->boolean('verified')->default(0);
+            $table->bigInteger('verified_by')->unsigned();
             $table->dateTime('verified_time');
-            $table->string('location');
-            $table->string('types');
-            $table->float('rate', 1, 1);
+            $table->string('location', 50);
+            $table->float('rate', 2, 1)->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('verified_by')->references('id')->on('users');
         });
     }
 
