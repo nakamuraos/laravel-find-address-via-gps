@@ -12,13 +12,16 @@
 */
 
 Route::get('/','ClientController@index');
-Route::get('login','LoginController@getLogin');
-Route::post('login','LoginController@postLogin');
-Route::get('logout', 'LoginController@logout');
+Route::get('/login','LoginController@getLogin');
+Route::post('/login','LoginController@postLogin');
+Route::get('/logout', 'LoginController@logout');
 
-Route::get('register','LoginController@getRegister');
-Route::post('register','LoginController@postRegister');
+Route::get('/register','LoginController@getRegister');
+Route::post('/register','LoginController@postRegister');
 Route::get('/manageaddress','AddressController@index');
+Route::get('/addressdetail/{id}','AddressController@getAddressDetail');
+Route::delete('/address/destroy/{id}','AddressController@destroy');
+Route::put('/address/update/{id}','AddressController@update');
 Route::get('/manageuser','UserController@index');
 Route::get('/registeraddress','RegisteraddressController@getregisteraddress');
 

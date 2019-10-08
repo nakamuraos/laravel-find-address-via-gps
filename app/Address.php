@@ -14,4 +14,8 @@ class Address extends Model
     protected $fillable = [
         'name', 'location'
     ];
+
+    public function typeAddress() {
+        return $this->belongsTo(Typeaddress::class);
+    }
 }

@@ -123,7 +123,7 @@
     <script>
         var map;
         var marker;
-                            
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
@@ -162,13 +162,14 @@
                 //     }
                 // ]
             });
-            map.addListener('click', function(e) {
+            map.addListener('click', function (e) {
                 placeMarker(e.latLng, map);
             });
 
         }
+
         function placeMarker(position, map, clickOnMap = true) {
-            if(marker) {
+            if (marker) {
                 marker.setMap(null);
             }
             //$('#gps').val(clickOnMap===true?position.lat()+','+position.lng():position.lat +"," + position.lng);
@@ -176,16 +177,16 @@
             marker = new google.maps.Marker({
                 position: position,
                 map: map,
-                title: clickOnMap===true?'':'You are here'
+                title: clickOnMap === true ? '' : 'You are here'
             });
-            
+
             marker.addListener('click', toggleBounce);
             map.panTo(position);
         }
-        $('#located').click(function(e){
+        $('#located').click(function (e) {
             e.preventDefault();
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, function(error) {
+                navigator.geolocation.getCurrentPosition(showPosition, function (error) {
                     if (error.code == error.PERMISSION_DENIED) {
                         $('#myModal').modal();
                     }
@@ -196,9 +197,13 @@
         });
 
         function showPosition(position) {
-            $('#gps').val(position.coords.latitude +"," + position.coords.longitude);
-            placeMarker({lat: position.coords.latitude,lng: position.coords.longitude}, map, false);
+            $('#gps').val(position.coords.latitude + "," + position.coords.longitude);
+            placeMarker({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }, map, false);
         }
+
         function toggleBounce() {
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
@@ -207,28 +212,34 @@
             }
         }
 
-        $('#gps').keyup(delay(function(e){
+        $('#gps').keyup(delay(function (e) {
             var val = this.value;
-            if(val == '') {
-                $('#listPlaces').css('display','none');
+            if (val == '') {
+                $('#listPlaces').css('display', 'none');
             } else {
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(e){
-                        var location = e.coords.latitude +"," + e.coords.longitude;
+                    navigator.geolocation.getCurrentPosition(function (e) {
+                        var location = e.coords.latitude + "," + e.coords.longitude;
                         //var data = findplacefromtext(location, val);
-                        $.get("/api/google/findplacefromtext?location="+location+"&input="+val, function(d, status){
-                            var data = JSON.parse(d);
-                            var list = '<div class="list-group" style="padding:0;">';
-                            data.candidates.forEach(function(element, i){
-                                list+='<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-location="'+element.geometry.location.lat+','+element.geometry.location.lng+'">'+element.name+'</a>';
+                        $.get("/api/google/findplacefromtext?location=" + location + "&input=" +
+                            val,
+                            function (d, status) {
+                                var data = JSON.parse(d);
+                                var list = '<div class="list-group" style="padding:0;">';
+                                data.candidates.forEach(function (element, i) {
+                                    list +=
+                                        '<a class="list-group-item list-group-item-action" onclick="choosePlace(this);" data-location="' +
+                                        element.geometry.location.lat + ',' + element
+                                        .geometry.location.lng + '">' + element.name +
+                                        '</a>';
+                                });
+                                list += '</div>';
+                                $('#listPlaces').css('display', 'block');
+                                $('#listPlaces').css('margin-top', '-11px');
+                                $('#listPlaces').html(list);
                             });
-                            list+='</div>';
-                            $('#listPlaces').css('display','block');
-                            $('#listPlaces').css('margin-top', '-11px');
-                            $('#listPlaces').html(list);
-                            });
-                        
-                    }, function(error) {
+
+                    }, function (error) {
                         if (error.code == error.PERMISSION_DENIED) {
                             $('#myModal').modal();
                         }
@@ -236,29 +247,33 @@
                 }
             }
         }, 500));
+
         function delay(callback, ms) {
             var timer = 0;
-            return function() {
-                var context = this, args = arguments;
+            return function () {
+                var context = this,
+                    args = arguments;
                 clearTimeout(timer);
                 timer = setTimeout(function () {
-                callback.apply(context, args);
+                    callback.apply(context, args);
                 }, ms || 0);
             };
         }
         async function findplacefromtext(location, input) {
             var data = '';
-            await $.get("/api/google/findplacefromtext?location="+location+"&input="+input, function(d, status){
+            await $.get("/api/google/findplacefromtext?location=" + location + "&input=" + input, function (d,
+                status) {
                 data = JSON.parse(d);
             });
             return data;
         }
+
         function getLocation() {
             var location = '';
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(e){
-                    location = e.coords.latitude +"," + e.coords.longitude;
-                }, function(error) {
+                navigator.geolocation.getCurrentPosition(function (e) {
+                    location = e.coords.latitude + "," + e.coords.longitude;
+                }, function (error) {
                     if (error.code == error.PERMISSION_DENIED) {
                         $('#myModal').modal();
                     }
@@ -266,30 +281,36 @@
             }
             return location;
         }
+
         function choosePlace(e) {
             $('#gps').val(e.textContent);
             var location = e.getAttribute('data-location');
             $('#gps').attr('data-location', location);
-            $('#listPlaces').css('display','none');
-            placeMarker({lat: parseFloat(location.split(',')[0]), lng: parseFloat(location.split(',')[1])}, map, false);
+            $('#listPlaces').css('display', 'none');
+            placeMarker({
+                lat: parseFloat(location.split(',')[0]),
+                lng: parseFloat(location.split(',')[1])
+            }, map, false);
         }
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap" async
+        defer></script>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h4 class="modal-title">Lỗi cấp quyền</h4>
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <h4 class="modal-title">Lỗi cấp quyền</h4>
                 </div>
                 <div class="modal-body">
-                <p>Để sử dụng được tính năng này, VNN cần quyền truy nhập vào vị trí của bạn.</p>
-                <p>Vui lòng bao gồm quyền truy cập vị trí trong cài đặt.</p>
+                    <p>Để sử dụng được tính năng này, VNN cần quyền truy nhập vào vị trí của bạn.</p>
+                    <p>Vui lòng bao gồm quyền truy cập vị trí trong cài đặt.</p>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -300,6 +321,7 @@
             border: 1px solid #eee;
             border-top: 0;
         }
+
     </style>
 </body>
 

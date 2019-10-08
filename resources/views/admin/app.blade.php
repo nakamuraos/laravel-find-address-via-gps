@@ -112,13 +112,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('admin/assets/js/material-kit.js?v=2.0.5x') }}" type="text/javascript"></script>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0">
-    </script>
-
+    <script src="{{ asset('js/script.js') }}"></script>
+        @stack("scripts")
 </body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0">
-</script>
-
 </html>
