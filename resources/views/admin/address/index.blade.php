@@ -20,8 +20,9 @@
                         <div class="info">
                             
                             <div class="image">
-                                <img src="{{asset('admin/assets/image/quananvat.jpg')}}" alt="">
-                                
+                                <!-- <div id="overlay"> -->
+                                    <img src="{{$address->photos[0]}}" alt="">
+                                <!-- </div> -->
                             </div>
                             <h4 class="info-title">Quán ăn vặt teen 9X</h4>
                             <p class="text-center p-0">

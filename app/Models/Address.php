@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,11 @@ class Address extends Model
      *
      * @var array
      */
+    protected $table = 'addresses';
     protected $fillable = [
-        'name', 'location'
+        'name', 'photos', 'detail', 'location',
+    ];
+    protected $casts = [
+        'photos' => 'array',
     ];
 }
