@@ -39,9 +39,7 @@ Version: 2.1
 *{
     box-sizing: border-box;
 }
-body,
-html,
-.wrapper {
+html, body, .wrapper {
     height: 100%;
 }
 body {
@@ -70,10 +68,6 @@ input::-moz-focus-inner {
 input::-webkit-focus-inner {
     border: 0;
 }
-.navbar {
-    padding-left: 0;
-    padding-right: 0;
-}
 ul {
   padding: 0;
   margin: 0;
@@ -88,6 +82,26 @@ a:active {
   text-decoration: none;
   outline: none !important;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
 ::placeholder {
     color: #666;
     opacity: 1; /* Firefox */
@@ -99,7 +113,7 @@ a:active {
    color: #666;
 }
 .section-padding {
-    padding: 120px 0px;
+    padding: 20px 0px;
 }
 .section-title {
     margin-bottom: 30px;
@@ -283,10 +297,6 @@ h2 {
     transform :scale(1.2, 1.2);
     opacity: 0;
   }
-}
-nav {
-    padding: 0 !important;
-    margin: 0 !important;
 }
 
  /* go to  up */
@@ -476,9 +486,15 @@ form.search-form button {
     box-shadow: 1px 4px 22px #6e6e6e;
     padding: 30px;
     width: 415px;
+    max-width: 90%;
     margin: auto;
     position: relative;
 }
+.navbar-brand {
+    white-space: unset;
+    max-width: 70%;
+}
+
 ul.nav.nav-tabs li a, ul.nav.nav-tabs li a.active {
     border: none;
     background: #ffffff;
@@ -550,6 +566,7 @@ ul.nav.nav-tabs li a.active {
     border-radius: 50%;
     font-weight: 700;
 }
+
 /* populer item  */
 
 .bg-cover {
@@ -558,6 +575,16 @@ ul.nav.nav-tabs li a.active {
     background-position: center center;
     z-index: 1;
     position: relative;
+    min-height: calc(100% - 40px - 1rem);
+}
+@media (min-width: 576px) {
+    .bg-cover {
+        min-height: calc(100% - 44px - 1rem);
+    }
+
+    /* .modal-dialog-centered {
+        margin-top: 10%;
+    } */
 }
 .item-cover-image {
     height: 260px;
@@ -708,7 +735,6 @@ a.btn-wishlist {
     border: 2px solid #fff;
     box-sizing: border-box;
 }
-
 
 /* how it works */
 .single-how-works {
@@ -881,8 +907,6 @@ footer ul li {
     padding: 25px 0px;
     background: #101010eb;
 }
-.footer-bottom-section .container .row {
-}
 
 footer {
     background: #000;
@@ -982,7 +1006,7 @@ footer ul li a, footer span, footer h4, footer p {
     text-transform: capitalize;
 }
 .breadcrumb-banner {
-    padding: 130px 0px;
+    padding: 50px 0px;
     position: relative;
 }
 .breadcrumb-banner.bg-overlay::before {
@@ -1609,9 +1633,6 @@ a.btn-wishlist:hover, .item-meta-data li a:hover, .social-link-share li a:hover 
 .login-form form .btn-submit {margin-top: 10px;margin-bottom: 28px;}
 .booking-form form .btn-submit {
     margin-top: 10px;
-}
-.registar-form {
-    margin-left: 20px;
 }
 .single-details-navbar button.navbar-toggler {
     color: #ff3366;

@@ -50,4 +50,8 @@ class AddressController extends Controller
         session()->flash("success", "Delete successfully");
         return redirect('/manageaddress');
     }
+    
+    public function registerAddress(){
+        return view('client.registeraddress');
+    }
 }

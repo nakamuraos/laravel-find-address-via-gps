@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('verified');
             $table->boolean('status');
             $table->integer('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });

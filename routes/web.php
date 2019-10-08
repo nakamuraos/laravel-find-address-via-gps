@@ -11,18 +11,21 @@
 |
 */
 
-Route::get('/','ClientController@index');
-Route::get('/login','LoginController@getLogin');
-Route::post('/login','LoginController@postLogin');
-Route::get('/logout', 'LoginController@logout');
-
-Route::get('/register','LoginController@getRegister');
-Route::post('/register','LoginController@postRegister');
+//home
+Route::get('/','HomeController@index');
+//auth
+Route::get('/login','Auth\LoginController@index');
+Route::post('/login','Auth\LoginController@login');
+Route::get('/register','Auth\RegisterController@index');
+Route::post('/register','Auth\RegisterController@register');
+Route::get('/logout', 'LogoutController@logout');
+//others
+Route::get('/viewonmaps','HomeController@viewonmaps');
 Route::get('/manageaddress','AddressController@index');
 Route::get('/addressdetail/{id}','AddressController@getAddressDetail');
 Route::delete('/address/destroy/{id}','AddressController@destroy');
 Route::put('/address/update/{id}','AddressController@update');
 Route::get('/manageuser','UserController@index');
-Route::get('/registeraddress','RegisteraddressController@getregisteraddress');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/registeraddress','AddressController@registerAddress');
+//change language
+Route::get('/welcome/{locale}', 'LanguageController@changeLanguage');

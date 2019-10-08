@@ -1,14 +1,11 @@
 # Find Address by GPS Project
 
-## Members
-
-- Hoang Van Thinh
-
-- Pham Thi Hien
-
-- Nguyen Van Nam
+![](screenshot.png)
 
 ## Requirements
+
+- Database structure: https://dbdiagram.io/d/5d98694fff5115114db4ef0c
+
 - Updating...
 
 ## Libraries
@@ -31,7 +28,7 @@
 
 - run following commands:
 
-    + `git clone https://<your_github_user_name>@github.com/HienPham1998/MyProject.git`
+    + `git clone https://<your_github_user_name>@github.com/HienPham1998/MyProject.git && cd MyProject`
 
     + `composer install`
 
@@ -39,7 +36,23 @@
 
     + `php artisan key:generate`
 
-- edit config in `.env`
+- edit config in `.env` file
+
+## Meta
+
+- Hanoi University of Industry (HaUI)
+
+- Instructor
+
+    + Hoang Quang Huy
+
+- Members: Group No. 26
+
+    + Hoang Van Thinh
+
+    + Pham Thi Hien
+
+    + Nguyen Van Nam
 
 ## More infomation
 
