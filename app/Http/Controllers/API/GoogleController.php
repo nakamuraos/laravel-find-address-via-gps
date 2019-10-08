@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 
-class GoogleMapsApiController extends BaseController
+class GoogleController extends BaseController
 {
     //
     public function nearbysearch(Request $request) {

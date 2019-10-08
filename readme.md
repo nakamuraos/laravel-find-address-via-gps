@@ -40,13 +40,13 @@
 
 ## Meta
 
-- Group No. 26 - Hanoi University of Industry (HaUI)
+- Hanoi University of Industry (HaUI)
 
 - Instructor
 
     + Hoang Quang Huy
 
-- Members
+- Members: Group No. 26
 
     + Hoang Van Thinh
 

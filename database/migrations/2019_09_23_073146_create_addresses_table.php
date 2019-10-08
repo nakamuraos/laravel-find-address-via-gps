@@ -16,12 +16,15 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('image');
+            $table->string('photos');
             $table->string('detail');
-            $table->boolean('verify');
-            $table->string('location');
             $table->integer('user_id');
-            $table->integer('addresstype_id');
+            $table->boolean('verified');
+            $table->integer('verified_by');
+            $table->dateTime('verified_time');
+            $table->string('location');
+            $table->string('types');
+            $table->float('rate', 1, 1);
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'typetosearch'            => 'Typing where you want go...',
+    'typetosearch'            => 'Typing where you want to go...',
     'typetosearch_example'    => 'Restaurent, School,...',
     'direction'               => 'Direction',
     'result'                  => 'Results',

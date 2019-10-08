@@ -24,5 +24,15 @@ if(!function_exists('vnToUnicode')) {
     }   
     
     return $str;
+  }
+}
+
+if(!function_exists('arrayToParameter')) {
+  function arrayToParameter($array) {
+    $output = '';
+    foreach($array as $key => $value) {
+        $output .= $key . '=' . urlencode($value) . '&';
     }
+    return trim($output, '&');
+  }
 }

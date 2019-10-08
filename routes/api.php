@@ -20,15 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Google call api
-Route::get('/google/nearbysearch', 'API\GoogleMapsApiController@nearbysearch');
+Route::get('/google/nearbysearch', 'API\GoogleController@nearbysearch');
 
-Route::get('/google/geocoding', 'API\GoogleMapsApiController@geocoding');
+Route::get('/google/geocoding', 'API\GoogleController@geocoding');
 
-Route::get('/google/geocode', 'API\GoogleMapsApiController@geocode');
+Route::get('/google/geocode', 'API\GoogleController@geocode');
 
-Route::get('/google/findplacefromtext', 'API\GoogleMapsApiController@findplacefromtext');
+Route::get('/google/findplacefromtext', 'API\GoogleController@findplacefromtext');
 
-Route::get('/google/directions', 'API\GoogleMapsApiController@directions');
+Route::get('/google/directions', 'API\GoogleController@directions');
 
 //Responsing config address types
 Route::get('/config/addresstypes', 'API\AddressController@addressTypes');

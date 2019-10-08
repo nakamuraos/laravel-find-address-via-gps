@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ Config::get('app.locale') }}">
 
 <!-- Mirrored from modinatheme.com/listico/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Sep 2019 03:56:17 GMT -->
 
@@ -44,7 +44,7 @@
     <![endif]-->
 </head>
 
-<body class="">
+<body>
 
     <!-- preloader element started -->
     <div class="loader-wrap">

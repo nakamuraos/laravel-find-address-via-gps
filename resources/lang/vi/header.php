@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'title' => 'Hệ thống tìm kiếm địa chỉ theo định vị',
+    'title' => 'Hệ thống tìm kiếm địa chỉ',
 
 ];

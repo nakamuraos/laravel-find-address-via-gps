@@ -22,10 +22,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request){
-        return view('client.index');
+        return view('index');
     }
 
     public function viewonmaps(Request $request){
-        return view('client.viewonmaps');
+        return view('viewonmaps');
     }
 }

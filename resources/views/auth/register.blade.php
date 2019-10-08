@@ -13,7 +13,7 @@
                                 <div class="row ">
                                     <div class="col-xl-4 col-sm-12 col-md-8 offset-lg-4 offset-md-2">
                                         <div class="registar-form ">
-                                            <form action="#" class="row">
+                                            <form action="#" class="row" method='post'>
                                                 <input type="text" name="user_name" placeholder="@lang('register.user_name')*"> <br/>
                                                 <input type="email" name="email" placeholder="@lang('register.email')*"> <br/>
                                                 <input type="text"  name="phone" placeholder="@lang('register.phone_number')*"> <br/>                    
