@@ -19,7 +19,7 @@ class Address extends Model
         'photos' => 'array',
     ];
 
-    public function typeAddress() {
-        return $this->belongsTo(Typeaddress::class);
+    public function types() {
+        return $this->belongsToMany(Type::class);
     }
 }

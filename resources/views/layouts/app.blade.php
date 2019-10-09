@@ -105,8 +105,12 @@
                 $('#listTypes').css('display','none');
             } else {
                 getLocation().then(() => {
-                    $.get("/api/address/types?type="+val, function(d, status){
-                        display_list(d);
+                    $.get("/api/address/types?type="+encodeURI(val), function(d, status){
+                        var list = display_types(d);
+                        $('#listTypes').css('display','block');
+                        $('#listTypes').css('margin-top', '-10px');
+                        $('#listTypes').css('width', $('#gps').width()+29);
+                        $('#listTypes').html(list);
                     });
                 })
                 .catch(e => {
@@ -124,17 +128,23 @@
                 }, ms || 0);
             };
         }
-        function display_list(d) {
-            var data = d.data;
+        function display_types(d) {
+            var data = d.success == false ? [] : d.data;
             var list = '<div class="list-group" style="padding:0;"><a class="list-group-item list-group-item-action"><b>'+(data.length<=0?'@lang('home.noresults')':'@lang('home.resultsin'):')+'</b></a>';
             Object.keys(data).forEach(function(key) {
-                list+='<a class="list-group-item list-group-item-action" onclick="chooseType(this);" data-addresstype="'+key+'">'+data[key]+'</a>';
+                list+='<a class="list-group-item list-group-item-action" onclick="chooseType(this);" data-address="'+key+'">'+data[key]+'</a>';
             });
             list+='</div>';
-            $('#listTypes').css('display','block');
-            $('#listTypes').css('margin-top', '-10px');
-            $('#listTypes').css('width', $('#gps').width()+29);
-            $('#listTypes').html(list);
+            return list;
+        }
+        function display_addresses(d) {
+            var data = d.success === false ? [] : d.data;
+            var list = '<div class="list-group" style="padding:0;"><a class="list-group-item list-group-item-action"><b>'+(data.length<=0?'@lang('home.noresults')':'@lang('home.result'):')+'</b></a>';
+            Object.keys(data).forEach(function(key) {
+                list+='<a class="list-group-item list-group-item-action" data-id="'+data[key].id+'" data-location="'+data[key].location+'">'+data[key].name+'</a>';
+            });
+            list+='</div>';
+            return list;
         }
         function getLocation(allowed = false) {
             return new Promise(function(resolve, reject){
@@ -162,11 +172,14 @@
             });
         }
         function chooseType(e) {
-            $('#gps').val(e.textContent);
-            $('#gps').attr('data-addresstype', e.getAttribute('data-addresstype'));
-            $('#listTypes').css('display','none');
-            $('#listPlaces').html('<div class="list-group" style="padding:0;"><span class="list-group-item"><b>@lang('home.result')</b></span><a class="list-group-item list-group-item-action" onclick="chooseType(this);" data-addresstype="'+e.getAttribute('data-addresstype')+'">'+e.textContent+'</a></div>');
-            $('#listPlaces').css('display','block');
+            var val = e.textContent;
+            $.get("/api/address/list?keyword="+val, function(d, status) {
+                $('#gps').val(e.textContent);
+                $('#gps').attr('data-addresstype', e.getAttribute('data-addresstype'));
+                $('#listTypes').css('display','none');
+                $('#listPlaces').html(display_addresses(d));
+                $('#listPlaces').css('display','block');
+            });
         }
     </script>
     <!-- permission denied -->

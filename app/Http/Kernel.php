@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\CheckLocale::class,
+            \App\Http\Middleware\GoogleMaps::class,
         ],
 
         'api' => [
@@ -43,6 +44,7 @@ class Kernel extends HttpKernel
             'bindings',
             \App\Http\Middleware\EncryptCookies::class,
             \App\Http\Middleware\CheckLocale::class,
+            \App\Http\Middleware\GoogleMaps::class,
         ],
     ];
 
