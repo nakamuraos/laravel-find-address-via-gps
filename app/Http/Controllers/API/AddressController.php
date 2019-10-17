@@ -47,7 +47,12 @@ class AddressController extends BaseController {
   }
 
   public function nearby(Request $request) {
-    $keyword = array_keys($this->filterTypes($request->keyword))[0];
+    $keyword = array_keys($this->filterTypes($request->keyword));
+    if (empty($keyword)) {
+      return $this->sendError('Address type not found.');
+    } else {
+      $keyword = $keyword[0];
+    }
     $types = Type::where('name','like', '%'.strtolower($keyword).'%')->first();
     if (is_null($types)) {
       return $this->sendError('Address type not found.');

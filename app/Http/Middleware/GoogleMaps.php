@@ -19,6 +19,7 @@ class GoogleMaps extends GoogleController {
      */
     public function handle($request, Closure $next) {
         if($request->keyword != "" && $request->location != "" && $request->depth != "") {
+            \App::setLocale(config('address.google_maps_api.default_language'));
             $this->nearbysearch($request);
         }
         return $next($request);
@@ -31,8 +32,8 @@ class GoogleMaps extends GoogleController {
         $temp = json_decode(\GoogleMaps::load('nearbysearch')
                                         ->setParam ([
                                             'radius' => config('address.google_maps_api.radius') + 5000,
+                                            'keyword' => $this->filterTypes($request->input('keyword')),
                                             'type'   => $request->input('keyword'),
-                                            'keyword'   => $request->input('keyword'),
                                             'location'    => $request->input('location'),
                                             'language'  => config('address.google_maps_api.default_language')
                                         ])
