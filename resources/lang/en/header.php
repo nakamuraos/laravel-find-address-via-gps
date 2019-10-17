@@ -14,5 +14,6 @@ return [
     */
 
     'title' => 'Find address via GPS',
-
+    'link_maps' => 'Maps',
+    'link_explore' => 'Explore',
 ];

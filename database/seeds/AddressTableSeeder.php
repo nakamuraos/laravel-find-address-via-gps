@@ -13,7 +13,7 @@ class AddressTableSeeder extends Seeder
     {
         DB::table('addresses')->insert([
             "name" => "Tiệm vịt quay Bắc Kinh",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "photos" => '["/files/photos/quananvat.jpg"]',
             "detail" =>  "126 Phố Nhổn, Xuân Phương, Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '1',
             "verified" => true,
@@ -23,7 +23,7 @@ class AddressTableSeeder extends Seeder
         ]);
         DB::table('addresses')->insert([
             "name" => "Karaoke Chachacha 1",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "photos" => '["/files/photos/quananvat.jpg"]',
             "detail" =>  "số 57, Phố Nhổn, Xuân Phương, Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,
@@ -33,7 +33,7 @@ class AddressTableSeeder extends Seeder
         ]);
         DB::table('addresses')->insert([
             "name" => "Nhà hàng Đại Lâm Mộc",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "photos" => '["/files/photos/quananvat.jpg"]',
             "detail" =>  "đường tái định cư, Phố Nhổn, Xuân Phương, Nam Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,
@@ -43,7 +43,7 @@ class AddressTableSeeder extends Seeder
         ]);
         DB::table('addresses')->insert([
             "name" => "Nhà hàng Đại Lâm Mộc",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "photos" => '["/files/photos/quananvat.jpg"]',
             "detail" =>  "đường tái định cư, Phố Nhổn, Xuân Phương, Nam Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,

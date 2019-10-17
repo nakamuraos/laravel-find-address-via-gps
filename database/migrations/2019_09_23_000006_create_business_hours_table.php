@@ -16,10 +16,12 @@ class CreateBusinessHoursTable extends Migration
         Schema::create('business_hours', function (Blueprint $table) {
             $table->bigInteger('address_id')->unsigned();
             $table->integer('dayofweek');
-            $table->time('open_time');
-            $table->time('close_time');
+            $table->string('open_time', 4);
+            $table->string('close_time', 4);
             $table->timestamps();
+        });
 
+        Schema::table('business_hours', function(Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Address extends Model
 {
@@ -21,5 +22,19 @@ class Address extends Model
 
     public function types() {
         return $this->belongsToMany(Type::class);
+    }
+
+    public function business_hours()
+    {
+        return $this->hasMany(BusinessHour::class);
+    }
+
+    public function getPhotosAttribute($value)
+    {
+        $value = $this->castAttribute('photos', $value);
+        foreach($value as $key => $val) {
+            $value[$key] = Crypt::encryptString($val);
+        }
+        return $value;
     }
 }

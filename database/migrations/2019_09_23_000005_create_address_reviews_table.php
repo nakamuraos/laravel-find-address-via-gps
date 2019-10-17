@@ -21,7 +21,9 @@ class CreateAddressReviewsTable extends Migration
             $table->text('comment');
             $table->integer('rate');
             $table->timestamps();
+        });
 
+        Schema::table('address_reviews', function(Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('user_id')->references('id')->on('users');
         });

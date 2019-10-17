@@ -14,8 +14,9 @@ return [
     */
 
     'google_maps_api' => [
-      'radius' => 1500, //radius search
+      'radius' => 5000, //radius search
       'default_location' => '21.0529562,105.7334937', // HaUI
-      'default_type' => 'restaurant'
+      'default_type' => 'restaurant',
+      'default_language' => 'vi'
     ]
 ];

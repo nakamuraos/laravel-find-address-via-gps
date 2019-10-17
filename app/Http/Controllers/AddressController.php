@@ -9,8 +9,7 @@ class AddressController extends Controller
 {
 
     public function index(){
-        $addresses = Address::orderBy("created_at", "desc");
-        $addresses = $addresses->paginate(8);
+        $addresses = Address::orderBy("created_at", "desc")->paginate(8);
         return view('admin.address.index',compact('addresses'));
     }
     public function getAddressDetail($id){

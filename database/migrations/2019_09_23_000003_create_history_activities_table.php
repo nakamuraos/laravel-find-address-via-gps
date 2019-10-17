@@ -22,7 +22,9 @@ class CreateHistoryActivitiesTable extends Migration
             $table->text('data')->nullable();
             $table->string('ip', 15);
             $table->timestamps();
+        });
 
+        Schema::table('history_activities', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

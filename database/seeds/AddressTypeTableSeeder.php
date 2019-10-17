@@ -11,13 +11,21 @@ class AddressTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = config('addresstypes');
-        foreach($types as $key => $type) {
-            DB::table('address_type')->insert([
-                "address_id" => rand(1,4),
-                "type_id" => $key+1,
-            ]);
-            if($key > 10) break;
-        }
+        DB::table('address_type')->insert([
+            "address_id" => 1,
+            "type_id" => 76
+        ]);
+        DB::table('address_type')->insert([
+            "address_id" => 2,
+            "type_id" => 76
+        ]);
+        DB::table('address_type')->insert([
+            "address_id" => 3,
+            "type_id" => 76
+        ]);
+        DB::table('address_type')->insert([
+            "address_id" => 4,
+            "type_id" => 76
+        ]);
     }
 }
