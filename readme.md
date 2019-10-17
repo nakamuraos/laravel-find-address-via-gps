@@ -22,11 +22,11 @@
 
 ## Setup
 
-- create project folder (Ex: findaddress.pro)
+- Create project folder (Ex: findaddress.pro)
 
 - Run cmd (or terminal) in above folder
 
-- run following commands:
+- Run following commands:
 
     + `git clone https://<your_github_user_name>@github.com/HienPham1998/MyProject.git && cd MyProject`
 
@@ -36,7 +36,11 @@
 
     + `php artisan key:generate`
 
-- edit config in `.env` file
+- Edit config in `.env` file: Database, Key google maps api
+
+- Create database and data demo: `php artisan migrate:refresh --seed`
+
+- Run `php artisan serve` and enjoy!
 
 ## Meta
 

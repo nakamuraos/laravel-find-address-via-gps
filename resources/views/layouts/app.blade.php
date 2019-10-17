@@ -134,13 +134,13 @@
                 );
                 if(d.rate) {
                     var rate = 0;
-                    for(i=1;i<Math.round(d.rate);i++) {
+                    for(i=1;i<=Math.floor(d.rate);i++) {
                         rate = i;
                         list.push(
                             '<span class="fas fa-star star-rated"></span>',
                         );
                     }
-                    if(d.rate - rate <= 0.5) {
+                    if(d.rate != rate && d.rate - rate >= 0.5) {
                         list.push(
                             '<span class="fas fa-star-half-alt star-rated"></span>',
                         );
