@@ -9,7 +9,7 @@
                 <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
             </div>
             </div> -->
-            <h2 style="color:#e90029" class="text-center">
+            <h2 style="color:#3C4858; font-weight: 700" class="text-center">
                 Quản lý địa chỉ
             </h2>
             <div class="features" style="position:relative">

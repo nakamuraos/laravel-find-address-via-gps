@@ -72,9 +72,11 @@
                             Logout</a>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="/registeraddress"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
                 @else
                 <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> @lang('login.title')</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('register.title')</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
                 @endif
             </ul>
         </div>  
@@ -82,6 +84,26 @@
     <!-- header section end -->
 
     @yield('content')
+        <!-- modal login-->
+
+<div class="modal" id="ModalLogin" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Please log in Or register <a href="/register" class="text-danger">here</a></h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a href="/login" class="btn btn-success">Login now</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
     <!--  ALl JS Plugins
     ====================================== -->

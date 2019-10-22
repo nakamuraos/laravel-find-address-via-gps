@@ -26,6 +26,11 @@ Route::get('/addressdetail/{id}','AddressController@getAddressDetail');
 Route::delete('/address/destroy/{id}','AddressController@destroy');
 Route::put('/address/update/{id}','AddressController@update');
 Route::get('/manageuser','UserController@index');
-Route::get('/registeraddress','AddressController@registerAddress');
+Route::get('/registeraddress','AddressController@getRegisterAddress');
+Route::post('/registeraddress','AddressController@postRegisterAddress');
+Route::get('/addressinfo','AddressController@getAddressInfo');
+Route::put('/changestatus/{id}/{status}','AddressController@changeStatus');
+Route::put('/updateinfo/{id}','AddressController@update');
+Route::put('/verified/{id}/{status}','AddressController@changeStatus');
 //change language
 Route::get('/welcome/{locale}', 'LanguageController@changeLanguage');

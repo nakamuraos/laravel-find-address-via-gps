@@ -64,7 +64,7 @@ class LoginController extends Controller
                 } else if(Auth::user()->role_id == 2 ) {
                     return redirect()->intended('/manageaddress');
                 }
-                return redirect()->intended('/');
+                return redirect()->intended('/addressinfo');
                 
             } else {
                 $errors = new MessageBag(['errorlogin' => Lang::get('error.login_error')]);

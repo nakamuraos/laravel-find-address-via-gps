@@ -22,4 +22,13 @@ class Address extends Model
     public function types() {
         return $this->belongsToMany(Type::class);
     }
+
+    public function getTypeStrAttribute() {
+        $arr = [];
+        $types = $this->types;
+        foreach($types as $key => $type) {
+            $arr[] = $type->name;
+        }
+        return join(", ", $arr);
+    }
 }

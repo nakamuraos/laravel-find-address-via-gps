@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -75,9 +75,8 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request) {
-        return; //testing
         $rules = [
-             'username' => 'required|min:6',
+             'user_name' => 'required|min:6',
              'email' => 'required|email|unique:users',
              'password' => 'required|confirmed|min:6'
         ];
@@ -90,12 +89,12 @@ class RegisterController extends Controller
         }
     
         $newUser = new User();
-        $newUser->name = $request->username;
-        $newUser->password = bcrypt($request->password);
+        $newUser->user_name = $request->user_name;    
         $newUser->email = $request->email;
         $newUser->phone = $request->phone;
-        $newUser->address = $request->address;
-        $newUser->role_id = 2;
+        $newUser->full_name = $request->full_name;
+        $newUser->password = bcrypt($request->password);
+        $newUser->role_id = 3;
         $newUser->save();
     
         return redirect('/login');
