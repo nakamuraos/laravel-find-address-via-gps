@@ -443,7 +443,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             if (status == 'OK') {
                 directionsRenderer.setDirections(response);
             } else {
-                window.alert('Directions request failed due to ' + status);
+                $('#no_mode_directions').modal();
             }
         });
     });

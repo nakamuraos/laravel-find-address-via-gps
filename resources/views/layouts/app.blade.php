@@ -206,6 +206,23 @@
             </div>
         </div>
     </div>
+    <!-- no mode -->
+    <div class="modal fade" id="no_mode_directions" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@lang('error.no_mode_directions')</h4>
+                </div>
+                <div class="modal-body">
+                    @lang('error.no_mode_directions_desp')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 

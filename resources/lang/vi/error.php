@@ -20,4 +20,6 @@ return [
     'grant' => 'Cấp quyền',
     'close' => 'Đóng',
     'login_error' => 'Tên hoặc mật khẩu không đúng',
+    'no_mode_directions' => 'Chế độ này hiện không khả dụng',
+    'no_mode_directions_desp' => '<p>Loại điều hướng này hiện tại không có sẵn tại quốc gia của bạn.</p><p>Bạn có thể chuyển sang chế dộ điều hướng khác để tiếp tục sử dụng.</p>',
 ];

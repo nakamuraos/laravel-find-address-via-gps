@@ -59,7 +59,7 @@ a {
    transition: all .3s;
 }
 img {
- max-width: 100%;
+ /* max-width: 100%; */
  height: auto;
 }
 input::-moz-focus-inner {
@@ -114,6 +114,12 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 .gmnoprint div {
     background:none !important;
+}
+.adp-placemark tr > td{
+    padding: 5px;
+}
+.adp-summary {
+    font-weight: bold;
 }
 @media (max-width: 767px) {
     #listPlaces a.list-group-item {
