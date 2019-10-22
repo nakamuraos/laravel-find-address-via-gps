@@ -20,7 +20,7 @@ Route::get('/register','Auth\RegisterController@index');
 Route::post('/register','Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LogoutController@logout');
 //others
-Route::get('/viewonmaps','HomeController@viewonmaps');
+Route::get('/maps','HomeController@maps');
 Route::get('/manageaddress','AddressController@index');
 Route::get('/addressdetail/{id}','AddressController@getAddressDetail');
 Route::delete('/address/destroy/{id}','AddressController@destroy');
@@ -34,3 +34,5 @@ Route::put('/updateinfo/{id}','AddressController@update');
 Route::put('/verified/{id}/{status}','AddressController@changeStatus');
 //change language
 Route::get('/welcome/{locale}', 'LanguageController@changeLanguage');
+//photos resize
+Route::get('/files/photos/{id}', 'ImageController@photo');

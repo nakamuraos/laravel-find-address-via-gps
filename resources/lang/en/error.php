@@ -20,4 +20,6 @@ return [
     'grant' => 'Grant',
     'close' => 'Close',
     'login_error' => 'Username or Password is invalid!',
+    'no_mode_directions' => 'This mode don\'t available',
+    'no_mode_directions_desp' => '<p>This mode unavailable in your country</p><p>You can switch to other mode to continue use</p>',
 ];

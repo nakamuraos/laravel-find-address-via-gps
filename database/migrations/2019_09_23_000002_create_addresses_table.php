@@ -16,18 +16,19 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('photos');
+            $table->string('name_en')->default(null);
+            $table->string('photos')->nullable();
             $table->string('detail');
             $table->bigInteger('user_id')->unsigned();
             $table->boolean('verified')->default(0);
             $table->bigInteger('verified_by')->nullable()->unsigned();
-            $table->dateTime('verified_time')->nullable();
+            $table->dateTime('verified_time')->nullable()->default(null);
             $table->string('location', 50);
             $table->float('rate', 2, 1)->nullable();
             $table->timestamps();
-            
         });
-        Schema::table('addresses', function (Blueprint $table) {
+
+        Schema::table('addresses', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('verified_by')->references('id')->on('users');
         });

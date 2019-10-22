@@ -11,7 +11,7 @@ class GoogleController extends BaseController
     public function nearbysearch(Request $request) {
         $temp = json_decode(\GoogleMaps::load('nearbysearch')
                             ->setParam ([
-                                'radius' =>config('address.google_maps_api.radius'),
+                                'radius' => config('address.google_maps_api.radius'),
                                 'type'   => $request->input('type'),
                                 'keyword'   => $request->input('keyword'),
                                 'location'    => $request->input('location')
@@ -52,7 +52,7 @@ class GoogleController extends BaseController
                             ->setParam ([
                                 'origin' => $request->input('origin'),
                                 'destination'   => $request->input('destination'),
-                                'region'   => $request->input('region'),
+                                'language'   => \App::getLocale(),
                             ])
                             ->get());
         return $this->sendResponse($temp->routes, array_key_exists('error_message', $temp) ? $temp->error_message : $temp->status);

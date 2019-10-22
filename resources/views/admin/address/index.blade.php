@@ -20,7 +20,7 @@
                         <div class="info">
                             <div class="image">
                                 <!-- <div id="overlay"> -->
-                                    <img src="{{$address->photos[0]}}" alt="">
+                                    <img src="{{config('files.uri.photo_encrypted')}}{{empty($address->photos)?'/files/photos/quananvat.jpg':$address->photos[0]}}" alt="{{$address->name}}">
                                 <!-- </div> -->
                             </div>
                             <h4 class="info-title">{{$address->name}}</h4>

@@ -14,5 +14,7 @@ return [
     */
 
     'title' => 'Hệ thống tìm kiếm địa chỉ',
+    'link_maps' => 'Maps',
+    'link_explore' => 'Explore',
 
 ];

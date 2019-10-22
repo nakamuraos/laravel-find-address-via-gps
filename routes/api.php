@@ -18,7 +18,6 @@ use App\Http\Controllers\API\AddressController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 //Google call api
 Route::prefix('google')->group(function () {
     Route::get('nearbysearch', 'API\GoogleController@nearbysearch');
@@ -29,12 +28,9 @@ Route::prefix('google')->group(function () {
 });
 //Responsing config address types from filter
 Route::prefix('address')->group(function () {
-    Route::get('types', 'API\TypeController@filterTypes');
-    Route::get('list', 'API\AddressController@filter');
+    Route::get('types', 'API\TypeController@filter');
+    Route::get('/', 'API\AddressController@filter');
+    Route::get('nearby', 'API\AddressController@nearby');
 });
 //Responsing config address types
-Route::get('/config/addresstypes', 'API\TypeController@addressTypes');
-
-Route::get('/insert', function(Request $request) {
-
-});
+Route::get('/config/addresstypes', 'API\TypeController@types');

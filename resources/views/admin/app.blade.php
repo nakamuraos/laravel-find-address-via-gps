@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('admin/assets/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('admin/assets/img/favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/admin/img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/admin/img/favicon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         Material Kit by Creative Tim
@@ -16,10 +16,10 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="{{ asset('admin/assets/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
-    <link href="{{ asset('admin/assets/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('admin/assets/demo/demo.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/demo/demo.css') }}" rel="stylesheet" />
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -97,19 +97,19 @@
         </div>
     </footer>
     <!--   Core JS Files   -->
-    <script src="{{ asset('admin/assets/js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/assets/js/core/popper.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/assets/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/assets/js/plugins/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/core/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/plugins/moment.min.js') }}"></script>
     <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="{{ asset('admin/assets/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{{ asset('admin/assets/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('admin/assets/js/material-kit.js?v=2.0.5x') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/material-kit.js?v=2.0.5x') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
         @stack("scripts")
 </body>
 </html>

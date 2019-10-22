@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<section class="breadcrumb-banner bg-cover bg-overlay parallax-2" style="background-image: url({{asset('client/assets/img/breadcrumb_bg.jpg')}})">
+<section class="breadcrumb-banner bg-cover bg-overlay parallax-2" style="background-image: url({{asset(config('files.uri.background'))}})">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-sm-12">
                     <div class="breadcrumb-inner text-center">
-                        <h2>@lang('login.title')</h2>
+                        <h2>@lang('auth.login')</h2>
                          <!-- login section start -->
                         <div class="login-area section-padding">
                             <div class="container">
@@ -17,10 +17,10 @@
                                                 @error('errorlogin')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
-                                                <input type="text" name="user_name" placeholder="@lang('login.user_name')*" required>
-                                                <input type="password" name="password" placeholder="@lang('login.password')*" required>
-                                                <button type="submit" class="btn-submit">@lang('login.title')</button>
-                                                <a href="#" style="color:white;">@lang('login.forgot_password')</a>
+                                                <input type="text" name="user_name" placeholder="@lang('auth.user_name')*" required>
+                                                <input type="password" name="password" placeholder="@lang('auth.password')*" required>
+                                                <button type="submit" class="btn-submit">@lang('auth.login')</button>
+                                                <a href="#" style="color:white;">@lang('auth.forgot_password')</a>
                                             </form>
                                         </div>
                                     </div>

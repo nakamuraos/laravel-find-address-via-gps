@@ -19,7 +19,7 @@
 
                     <div class="row">
                         <div class=" image col-12 col-sm-12 col-md-4 col-lg-4 col-sl-4">
-                            <img src="{{$address->photos[0]}}" alt="">
+                            <img src="{{config('files.uri.photo_encrypted')}}{{$address->photos[0]}}" alt="">
                         </div>
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-sl-8">
                             <div class="pro-item">

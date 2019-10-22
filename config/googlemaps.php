@@ -15,6 +15,7 @@ return [
     */
 
     'key'       => env('GOOGLE_MAPS_API_KEY'),
+    'key_maps'  => env('GOOGLE_MAPS_KEY'), //only for maps view
 
     /*
     |--------------------------------------------------------------------------

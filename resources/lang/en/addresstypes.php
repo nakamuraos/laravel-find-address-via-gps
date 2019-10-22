@@ -109,6 +109,10 @@ return [
   'travel_agency'           => 'Travel Agency',
   'university'              => 'University',
   'veterinary_care'         => 'Veterinary Care',
-  'zoo'                     => 'Zoo'
+  'zoo'                     => 'Zoo',
 
+  'food'                    => 'Food',
+  'point_of_interest'       => 'Point of Interest',
+  'establishment'           => 'Establishment',
+  'general_contractor'      => 'General Contractor'
 ];

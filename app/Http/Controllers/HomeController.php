@@ -25,7 +25,7 @@ class HomeController extends Controller
         return view('index');
     }
 
-    public function viewonmaps(Request $request){
-        return view('viewonmaps');
+    public function maps(Request $request){
+        return view('maps', ['maps' => true]);
     }
 }

@@ -19,4 +19,6 @@ return [
     'result'                  => 'Results',
     'resultsin'               => 'Results are based on English',
     'noresults'               => 'No results, try again with shorter keywords',
+    'noresults_address'       => 'No address nearby you',
+    'about'                   => 'About'
 ];

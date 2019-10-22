@@ -16,7 +16,9 @@ class CreateAddressTypeTable extends Migration
         Schema::create('address_type', function (Blueprint $table) {
             $table->bigInteger('address_id')->unsigned();
             $table->bigInteger('type_id')->unsigned();
+        });
 
+        Schema::table('address_type', function(Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('type_id')->references('id')->on('types');
         });

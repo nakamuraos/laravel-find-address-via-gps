@@ -12,44 +12,44 @@ class AddressTableSeeder extends Seeder
     public function run()
     {
         DB::table('addresses')->insert([
-            "name" => "Tiệm vịt quay Bắc Kinh",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "name" => "DEMO 123 Restaurent",
+            "photos" => '["quananvat.jpg"]',
             "detail" =>  "126 Phố Nhổn, Xuân Phương, Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '1',
             "verified" => true,
             "verified_by" => "1",
             "verified_time" => "2019-01-01 00:00:00",
-            "location" => "21.057046,105.730541",
+            "location" => "21.057046,105.7305",
         ]);
         DB::table('addresses')->insert([
-            "name" => "Karaoke Chachacha 1",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "name" => "DEMO 456 Restaurent",
+            "photos" => '["quananvat.jpg"]',
             "detail" =>  "số 57, Phố Nhổn, Xuân Phương, Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
             "verified_time" => "2019-01-01 00:00:00",
-            "location" => "21.055339,105.730855",
+            "location" => "21.055339,105.7855",
         ]);
         DB::table('addresses')->insert([
-            "name" => "Nhà hàng Đại Lâm Mộc",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "name" => "DEMO 789 Restaurent",
+            "photos" => '["quananvat.jpg"]',
             "detail" =>  "đường tái định cư, Phố Nhổn, Xuân Phương, Nam Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
             "verified_time" => "2019-01-01 00:00:00",
-            "location" => "21.054037,105.731820",
+            "location" => "21.054037,105.73820",
         ]);
         DB::table('addresses')->insert([
-            "name" => "Nhà hàng Đại Lâm Mộc",
-            "photos" => '["../admin/assets/image/quananvat.jpg"]',
+            "name" => "DEMO 321 Restaurent",
+            "photos" => '["quananvat.jpg"]',
             "detail" =>  "đường tái định cư, Phố Nhổn, Xuân Phương, Nam Từ Liêm, Hà Nội, Việt Nam",
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
             "verified_time" => "2019-01-01 00:00:00",
-            "location" => "21.054037,105.731820",
+            "location" => "21.054037,105.73820",
         ]);
     }
 }
