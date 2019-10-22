@@ -6,16 +6,16 @@
             <div class="row">
                 <div class="form-group">
                     <div class="mode-travel btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active mode-selector" title="test">
+                        <label class="btn btn-success active mode-selector" title="test">
                             <input type="radio" name="options" data-mode="DRIVING" autocomplete="off" checked> <div class="directions-icon mode-driving-icon"></div>
                         </label>
-                        <label class="btn btn-primary mode-selector">
+                        <label class="btn btn-success mode-selector">
                             <input type="radio" name="options" data-mode="TRANSIT" autocomplete="off"> <div class="directions-icon mode-transit-icon"></div>
                         </label>
-                        <label class="btn btn-primary mode-selector">
+                        <label class="btn btn-success mode-selector">
                             <input type="radio" name="options" data-mode="WALKING" autocomplete="off"> <div class="directions-icon mode-walking-icon"></div>
                         </label>
-                        <label class="btn btn-primary mode-selector">
+                        <label class="btn btn-success mode-selector">
                             <input type="radio" name="options" data-mode="BICYCLING" autocomplete="off"> <div class="directions-icon mode-bicycling-icon"></div>
                         </label>
                     </div>

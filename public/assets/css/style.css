@@ -194,7 +194,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 
 .sidenav > div > .row {
-    background: #4185f4;
+    background: #55af50;
     padding: 15px;
     color: white;
 }
@@ -268,7 +268,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     padding: .375em;
     margin: 5px;
     border-radius: 50%!important;
-    background: #4185f4;
+    background: #55af50;/*#4185f4*/;
     border: 0;
     outline: 0;
 }
