@@ -250,19 +250,21 @@ $('#gps').keyup(delay(function (e) {
     var val = this.value;
     if (val == '') {
         $('#listTypes').css('display', 'none');
+        $('#listPlaces').css('display', 'none');
     } else {
-        $('#loading_results').addClass('spinner-border').removeClass('hide');
+        $('#loading_results').removeClass('hide');
         getLocation().then(() => {
                 $('#listPlaces').css('display', 'none');
                 $.get("/api/address/types?type=" + encodeURI(val), function (d, status) {
                     var list = display_types(d);
                     $('#listTypes').css('display', 'block');
                     $('#listTypes').css('width', $('#gps').width() + 29);
-                    $('#loading_results').removeClass('spinner-border').addClass('hide');
+                    $('#loading_results').addClass('hide');
                     $('#listTypes').html(list);
                 });
             })
             .catch(e => {
+                $('#loading_results').addClass('hide');
                 if (e) console.log(e);
             })
     }
@@ -292,6 +294,7 @@ function getLocation(allowed = false) {
                     return reject();
                 } else {
                     navigator.geolocation.getCurrentPosition(function (e) {
+                        if(allowed) window.location.reload(true);
                         return resolve([e.coords.latitude, e.coords.longitude]);
                     }, function (error) {
                         if (error.code == error.PERMISSION_DENIED) {
@@ -323,12 +326,12 @@ function chooseType(e, depth = false, scroll = false) {
     } else {
         var val = $('#gps').val();
     }
-    $('#loading_results').addClass('spinner-border').removeClass('hide');
+    $('#loading_results').removeClass('hide');
     getLocation().then((data) => {
             $.get("/api/address/nearby?keyword=" + val + '&location=' + data.join() + (depth?'&depth=1':''), function (d, status) {
                 $('#listPlaces').html(display_addresses(d, depth));
                 $('#listPlaces').css('width', $('#gps').width() + 29);
-                $('#loading_results').removeClass('spinner-border').addClass('hide');
+                $('#loading_results').addClass('hide');
                 $('#listPlaces').css('display', 'block');
             });
         })
@@ -338,12 +341,15 @@ function chooseType(e, depth = false, scroll = false) {
 }
 var map;
 var myloc;
+var mode_direction = 'DRIVING';
 
 function initMap() {
-    var directionsRenderer = new google.maps.DirectionsRenderer;
+    var directionsRenderer = new google.maps.DirectionsRenderer({
+        //preserveViewport: true
+    });
     var directionsService = new google.maps.DirectionsService;
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
+        zoom: 16,
         disableDefaultUI: true,
         styles: [
             {
@@ -351,7 +357,7 @@ function initMap() {
               "elementType": "labels.text",
               "stylers": [
                 {
-                  "visibility": "off"
+                  "visibility": "on"
                 }
               ]
             },
@@ -368,7 +374,7 @@ function initMap() {
               "elementType": "labels.icon",
               "stylers": [
                 {
-                  "visibility": "off"
+                  "visibility": "on"
                 }
               ]
             },
@@ -389,8 +395,8 @@ function initMap() {
                 }
               ]
             }
-          ]
-        //center: {lat: 37.77, lng: -122.447}
+          ],
+        center: {lat: 21.0529562, lng: 105.7334937} //HaUI
     });
     myloc = new google.maps.Marker({
         clickable: false,
@@ -402,17 +408,20 @@ function initMap() {
         zIndex: 999,
         map: map // your google.maps.Map object
     });
-    directionsRenderer.setMap(map);
 
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
-    document.getElementById('mode').addEventListener('change', function () {
+    if(getUrlParameter('destination')) {
+        directionsRenderer.setMap(map);
+        directionsRenderer.setPanel(document.getElementById('directions'));
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+    }
+    $('.mode-selector').on('click', function () {
         calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     getLocation().then(data => {
-        var selectedMode = document.getElementById('mode').value;
+        var selectedMode = $('.mode-selector.active input').data('mode');
         var destination = getUrlParameter('destination').split(',');
         destination = destination ? destination : '21.0500858,105.7312245';
         //if(myloc) myloc.setMap(null);
@@ -455,9 +464,21 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 jQuery(function($) {
-    $('#listPlaces').on('scroll', function() {
+    $('#listPlaces').on('scroll', delay(function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            delay(chooseType(this, true, true), 2000);
+            chooseType(this, true, true);
         }
-    })
+    }, 5000))
 });
+
+function openCloseToolbar() {
+    var w = document.getElementById("sideBav");
+    var btn = document.getElementById("btn-toolbar-custom");
+    if(w.style.width && w.style.width=='0px') {
+        w.style.width = '400px';
+        btn.innerHTML = '&lang;';
+    } else {
+        w.style.width = '0px';
+        btn.innerHTML = '&rang;';
+    }
+}

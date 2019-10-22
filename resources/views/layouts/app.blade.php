@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ Config::get('app.locale') }}">
+<html lang="{{Config::get('app.locale')}}">
 
 <head>
     <meta charset="UTF-8">
@@ -168,7 +168,7 @@
         }
     </script>
     @if (isset($maps) && $maps === true)
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('googlemaps.key')}}&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('googlemaps.key_maps')}}&callback=initMap&language={{Config::get('app.locale')}}"></script>
     @endif
     <!-- permission denied -->
     <div class="modal fade" id="denied_permission" role="dialog" style="overflow-y: hidden">

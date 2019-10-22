@@ -109,6 +109,10 @@ return [
   'travel_agency'           => 'Công ty du lịch',
   'university'              => 'Trường đại học',
   'veterinary_care'         => 'Phòng chăm sóc thú y',
-  'zoo'                     => 'Sở thú'
+  'zoo'                     => 'Sở thú',
 
+  'food'                    => 'Món ăn, đồ ăn',
+  'point_of_interest'       => 'Địa điểm hấp dẫn',
+  'establishment'           => 'Cơ sở',
+  'general_contractor'      => 'Nhà thầu thi công phần cơ khí'
 ];

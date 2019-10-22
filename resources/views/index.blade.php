@@ -10,9 +10,9 @@
                 <div class="container" id="place">
                     <div class="search-form-box">
                         <h3>@lang('home.typetosearch')</h3>
-                        <form action="#" class="search-form">
+                        <form action="#" class="search-form" onsubmit="return false;">
                             <input type="text" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" data-addresstype="" autocomplete="off">
-                            <div class="float-right hide" role="status" id="loading_results" aria-hidden="true" style="margin-top: -50px;margin-right: 10px;"></div>
+                            <div class="spinner-border float-right hide" role="status" id="loading_results" aria-hidden="true" style="margin-top: -50px;margin-right: 10px;"></div>
                             <div class="result hide" id="listTypes"></div>
                             <div class="result hide" id="listPlaces"></div>
                         </form>

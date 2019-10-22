@@ -124,6 +124,9 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     .content-result {
         padding: .75rem 1.25rem;
     }
+    .toolBar {
+        top: 56px!important;
+    }
 }
 #floating-panel {
     position: absolute;
@@ -159,6 +162,116 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     z-index: 10;
     margin-top: -10px;
 }
+
+/*************************/
+/*directions*/
+.toolBar {
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+    top: 60px;
+    overflow-y: hidden;
+}
+.sidenav, .btn-toolbar-custom {
+    box-shadow: 1px 4px 22px #6e6e6e;
+}
+
+.sidenav {
+    height: 100%;
+    width: 400px;
+    max-width: 80%;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.25s;
+    background-color: #fff;
+    display: inline-block;
+}
+
+.sidenav > div > .row {
+    background: #4185f4;
+    padding: 15px;
+    color: white;
+}
+
+.btn-toolbar-custom {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    height: 50px;
+    z-index: 9999;
+    top: 60px;
+    background: #fff;
+    border-radius: 0 3px 3px 0;
+    padding: 0 4px;
+    line-height: 50px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.directions-icon {
+    background-image:url(/assets/img/directions.png);
+    background-size: 96px 240px;
+    width: 24px;
+    height: 24px;
+    /* margin: 12px 9px 11px 9px; */
+}
+.mode-driving-icon {
+    background-position: -48px -96px;
+}
+.mode-walking-icon {
+    background-position: -48px -144px;
+}
+.mode-bicycling-icon {
+    background-position: -72px -168px;
+}
+.mode-transit-icon {
+    background-position: -48px -120px;
+}
+.waypoint-location-icon {
+    background-position: 0 -48px;
+    margin-top: 4px;
+    margin-bottom: 1px;
+}
+.waypoint-dots-icon {
+    background-position: -48px -24px;
+    height: 32px;
+    position: relative;
+    top: -6px;
+}
+.waypoint-destination-icon {
+    background-position: -24px -48px;
+    margin-top: -10px;
+}
+/*Actived */
+.active .mode-driving-icon {
+    background-position: -24px -96px;
+}
+.active .mode-walking-icon {
+    background-position: -24px -144px;
+}
+.active .mode-bicycling-icon {
+    background-position: -24px -168px;
+}
+.active .mode-transit-icon {
+    background-position: -24px -120px;
+}
+
+.mode-travel label {
+    padding: .375em;
+    margin: 5px;
+    border-radius: 50%!important;
+    background: #4185f4;
+    border: 0;
+    outline: 0;
+}
+
+@media screen and (max-height: 450px) {
+  /* .sidenav {padding-top: 15px;} */
+  .sidenav a {font-size: 18px;}
+}
+/*************************/
 /* width */
 ::-webkit-scrollbar {
     width: 7px;

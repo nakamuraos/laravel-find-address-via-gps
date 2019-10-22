@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Type;
 
 class Controller extends BaseController
 {
@@ -13,7 +14,7 @@ class Controller extends BaseController
 
     public function filterTypes($type) {
         $type = vnToUnicode($type);
-        $addressTypes = __('addresstypes');
+        $addressTypes = $this->typesToLocale(Type::all());//__('addresstypes');
 
         $array_types = array_filter(
             $addressTypes,
@@ -29,5 +30,13 @@ class Controller extends BaseController
         );
         asort($array_types);
         return $array_types;
+    }
+
+    public function typesToLocale($types) {
+        $output = [];
+        foreach($types as $key => $value) {
+            $output[$value['name']] = \Lang::get('addresstypes.'.$value['name']);
+        }
+        return $output;
     }
 }

@@ -32,7 +32,7 @@ class GoogleMaps extends GoogleController {
         $temp = json_decode(\GoogleMaps::load('nearbysearch')
                                         ->setParam ([
                                             'radius' => config('address.google_maps_api.radius') + 5000,
-                                            'keyword' => $this->filterTypes($request->input('keyword')),
+                                            'keyword' => $request->input('keyword'),
                                             'type'   => $request->input('keyword'),
                                             'location'    => $request->input('location'),
                                             'language'  => config('address.google_maps_api.default_language')
@@ -48,7 +48,6 @@ class GoogleMaps extends GoogleController {
                     if(array_key_exists('photos', $e)) {
                         $photos = $this->savePhotos($e->photos);
                     }
-                    $types = Type::whereIn('name', $e->types)->get();
                     $address = new Address();
                     $address->name = $e->name;
                     $address->location = $location;
@@ -59,9 +58,18 @@ class GoogleMaps extends GoogleController {
                     $address->verified_by = "1";
                     $address->verified_time = date('Y-m-d H:i:s');
                     $address->save();
-                    if($types->count() > 0) {
-                        $address->types()->attach($types);
+
+                    if(Type::whereIn('name', $e->types)->get()->count() != count($e->types)) {
+                        foreach($e->types as $element) {
+                            if(!Type::where('name', $element)->exists()) {
+                                $type = new Type();
+                                $type->name = $element;
+                                $type->save();
+                            }
+                        }
                     }
+                    $types = Type::whereIn('name', $e->types)->get();
+                    $address->types()->attach($types);
                     if(array_key_exists('opening_hours', $e) && !empty($e->opening_hours)) {
                         $this->syncBusinessHours($e->place_id, $address);
                     }
