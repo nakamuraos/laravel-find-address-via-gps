@@ -57,8 +57,8 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/registeraddress"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
                 @else
-                <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> @lang('login.title')</a></li>
-                <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('register.title')</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> @lang('auth.login')</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('auth.register')</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
                 @endif
             </ul>
