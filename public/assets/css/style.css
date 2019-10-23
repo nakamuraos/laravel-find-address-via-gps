@@ -35,12 +35,12 @@ Version: 2.1
    ----------- 1.GENERAL STYLES -----------
    ---------------------------------------- */
 /* Google font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;display=swap');
+* {
+    box-sizing: border-box;
+}
 .input-group-prepend span{
     border:none !important;
-}
-@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;display=swap');
-*{
-    box-sizing: border-box;
 }
 html, body, .wrapper {
     height: 100%;
