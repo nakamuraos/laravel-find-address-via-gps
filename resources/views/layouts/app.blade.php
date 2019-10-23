@@ -223,6 +223,25 @@
             </div>
         </div>
     </div>
+     <!-- modal login-->
+    <div class="modal fade" id="ModalLogin" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login is required</h4>
+                </div>
+                <div class="modal-body">
+                    Please log in Or register <a href="/register" class="text-danger">here</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="/login" class="btn btn-success">Login now</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     </div>
 </body>
 

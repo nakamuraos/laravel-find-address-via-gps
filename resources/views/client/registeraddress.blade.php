@@ -2,12 +2,12 @@
 @section('content')
 <!-- breadcrumb section start -->
 <section class="breadcrumb-banner bg-cover bg-overlay parallax-2"
-    style="background-image: url('{{asset('client/assets/img/breadcrumb_bg.jpg') }}')">
+    style="background-image: url('{{asset('assets/img/breadcrumb_bg.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-sm-12">
                 <div class="breadcrumb-inner text-center">
-                    <h2>Đăng ký địa chỉ </h2>
+                    <h2>@lang('address.register_title')</h2>
                     <!-- register section start -->
                     <div class="registar-area section-padding">
                         <div class="container">
@@ -83,7 +83,7 @@
                                             </div>
                    
                              
-                                    <button type="submit" class="btn-submit rounded">@lang('register.title')</button> 
+                                    <button type="submit" class="btn-submit rounded">@lang('address.register')</button> 
                                         </form>
      
                                     </div>

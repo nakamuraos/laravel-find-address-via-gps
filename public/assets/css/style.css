@@ -46,7 +46,7 @@ html, body, .wrapper {
     height: 100%;
 }
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif !important;
     color: #666666;
     font-size: 16px;
     line-height: 28px;
