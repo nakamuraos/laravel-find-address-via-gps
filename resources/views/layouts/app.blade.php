@@ -55,7 +55,7 @@
                             @lang('auth.logout')</a>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/registeraddress"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
+                <li class="nav-item"><a class="nav-link" href="/manager/address/register"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
                 @else
                 <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> @lang('auth.login')</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('auth.register')</a></li>

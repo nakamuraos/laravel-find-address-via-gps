@@ -49,7 +49,7 @@
                             <b>Chưa xác minh</b>
                             <div class="pro-item-option">
                                 <button type="button" class="btn btn-primary btn-edit"
-                                    data-href="/changestatus/{{$address->id}}/2">Yêu cầu cập nhật</button>
+                                    data-href="/admin/address/verifiy/{{$address->id}}/2">Yêu cầu cập nhật</button>
                                 <button type="button" class="btn btn-primary  my-4 " data-toggle="modal"
                                     data-target="#modalVerify{{$address->id}}">
                                     Xác minh
@@ -118,7 +118,7 @@
                 <p>Bạn có thực sự muốn xóa?</p>
             </div>
             <div class="modal-footer">
-                <form action="/address/destroy/{{$address->id}}" method="post">
+                <form action="/admin/address/{{$address->id}}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Thoát
@@ -144,7 +144,7 @@
                 <p>Bạn chắc chắn muốn xác minh địa chỉ này?</p>
             </div>
             <div class="modal-footer">
-                <form action="/verified/{{$address->id}}/1" method="POST">
+                <form action="admin/address/verify/{{$address->id}}/1" method="POST">
                     @csrf
                     {{ method_field('PUT') }}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Thoát
@@ -169,6 +169,5 @@
             show: true
         });
     });
-
 </script>
 @endpush

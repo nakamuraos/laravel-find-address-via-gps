@@ -39,6 +39,9 @@ class Address extends Model
 
     public function getPhotosAttribute($value) {
         $value = $this->castAttribute('photos', $value);
+
+        if(!is_array($value)) return $value;
+
         foreach($value as $key => $val) {
             $value[$key] = Crypt::encryptString($val);
         }

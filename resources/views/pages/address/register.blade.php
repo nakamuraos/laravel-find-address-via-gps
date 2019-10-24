@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <!-- breadcrumb section start -->
-<section class="breadcrumb-banner bg-cover bg-overlay parallax-2"
-    style="background-image: url('{{asset('assets/img/breadcrumb_bg.jpg') }}')">
+<section class="breadcrumb-banner bg-cover bg-overlay parallax-2" style="background-image: url('{{asset('assets/img/breadcrumb_bg.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-sm-12">
@@ -24,7 +23,7 @@
                             </div>
                         @endif
                                         @include('common.errors')
-                                        <form action="/registeraddress" class="row" method='post' enctype="multipart/form-data">
+                                        <form action="/manager/address/register" class="row" method='post' enctype="multipart/form-data">
                                             @csrf
                                            
                                             <div class="card-body" style="height:400px">

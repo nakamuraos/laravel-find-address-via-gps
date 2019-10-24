@@ -37,6 +37,21 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+
+/*
+|--------------------------------------------------------------------------
+| Change Public Path
+|--------------------------------------------------------------------------
+|
+| Uncomment for change public path
+| This example for [ source code folder inside public folder ]
+|
+*/
+
+// $app->bind('path.public', function() {
+//     return __DIR__;
+// });
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application

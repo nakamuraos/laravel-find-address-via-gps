@@ -26,6 +26,6 @@ class HomeController extends Controller
     }
 
     public function maps(Request $request){
-        return view('maps', ['maps' => true]);
+        return view('pages.maps', ['maps' => true]);
     }
 }

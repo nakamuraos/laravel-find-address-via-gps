@@ -482,3 +482,27 @@ function openCloseToolbar() {
         btn.innerHTML = '&rang;';
     }
 }
+// Click edit button
+$('.btn-edit').click(function (e) {
+    e.preventDefault();
+    resetFormModal($(this).data('href'));
+
+    // Fill default value
+    // var row = $(this).parent().parent().parent();
+    // var col = row.find('td');
+    // console.log(row);
+    // console.log(col);
+    // $('#editForm input[name="name"]').val(col[1].innerText.trim());
+    // $('#editForm input[name="category_id"]').val(col[2].innerText);
+    // $('#editForm input[name="provider_id"]').val(col[3].innerText);
+    // $('#editForm input[name="promotion_price"]').val(col[4].innerText);
+    // $('#editForm input[name="unit_price"]').val(col[5].innerText);
+    // $('#editForm input[name="quantity"]').val(col[6].innerText);
+    // $('#editForm input[name="image"]').val(col[7].innerText);
+    // $('#editForm input[name="description"]').val(col[8].innerText);
+
+    $('#editModal').modal({
+        backdrop: 'static',
+        show: true
+    });
+});

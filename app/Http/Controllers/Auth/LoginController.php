@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -43,7 +43,7 @@ class LoginController extends Controller
     }
 
     public function index(){
-        return view('auth.login');
+        return view('pages.auth.login');
     }
     
     public function login(Request $request){
@@ -60,11 +60,11 @@ class LoginController extends Controller
             $password = $request->password;
             if( Auth::attempt(['user_name' => $user_name, 'password' =>$password])) {
                 if(Auth::user()->role_id == 1 ) {
-                    return redirect()->intended('/manageuser');
+                    return redirect()->intended('/admin/user');
                 } else if(Auth::user()->role_id == 2 ) {
-                    return redirect()->intended('/manageaddress');
+                    return redirect()->intended('/admin/address');
                 }
-                return redirect()->intended('/addressinfo');
+                return redirect()->intended('/manager/address');
                 
             } else {
                 $errors = new MessageBag(['errorlogin' => Lang::get('error.login_error')]);

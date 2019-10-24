@@ -21,7 +21,7 @@ class AddressController extends Controller
             $addresstypes[$key]['name'] = \Lang::get('addresstypes.'.$value['name']);
         } 
         $address = Address::where("id",$id)->first();
-        return view('admin.address.addressdetail',compact('address','addresstypes'));
+        return view('admin.address.detail',compact('address','addresstypes'));
     }
     public function update(Request $request,$id)
     {
@@ -35,8 +35,8 @@ class AddressController extends Controller
 
             $filename = time().'.'.$img->getClientOriginalExtension();
 
-            Image::make($img)->resize(800, 600)->save(public_path('/client/assets/img/'.$filename));
-            $address->photos = ['/client/assets/img/' . $filename];
+            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
+            $address->photos = [$filename];
 
         }
         $address->user_id = Auth::user()->id;
@@ -62,7 +62,7 @@ class AddressController extends Controller
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-        return view('client.registeraddress',compact('addresstypes'));
+        return view('pages.address.register',compact('addresstypes'));
     }
     public function postRegisterAddress(registerAddress $request) {
         $address = new Address();
@@ -75,8 +75,8 @@ class AddressController extends Controller
 
             $filename = time().'.'.$img->getClientOriginalExtension();
 
-            Image::make($img)->resize(800, 600)->save(public_path('/client/assets/img/'.$filename));
-            $address->photos = ['/client/assets/img/' . $filename];
+            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
+            $address->photos = [$filename];
 
         }
         $address->user_id = Auth::user()->id;
@@ -84,7 +84,7 @@ class AddressController extends Controller
         // $address->verified_by = "1";
         // $address->verified_time = "2019-01-01 00:00:00";
         $address->save();
-        $address->types()->attach($request->addresstype_id) ;
+        $address->types()->attach($request->addresstype_id);
         session()->flash("success", "Insert Successfully");
         return redirect("/");
      }
@@ -94,9 +94,9 @@ class AddressController extends Controller
             $e->name = __('addresstypes.'.$e->name);
         }
          $data = Address::where("user_id",Auth::user()->id);
-         $addresses = $data->get();
+         $addresses = $data->paginate(16);
          $notification = $data->where(['verified' => 2])->get();
-         return view('client.addressinfo',compact('addresses','addresstypes','notification'));
+         return view('pages.address.index',compact('addresses','addresstypes','notification'));
      }
      public function changeStatus($id,$status){
             $address = Address::find($id);
