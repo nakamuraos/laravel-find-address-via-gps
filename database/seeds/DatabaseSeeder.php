@@ -39,7 +39,12 @@ class DatabaseSeeder extends Seeder
         $mysql_version = $mysql_version_check[0]->Value;
         if (substr($mysql_version,2, 1) < '7' AND substr($mysql_version,4, 1) < '6') {
             $sql = '
+                DELIMITER $$
+
+                DROP FUNCTION IF EXISTS `ST_Distance_Sphere`$$
+        
                 CREATE FUNCTION `ST_Distance_Sphere` (point1 POINT, point2 POINT)
+        
                     RETURNS FLOAT
                     no sql deterministic
                     BEGIN
@@ -54,12 +59,14 @@ class DatabaseSeeder extends Seeder
                         set `φ2` = radians(y(point2));
                         set `Δφ` = radians(y(point2) - y(point1));
                         set `Δλ` = radians(x(point2) - x(point1));
-
+        
                         set a = sin(`Δφ` / 2) * sin(`Δφ` / 2) + cos(`φ1`) * cos(`φ2`) * sin(`Δλ` / 2) * sin(`Δλ` / 2);
                         set c = 2 * atan2(sqrt(a), sqrt(1-a));
-
+        
                         return R * c;
-                    END;
+                    END$$
+        
+                DELIMITER ;
             ';
             DB::unprepared($sql);
         }
