@@ -59,9 +59,9 @@ class LoginController extends Controller
             $user_name = $request->user_name;
             $password = $request->password;
             if( Auth::attempt(['user_name' => $user_name, 'password' =>$password])) {
-                if(Auth::user()->role_id == 1 ) {
+                if(Auth::user()->role_id == 2 ) {
                     return redirect()->intended('/admin/user');
-                } else if(Auth::user()->role_id == 2 ) {
+                } else if(Auth::user()->role_id == 3 ) {
                     return redirect()->intended('/admin/address');
                 }
                 return redirect()->intended('/manager/address');

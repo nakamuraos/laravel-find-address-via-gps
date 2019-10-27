@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AddressTypeTableSeeder::class);
 
         $this->createFolderPhotos();
-        $this->createFunctionDistance();
+        // $this->createFunctionDistance();
     }
 
     public function createFolderPhotos() {

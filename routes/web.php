@@ -29,10 +29,10 @@ Route::prefix('admin')->group(function () {
     //address manager
     Route::prefix('address')->group(function () {
         Route::get('/','AddressController@index');
-        Route::get('/{id}','AddressController@getAddressDetail');
-        Route::put('/{id}','AddressController@update');
-        Route::delete('/{id}','AddressController@destroy');
-        Route::put('/verify/{id}/{status}','AddressController@changeStatus');
+        Route::get('{id}','AddressController@getAddressDetail');
+        Route::put('{id}','AddressController@update');
+        Route::delete('{id}','AddressController@destroy');
+        Route::put('verify/{id}/{status}','AddressController@changeStatus');
     });
     //user manager
     Route::prefix('user')->group(function () {

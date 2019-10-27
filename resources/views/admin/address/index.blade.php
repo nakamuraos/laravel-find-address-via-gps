@@ -25,7 +25,7 @@
                             </div>
                             <h4 class="info-title">{{$address->name}}</h4>
                             <p class="text-center p-0">
-                                <a href="admin/address/{{$address->id}}" class="btn border-pink">Detail</a>
+                                <a href="address/{{$address->id}}" class="btn border-pink">Detail</a>
                             </p>
                         </div>
                     </div>

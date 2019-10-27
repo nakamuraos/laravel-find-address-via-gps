@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
             "email" => "hienp9237@gmail.com",
             "verified" => true,
             "status" => true,
-            "role_id" => "2",          
+            "role_id" => "1",          
         ]);
         DB::table('users')->insert([
             "user_name" => "admin",
@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
             "email" => "hienp9237@gmail.com",
             "verified" => true,
             "status" => true,
-            "role_id" => "1",          
+            "role_id" => "2",          
         ]);
         DB::table('users')->insert([
             "user_name" => "addressmanager",
