@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Type;
 use Illuminate\Http\Request;
-use Image;
 use App\Http\Requests\registerAddress;
 use Auth;
 use Carbon\Carbon;
@@ -29,15 +28,11 @@ class AddressController extends Controller
         $address->name = $request->name;
         $address->detail = $request->detail;
         $address->location = $request->location;
-        if($request->hasFile('file'))
-        {
-            $img = $request->file('file');
-
-            $filename = time().'.'.$img->getClientOriginalExtension();
-
-            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
-            $address->photos = [$filename];
-
+        $photos = $this->uploadPhotos($request);
+        if(is_array($photos)) {
+            $address->photos = $photos;
+        } else {
+            return $photos;
         }
         $address->user_id = Auth::user()->id;
         $address->verified = "0";
@@ -69,15 +64,11 @@ class AddressController extends Controller
         $address->name = $request->name;
         $address->detail = $request->detail;
         $address->location = $request->location;
-        if($request->hasFile('file'))
-        {
-            $img = $request->file('file');
-
-            $filename = time().'.'.$img->getClientOriginalExtension();
-
-            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
-            $address->photos = [$filename];
-
+        $photos = $this->uploadPhotos($request);
+        if(is_array($photos)) {
+            $address->photos = $photos;
+        } else {
+            return $photos;
         }
         $address->user_id = Auth::user()->id;
         
@@ -115,5 +106,4 @@ class AddressController extends Controller
             $address->save();
             return back();
      }
-     
 }

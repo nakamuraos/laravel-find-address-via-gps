@@ -56,7 +56,7 @@
                                                         </span>
                                                     </div>
                                                     <input style="opacity: 1; position: initial;" type="file"
-                                                        name="file" class="form-control">
+                                                        name="photos[]" class="form-control"  multiple="multiple" accept="image/*">
                                                 </div>
                                                 <div class="input-group mb-4">
                                                     <div class="input-group-prepend ">

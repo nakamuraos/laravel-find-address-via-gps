@@ -7,6 +7,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Type;
+use Validator;
+use Image;
 
 class Controller extends BaseController
 {
@@ -38,5 +40,27 @@ class Controller extends BaseController
             $output[$value['name']] = \Lang::get('addresstypes.'.$value['name']);
         }
         return $output;
+    }
+
+    public function uploadPhotos($request) {
+        $photos = [];
+        if($request->hasFile('photos')) {
+            $rules = [ 'image' => 'image|max:10240' ];
+            foreach($request->file('photos') as $photo) {
+                $valid = Validator::make(['image' => $photo], $rules);
+                if ($valid->fails()) {
+                    return redirect()->back()->withErrors($valid)->withInput();
+                } else {
+                    if ($photo->isValid()) {
+                        $filename = time().'_'.rand(1000,9999).'.'.$photo->getClientOriginalExtension();
+                        Image::make($photo)->save(public_path(config('files.paths.photo').$filename));
+                        $photos[] = $filename;
+                    } else {
+                        return redirect()->back()->with('error', 'Upload files thất bại!');
+                    }
+                }
+            }
+        }
+        return $photos;
     }
 }
