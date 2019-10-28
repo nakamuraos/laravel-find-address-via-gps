@@ -1,5 +1,4 @@
 <?php
-
 return [
   'paths' => [
     'photo' => '/files/photos/',

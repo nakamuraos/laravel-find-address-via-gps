@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -78,6 +80,7 @@
     <script src="{{ asset('assets/js/rater.min.js') }}"></script>
     <script src="{{ asset('assets/js/meanmenu.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script>
         function display_types(d) {
             var data = d.success == false ? [] : d.data;

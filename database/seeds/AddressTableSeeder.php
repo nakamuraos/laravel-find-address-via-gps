@@ -18,7 +18,8 @@ class AddressTableSeeder extends Seeder
             "user_id" => '1',
             "verified" => true,
             "verified_by" => "1",
-            "verified_time" => "2019-01-01 00:00:00",
+            "created_at" =>"2019-02-11 13:00:00",
+            "verified_time" => "2019-03-11 11:00:00",
             "location" => "21.057046,105.7305",
         ]);
         DB::table('addresses')->insert([
@@ -28,7 +29,8 @@ class AddressTableSeeder extends Seeder
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
-            "verified_time" => "2019-01-01 00:00:00",
+            "created_at" =>"2019-02-11 13:00:00",
+            "verified_time" => "2019-03-11 11:00:00",
             "location" => "21.055339,105.7855",
         ]);
         DB::table('addresses')->insert([
@@ -38,7 +40,8 @@ class AddressTableSeeder extends Seeder
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
-            "verified_time" => "2019-01-01 00:00:00",
+            "created_at" =>"2019-02-11 13:00:00",
+            "verified_time" => "2019-03-11 11:00:00",
             "location" => "21.054037,105.73820",
         ]);
         DB::table('addresses')->insert([
@@ -48,7 +51,8 @@ class AddressTableSeeder extends Seeder
             "user_id" => '2',
             "verified" => true,
             "verified_by" => "1",
-            "verified_time" => "2019-01-01 00:00:00",
+            "created_at" =>"2019-02-11 13:00:00",
+            "verified_time" => "2019-03-11 11:00:00",
             "location" => "21.054037,105.73820",
         ]);
     }

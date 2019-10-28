@@ -46,8 +46,9 @@ Route::prefix('admin')->group(function () {
 Route::prefix('manager')->group(function () {
     //address manager
     Route::prefix('address')->group(function () {
-        Route::get('/','AddressController@getAddressInfo');
-        Route::put('/{id}','AddressController@update');
+        Route::get('/','AddressController@getListAddress');
+        Route::get('/{id}','AddressController@getAddressDetailById');
+        Route::put('/update/{id}','AddressController@update');
         Route::get('/register','AddressController@getRegisterAddress');
         Route::post('/register','AddressController@postRegisterAddress');
         Route::put('/verify/{id}/{status}','AddressController@changeStatus');

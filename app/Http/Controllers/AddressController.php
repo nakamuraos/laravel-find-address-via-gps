@@ -46,7 +46,7 @@ class AddressController extends Controller
         $address->save();
         $address->types()->sync($request->addresstype_id) ;
         session()->flash("success", "Update Successfully");
-        return redirect("/addressinfo");
+        return redirect("/manager/address");
     }
     public function destroy($id)
     {
@@ -88,15 +88,24 @@ class AddressController extends Controller
         session()->flash("success", "Insert Successfully");
         return redirect("/");
      }
-     public function getAddressInfo(){
+     public function getListAddress(){
         $addresstypes = Type::all();
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-         $data = Address::where("user_id",Auth::user()->id);
-         $addresses = $data->paginate(16);
-         $notification = $data->where(['verified' => 2])->get();
-         return view('pages.address.index',compact('addresses','addresstypes','notification'));
+        $data = Address::where("user_id",Auth::user()->id);
+        $addresses = $data->paginate(5);
+        $notification = $addresses->where(['verified' => 2]);
+        return view('pages.address.index',compact('addresses','addresstypes','notification'));
+     }
+     public function getAddressDetailById($id){
+        $addresstypes = Type::all();
+        foreach($addresstypes as $e) {
+            $e->name = __('addresstypes.'.$e->name);
+        }
+         $address = Address::where("id",$id)->first(); 
+        //  dd($address);
+         return view('pages.address.detailById',compact('address','addresstypes'));
      }
      public function changeStatus($id,$status){
             $address = Address::find($id);

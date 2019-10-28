@@ -38,6 +38,17 @@
 </div>
 </div>
 @endsection
-@push('script')
+@push('scripts')
+<script>
+    // Click edit button
+    $('.btn-edit').click(function (e) {
+        e.preventDefault();
+        resetFormModal($(this).data('href'));
 
+        $('#editModal').modal({
+            backdrop: 'static',
+            show: true
+        });
+    });
+</script>
 @endpush
