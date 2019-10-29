@@ -339,9 +339,6 @@ function chooseType(e, depth = false, scroll = false) {
             if (e) console.log(e);
         });
 }
-var map;
-var myloc;
-var mode_direction = 'DRIVING';
 
 function initMap() {
     var directionsRenderer = new google.maps.DirectionsRenderer({
@@ -350,7 +347,7 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
-        disableDefaultUI: true,
+        disableDefaultUI: register!==true,
         styles: [
             {
               "featureType": "poi",
@@ -365,7 +362,7 @@ function initMap() {
               "featureType": "poi.business",
               "stylers": [
                 {
-                  "visibility": "off"
+                  "visibility": register!==true ? "off" : "on"
                 }
               ]
             },
@@ -409,6 +406,18 @@ function initMap() {
         map: map // your google.maps.Map object
     });
 
+    if(register) {
+        map.addListener('click', function(e) {
+            placeMarker(e.latLng, map);
+            console.log(e.latLng.lat()+','+e.latLng.lng());
+        });
+        getLocation().then(data => {
+            var mylocation = new google.maps.LatLng(data[0] * 1, data[1] * 1);
+            myloc.setPosition(mylocation);
+            map.setCenter(mylocation);
+        });
+    }
+
     if(getUrlParameter('destination')) {
         directionsRenderer.setMap(map);
         directionsRenderer.setPanel(document.getElementById('directions'));
@@ -417,6 +426,28 @@ function initMap() {
     $('.mode-selector').on('click', function () {
         calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
+}
+
+function placeMarker(position, map, clickOnMap = true) {
+    if(marker) {
+        marker.setMap(null);
+    }
+    marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: clickOnMap===true?'':'You are here'
+    });
+    $('#selectLocation').data('location', position.lat()+','+position.lng());
+    marker.addListener('click', toggleBounce);
+    map.panTo(position);
+}
+
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
@@ -430,14 +461,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             origin: {
                 lat: data[0],
                 lng: data[1]
-            }, // Haight.
+            },
             destination: {
                 lat: destination[0] * 1,
                 lng: destination[1] * 1
-            }, // Ocean Beach.
-            // Note that Javascript allows us to access the constant
-            // using square brackets and a string value as its
-            // "property."
+            },
             travelMode: google.maps.TravelMode[selectedMode]
         }, function (response, status) {
             if (status == 'OK') {
@@ -492,3 +520,17 @@ $('.btn-edit').click(function (e) {
         show: true
     });
 });
+$('#selectLocation').on('click', function() {
+    var location = $(this).data('location');
+    if(location!="") {
+        $('#returnLocation').val(location);
+        $('#location').modal('hide');
+    }
+});
+function checkFormRegisterAddress() {
+    if($('#returnLocation').val() != "") {
+        return true;
+    }
+    $('#location').modal('show');
+    return false;
+}

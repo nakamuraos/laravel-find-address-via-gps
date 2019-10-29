@@ -18,10 +18,7 @@
                     @foreach($addresses as $address)
                     <div class="col-md-3">
                         <div class="info">
-                            <div class="image">
-                                <!-- <div id="overlay"> -->
-                                    <img src="{{config('files.uri.photo_encrypted')}}{{empty($address->photos)?'/files/photos/quananvat.jpg':$address->photos[0]}}" alt="{{$address->name}}">
-                                <!-- </div> -->
+                            <div class="image" style="background:url({{config('files.uri.photo_encrypted')}}{{empty($address->photos)?'/files/photos/quananvat.jpg':$address->photos[0]}});height: 200px;background-size: cover;">
                             </div>
                             <h4 class="info-title">{{$address->name}}</h4>
                             <p class="text-center p-0">
