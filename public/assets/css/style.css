@@ -106,7 +106,8 @@ Version: 2.1
 }
 .card-footer{
     bottom: 0;
-    width:100%;
+    width: 95%;
+    border-top: 1px solid #bcb9b94d !important;
 }
 .card-header-icon h2{
     margin-top: 40px;

@@ -14,7 +14,7 @@
             </div>
             <div class="row mt-5 ">
                 <div class="col-md-12 m-auto  position-relative ">
-                    <div class="card card-stats addresslist pl-5" style="background: #55af50" >
+                    <div class="card card-stats addresslist pl-5" style="background: #343a40; opacity:0.6" >
                     <div class="row">
                     <div class=" card-header-icon">
                             <div class="card-image card-icon">
@@ -25,7 +25,7 @@
 
                         
                         <div class="card-body text-left text-white mt-4">
-                        <h2 class="card-title">{{$address->name}}</h2>
+                        <h2 class="card-title text-white">{{$address->name}}</h2>
                             <p>Loại địa chỉ : {{$address->type_str}} </p>
                             <p>Địa chỉ chi tiết : {{$address->detail}}</p>
                             <p>Trạng thái :
@@ -48,7 +48,7 @@
                         </div>
                         @endif
                         <div class="card-footer position-absolute">
-                            <div class="stats">
+                            <div class="stats text-white">
                                 @if($address->updated_at == NULL)
                                 Last Change at {{$address->created_at}}
                                 @else
