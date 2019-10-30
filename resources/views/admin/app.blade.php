@@ -77,16 +77,7 @@
            
         </div>
     </div>
-    <div class="page-header header-filter" data-parallax="true"
-        style="background-image: url('{{asset('admin/assets/image/breadcrumb_bg.jpg') }}')">
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="title">Quản lý địa chỉ</h1>
-                    <br>
-                </div>
-            </div>
-        </div> -->
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('assets/img/breadcrumb_bg.jpg') }}')">
     </div>
     @yield('content')
     <footer class="footer footer-default " id="contact" style="padding-bottom:100px">

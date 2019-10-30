@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter"
-    style="background-image: url({{asset(config('files.uri.background'))}})">
+<section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter" style="background-image: url({{asset(config('files.uri.background'))}})">
 <div class="main main-raised">
     <div class="profile-content pt-5">
         <div class="container">
@@ -12,18 +11,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 ">
+            <div class="row mt-5">
                 <div class="col-md-12 m-auto  position-relative ">
                     <div class="card card-stats addresslist pl-5" style="background: #343a40; opacity:0.6" >
                     <div class="row">
-                    <div class=" card-header-icon">
+                    <div class="card-header-icon">
                             <div class="card-image card-icon">
-                                <img src="{{config('files.uri.photo_encrypted')}}{{$address->photos[0]}}" alt="">
+                                <img src="{{uriPhoto($address->photos)}}" alt="">
                             </div>
-                            
                         </div>
-
-                        
                         <div class="card-body text-left text-white mt-4">
                         <h2 class="card-title text-white">{{$address->name}}</h2>
                             <p>Loại địa chỉ : {{$address->type_str}} </p>

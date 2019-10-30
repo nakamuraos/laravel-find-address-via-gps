@@ -4,40 +4,36 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Type;
 use Illuminate\Http\Request;
-use Image;
 use App\Http\Requests\registerAddress;
 use Auth;
 use Carbon\Carbon;
 class AddressController extends Controller
 {
 
-    public function index(){
+    public function index() {
         $addresses = Address::orderBy("created_at", "desc")->paginate(8);
         return view('admin.address.index',compact('addresses'));
     }
-    public function getAddressDetail($id){
+
+    public function show($id) {
         $addresstypes = Type::all();
         foreach($addresstypes as $key => $value) {
             $addresstypes[$key]['name'] = \Lang::get('addresstypes.'.$value['name']);
-        } 
-        $address = Address::where("id",$id)->first();
+        }
+        $address = Address::where("id", $id)->first();
         return view('admin.address.detail',compact('address','addresstypes'));
     }
-    public function update(Request $request,$id)
-    {
+
+    public function update(Request $request,$id) {
         $address = Address::find($id);
         $address->name = $request->name;
         $address->detail = $request->detail;
         $address->location = $request->location;
-        if($request->hasFile('file'))
-        {
-            $img = $request->file('file');
-
-            $filename = time().'.'.$img->getClientOriginalExtension();
-
-            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
-            $address->photos = [$filename];
-
+        $photos = $this->uploadPhotos($request);
+        if(is_array($photos)) {
+            $address->photos = $photos;
+        } else {
+            return $photos;
         }
         $address->user_id = Auth::user()->id;
         $address->verified = "0";
@@ -48,36 +44,34 @@ class AddressController extends Controller
         session()->flash("success", "Update Successfully");
         return redirect("/manager/address");
     }
-    public function destroy($id)
-    {
+
+    public function destroy($id) {
         $address = Address::find($id);
         $address->types()->detach();
         $address->delete();
         session()->flash("success", "Delete successfully");
-        return redirect('/manageaddress');
+        return redirect('/manager/address');
     }
     
-    public function getRegisterAddress(){
+    public function create() {
         $addresstypes = Type::all();
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-        return view('pages.address.register',compact('addresstypes'));
+        $maps = true;
+        return view('pages.address.register', compact('addresstypes', 'maps'));
     }
-    public function postRegisterAddress(registerAddress $request) {
+
+    public function store(Request $request) {
         $address = new Address();
         $address->name = $request->name;
         $address->detail = $request->detail;
         $address->location = $request->location;
-        if($request->hasFile('file'))
-        {
-            $img = $request->file('file');
-
-            $filename = time().'.'.$img->getClientOriginalExtension();
-
-            Image::make($img)->resize(800, 600)->save(public_path(config('files.paths.photos').$filename));
-            $address->photos = [$filename];
-
+        $photos = $this->uploadPhotos($request);
+        if(is_array($photos)) {
+            $address->photos = $photos;
+        } else {
+            return $photos;
         }
         $address->user_id = Auth::user()->id;
         
@@ -87,8 +81,9 @@ class AddressController extends Controller
         $address->types()->attach($request->addresstype_id);
         session()->flash("success", "Insert Successfully");
         return redirect("/");
-     }
-     public function getListAddress(){
+    }
+
+    public function getListAddress() {
         $addresstypes = Type::all();
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
@@ -96,24 +91,29 @@ class AddressController extends Controller
         $data = Address::where("user_id",Auth::user()->id);
         $addresses = $data->paginate(5);
         $notification = $addresses->where(['verified' => 2]);
-        return view('pages.address.index',compact('addresses','addresstypes','notification'));
-     }
-     public function getAddressDetailById($id){
+        $maps = true;
+        return view('pages.address.index',compact('addresses','addresstypes','notification','maps'));
+    }
+
+    public function showByUser($id) {
         $addresstypes = Type::all();
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-         $address = Address::where("id",$id)->first(); 
-        //  dd($address);
-         return view('pages.address.detailById',compact('address','addresstypes'));
-     }
-     public function changeStatus($id,$status){
-            $address = Address::find($id);
-            $address->verified  = $status;
-            $address->verified_by = Auth::user()->id;
-            $address->verified_time = Carbon::now();
-            $address->save();
-            return back();
-     }
-     
+        $address = Address::where([
+            ['id' => $id],
+            ['user_id' => Auth::user()->id]
+        ])->first(); 
+        if(empty($address)) return abort(404);
+        return view('pages.address.detail', compact('address','addresstypes'));
+    }
+
+    public function changeVerifyCode($id, $verify_code) {
+        $address = Address::find($id);
+        $address->verified  = $verify_code;
+        $address->verified_by = Auth::user()->id;
+        $address->verified_time = Carbon::now();
+        $address->save();
+        return back();
+    }
 }

@@ -17,12 +17,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        var map, myloc, register, marker;
+        var mode_direction = 'DRIVING';
+    </script>
 </head>
 
 <body>
@@ -51,8 +54,20 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                         href="javascript:void(0)">{{Auth::user()->full_name}}</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                        <a class="dropdown-item" href=""><i class="nc-icon nc-single-02"></i>&nbsp;
-                            Profile</a>
+                    @switch(Auth::user()->role->name)
+                        @case('admin')
+                        <a class="dropdown-item" href="/admin/user"><i class="nc-icon nc-single-02"></i>&nbsp;
+                            User manager</a>
+                            @break
+                        @case('addressmanager')
+                        <a class="dropdown-item" href="/admin/address"><i class="nc-icon nc-single-02"></i>&nbsp;
+                            Address manager</a>
+                            @break
+                        @default
+                        <a class="dropdown-item" href="/manager/address"><i class="nc-icon nc-single-02"></i>&nbsp;
+                            Address manager</a>
+                    @endswitch
+                        
                         <a class="dropdown-item" href="/logout"><i class="nc-icon nc-bookmark-2"></i>&nbsp;
                             @lang('auth.logout')</a>
                     </ul>
@@ -119,6 +134,7 @@
             }
             Object.keys(data).forEach(function (key) {
                 var d = data[key];
+                var photo = d.photos.length > 0 ? '{{config('files.uri.photo_encrypted')}}'+d.photos[0] : '/assets/img/default_geocode-2x.png';
                 list.push(
                     '<a class="list-group-item list-group-item-action" data-id="',
                     d.id,
@@ -128,8 +144,8 @@
                     d.location,
                     '" target="_blank">',
                     '<div class="row">', //start row
-                    '<div class="col-md-4"><div class="photo-result" style="background:url({{config('files.uri.photo_encrypted')}}', //photo
-                    d.photos[0],
+                    '<div class="col-md-4"><div class="photo-result" style="background:url(', //photo
+                    photo,
                     ');"></div></div>',
                     '<div class="col-md-8"><div class="content-result"><b>', //name
                     d.name,
@@ -170,7 +186,7 @@
             return list.join('');
         }
     </script>
-    @if (isset($maps) && $maps === true)
+    @if (isset($maps))
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('googlemaps.key_maps')}}&callback=initMap&language={{Config::get('app.locale')}}"></script>
     @endif
     <!-- permission denied -->
@@ -234,10 +250,10 @@
                     <h4 class="modal-title">Login is required</h4>
                 </div>
                 <div class="modal-body">
-                    Please log in Or register <a href="/register" class="text-danger">here</a>
+                    Please login or register at <a href="/register" class="text-danger">here</a>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <a href="/login" class="btn btn-success">Login now</a>
                 </div>
 

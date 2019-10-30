@@ -36,3 +36,14 @@ if(!function_exists('arrayToParameter')) {
     return trim($output, '&');
   }
 }
+
+
+if(!function_exists('uriPhoto')) {
+  function uriPhoto($photos) {
+    if(empty($photos)) {
+        return '/assets/img/default_geocode-2x.png';
+    } else {
+        return config('files.uri.photo_encrypted') . $photos[0];
+    }
+  }
+}
