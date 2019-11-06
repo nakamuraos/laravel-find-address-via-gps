@@ -22,6 +22,10 @@ Route::get('/register','Auth\RegisterController@index')->name('register');
 Route::post('/register','Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 
+//------Profile
+Route::get('/user/profile','UserController@getProfile');
+Route::put('/user/profile/update','UserController@updateProfile');
+
 //--------------------------------------------------------------------------
 // MANAGEMENT AREA
 //--------------------------------------------------------------------------
@@ -36,11 +40,13 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}','AddressController@show');
             Route::put('{id}','AddressController@update');
             Route::delete('{id}','AddressController@destroy');
-            Route::put('verify/{id}/{status}','AddressController@changeVerifyCode');
+            Route::put('{id}/verify/{verify_code}','AddressController@changeVerifyCode');
         });
-        //user manager
+        //manage user
         Route::prefix('user')->middleware('role:admin')->group(function () {
             Route::get('/','UserController@index');
+            Route::put('{id}','UserController@update');
+            Route::delete('{id}','UserController@destroy');
         });
     });
 
@@ -54,13 +60,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/register','AddressController@create');
             Route::post('/register','AddressController@store');
             Route::get('/{id}','AddressController@showByUser');
-            Route::put('/{id}/update','AddressController@update');
-            Route::put('/verify/{id}/{status}','AddressController@changeVerifyCode');
+            Route::put('/{id}','AddressController@update');
+            Route::delete('/{id}','AddressController@destroy');
+            // Route::put('/verify/{id}/{status}','AddressController@changeVerifyCode');
         });
         //user manager
-        Route::prefix('user')->group(function () {
-            Route::get('/','UserController@index');
-        });
+        // Route::prefix('user')->group(function () {
+        //     Route::get('/','UserController@index');
+            
+        // });
     });
 });
 

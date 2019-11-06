@@ -13,6 +13,7 @@ class CreateFunction extends Migration
      */
     public function up()
     {
+        return;
         $mysql_version = $this->getVersionMysql();
         if (substr($mysql_version,2, 1) < '7' && substr($mysql_version,4, 1) < '6') {
             $sql = '

@@ -48,7 +48,8 @@ Version: 2.1
     text-align: center;
 }
 .btn.btn-edit{
-    color: #9c27b0;
+    color: #111;
+    background-color: #fff ;
 }
 .btn.btn-remove{
     color: #f44336;

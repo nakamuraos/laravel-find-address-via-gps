@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter" style="margin-top: 50px;background-image: url({{asset(config('files.uri.background'))}})">
+<section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter"
+    style="margin-top: 50px;background-image: url({{asset(config('files.uri.background'))}})">
     <div class="col-lg-10 col-md-12 m-auto">
         <div class="card">
             <div class="card-header card-header-tabs card-header-primary">
                 <div class="nav-tabs-wrapper" style="color: #fff">
-                    <span class="nav-tabs-title">Hi Hiền</span>
+                    <span class="nav-tabs-title">Hi {{Auth::user()->full_name}}</span>
                     <p>This is your list address</p>
 
                 </div>
@@ -27,28 +28,59 @@
                             </td>
                             <td>{{$address->name}}</td>
                             <td class="td-actions text-center">
-                                <a  style="color:#4caf50" href="address/{{$address->id}}">Detail</a>
-                                </div>
-                                <button type="button" rel="tooltip" data-href="address/update/{{$address->id}}"
-                                    class="btn btn-edit btn-sm btn-edit " data-original-title="Edit Task">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                                <button type="button" rel="tooltip" title="" class="btn btn-remove btn-sm"
-                                    data-original-title="Remove" aria-describedby="tooltip102821">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-                {{$addresses->links()}}
+                                <a style="color:#4caf50" href="address/{{$address->id}}">Detail</a>
             </div>
+            <button type="button" rel="tooltip" data-href="address/{{$address->id}}"
+                class="btn btn-edit btn-sm btn-edit " data-original-title="Edit Task">
+                <i class="material-icons">edit</i>
+            </button>
+            <!-- <button type="button" rel="tooltip"  class="btn btn-remove btn-sm" 
+                                    data-toggle="modal" data-target="#modalDelete{{$address->id}}">
+                                    <i class="material-icons">close</i>
+                                </button> -->
+            <button type="button" rel="tooltip" class="btn btn btn-remove  btn-sm px-2" data-toggle="modal"
+                data-target="#modalDelete{{$address->id}}"><i class="material-icons">close</i></button>
+            <!-- Modal delete-->
+            <div id="modalDelete{{$address->id}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block;">
+                            <button type="button" class="close" data-dismiss="modal">&times;
+                            </button>
+                            <h4 class="modal-title">Xác nhận xóa</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có thực sự muốn xóa?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/address/{{$address->id}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát
+                                </button>
+                                <button type="submit" class="btn btn-danger">Xóa
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </td>
+            </tr>
+
+            @endforeach
+
+            </tbody>
+            </table>
+            {{$addresses->links()}}
         </div>
+    </div>
     </div>
 
 </section>
+
+<!-- Modal edit -->
 <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
         <form id="editForm" method="POST" enctype="multipart/form-data">
@@ -59,7 +91,8 @@
                     <h5 class="modal-title" id="editModalLabel">Update Product</h5>
                 </div>
                 <div class="modal-body">
-                    <form id="editForm" class="row" method="post" enctype="multipart/form-data" onSubmit="return checkFormRegisterAddress();">
+                    <form id="editForm" class="row" method="post" enctype="multipart/form-data"
+                        onSubmit="return checkFormRegisterAddress();">
                         @csrf
                         <div class="card-body" style="height:400px">
                             <div class="input-group mb-4">
@@ -98,11 +131,14 @@
                                         Địa chỉ chi tiết
                                     </span>
                                 </div>
-                                <input type="text" name="detail" class="form-control"
-                                    placeholder="Địa chỉ chi tiết" required> 
-                                <button class="btn col-4 btn-success ml-1" type="button" data-toggle="modal" data-target="#location" data-backdrop="static" data-keyboard="false" style="margin-left:0!important;border-radius:0 5px 5px 0;">Chọn trên bản đồ</button>
+                                <input type="text" name="detail" class="form-control" placeholder="Địa chỉ chi tiết"
+                                    required>
+                                <button class="btn col-4 btn-success ml-1" type="button" data-toggle="modal"
+                                    data-target="#location" data-backdrop="static" data-keyboard="false"
+                                    style="margin-left:0!important;border-radius:0 5px 5px 0;">Chọn trên bản đồ</button>
                             </div>
-                            <input type="hidden" name="location" class="form-control rounded-right" placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
+                            <input type="hidden" name="location" class="form-control rounded-right"
+                                placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
                         </div>
                     </form>
                 </div>
@@ -126,19 +162,25 @@
                 <div id="map"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary mr-auto" onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">Vị trí hiện tại</button>
-                <button type="button" class="btn btn-primary" data-location="" id="selectLocation" onclick="$('#returnLocation')">Chọn</button>
+                <button type="button" class="btn btn-primary mr-auto"
+                    onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">Vị
+                    trí hiện tại</button>
+                <button type="button" class="btn btn-primary" data-location="" id="selectLocation"
+                    onclick="$('#returnLocation')">Chọn</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     register = true;
+
 </script>
 <style>
     body {
         height: auto;
     }
+
 </style>
 @endsection

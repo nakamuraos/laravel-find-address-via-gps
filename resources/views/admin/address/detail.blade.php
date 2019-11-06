@@ -49,28 +49,18 @@
                             <b>Chưa xác minh</b>
                             <div class="pro-item-option">
                                 <button type="button" class="btn btn-primary btn-edit"
-                                    data-href="/admin/address/verifiy/{{$address->id}}/2">Yêu cầu cập nhật</button>
+                                    data-href="{{$address->id}}/verify/2">Yêu cầu cập nhật</button>
                                 <button type="button" class="btn btn-primary  my-4 " data-toggle="modal"
                                     data-target="#modalVerify{{$address->id}}">
                                     Xác minh
                                 </button>
-                                <button type="button" class="btn btn-primary  my-4 " data-toggle="modal"
-                                    data-target="#modalDelete{{$address->id}}">
-                                    Xóa
-                                </button>
-
                             </div>
                             @break
                             @case(1)
-                            <b>Đã xác minh</b>
-                            
+                            <b>Đã xác minh</b>  
                             @break
                             @default
                             <b>Đang chờ cập nhật</b><br />
-                            <button type="button" class="btn btn-primary  my-4 " data-toggle="modal"
-                                data-target="#modalDelete{{$address->id}}">
-                                Xóa
-                            </button>
                             @endswitch
 
                         </div>

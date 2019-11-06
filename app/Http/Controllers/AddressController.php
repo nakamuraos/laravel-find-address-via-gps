@@ -101,8 +101,8 @@ class AddressController extends Controller
             $e->name = __('addresstypes.'.$e->name);
         }
         $address = Address::where([
-            ['id' => $id],
-            ['user_id' => Auth::user()->id]
+            ['id', '=', $id],
+            ['user_id', '=', Auth::user()->id]
         ])->first(); 
         if(empty($address)) return abort(404);
         return view('pages.address.detail', compact('address','addresstypes'));
