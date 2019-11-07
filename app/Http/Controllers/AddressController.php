@@ -89,11 +89,11 @@ class AddressController extends Controller
             $e->name = __('addresstypes.'.$e->name);
         }
         $data = Address::where("user_id",Auth::user()->id);
-        $addresses = $data->paginate(5);
-        $notification = $addresses->where(['verified' => 2]);
+        $addresses = $data->paginate(4);
+        $notifications = $addresses->where('verified',2);
         $maps = true;
-        return view('pages.address.index',compact('addresses','addresstypes','notification','maps'));
-    }
+        return view('pages.address.index',compact('addresses','addresstypes','notifications','maps'));
+}
 
     public function showByUser($id) {
         $addresstypes = Type::all();
@@ -116,4 +116,10 @@ class AddressController extends Controller
         $address->save();
         return back();
     }
+    // public function getNotification(){
+    //     $data = Address::where("user_id",Auth::user()->id);
+    //     $addresses = $data->paginate(5);
+    //     $notification = $addresses->where(['verified' => 2]);
+    //     return view('layouts.app',compact('notification'));
+    // }
 }

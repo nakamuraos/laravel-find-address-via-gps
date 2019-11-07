@@ -134,7 +134,7 @@
                 <p>Bạn chắc chắn muốn xác minh địa chỉ này?</p>
             </div>
             <div class="modal-footer">
-                <form action="admin/address/verify/{{$address->id}}/1" method="POST">
+                <form action="{{$address->id}}/verify/1" method="POST">
                     @csrf
                     {{ method_field('PUT') }}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Thoát

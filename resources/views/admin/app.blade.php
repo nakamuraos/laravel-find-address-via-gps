@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/admin/img/favicon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Material Kit by Creative Tim
+        Find address by GPS
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -44,7 +44,13 @@
             color-on-scroll="100" id="sectionsNav">
             <div class="container-fluid">
                 <div class="navbar-translate">
-                    <h3 class="text-white"><b>Hệ thống tìm kiếm địa chỉ theo định vị</b></h3>
+                    @if(Auth::user()->id === 1)
+                    <h4 class="text-white"><b>Find address by GPS </b>|| Manage User</h4>
+                    @else 
+                        @if(Auth::user()->id === 2)
+                        <h4 class="text-white"><b>Find address by GPS</b> || Manage Address</h4>
+                        @endif
+                    @endif
                 </div>
                 <div class="collapse navbar-collapse pr-5">
                     <ul class="navbar-nav ml-auto">

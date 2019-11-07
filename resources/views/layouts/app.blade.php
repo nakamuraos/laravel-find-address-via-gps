@@ -68,6 +68,7 @@
                             Your address</a>
                             <a class="dropdown-item" href="/user/profile"><i class="nc-icon nc-single-02"></i>&nbsp;
                             Your profile</a>
+                            
                     @endswitch
                         
                         <a class="dropdown-item" href="/logout"><i class="nc-icon nc-bookmark-2"></i>&nbsp;

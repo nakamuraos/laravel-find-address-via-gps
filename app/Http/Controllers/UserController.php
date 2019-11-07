@@ -8,7 +8,7 @@ use Auth;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::orderBy('created_at','desc')->where('role_id', '!=', 1)->paginate(10);
+        $users = User::orderBy('created_at','desc')->where('role_id', '!=', 1)->paginate(8);
         return view('admin.users.index',compact('users'));
     }
     public function store(StoreUser $request)

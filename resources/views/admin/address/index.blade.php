@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
-<div class="main main-raised">
+<div class="main main-raised " style="padding-bottom:50px">
     <div class="container">
         <div class="section ">
             <!-- <div class="row">
@@ -10,7 +10,7 @@
             </div>
             </div> -->
             <h2 style="color:#3C4858; font-weight: 700" class="text-center">
-                Quản lý địa chỉ
+               Manage Address
             </h2>
             <div class="features" style="position:relative">
 
@@ -28,11 +28,15 @@
                     </div>
                     @endforeach
                 </div>
+                
             </div>
+            
         </div>
+        
     </div>
-
+    {{$addresses->links()}}
 </div>
+
 </div>
 @endsection
 @push('scripts')

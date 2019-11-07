@@ -25,7 +25,8 @@ Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 //------Profile
 Route::get('/user/profile','UserController@getProfile');
 Route::put('/user/profile/update','UserController@updateProfile');
-
+//-------Notification
+// Route::get('/user/notification','UserController@getNotification');
 //--------------------------------------------------------------------------
 // MANAGEMENT AREA
 //--------------------------------------------------------------------------

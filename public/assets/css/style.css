@@ -39,7 +39,28 @@ Version: 2.1
 * {
     box-sizing: border-box;
 }
-
+.table td , .table th{
+    border: none !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.pagination{
+    position: absolute !important;
+    bottom: 10px !important;
+}
+.dropdown-menu.noti-dropdown{
+    min-width: 200px !important;
+    left: -50% !important;
+    top:10px !important;
+}
+#noti.dropdown-toggle::after{
+    display: none !important;
+}
+.modal-dialog{
+    top:10% !important;
+}
+.modal-backdrop{
+    z-index: 0 !important;
+}
 .nav-tabs-wrapper{
     background-color: #4caf50 ;
     border-radius: 3px;
@@ -144,7 +165,7 @@ Version: 2.1
     border:none !important;
 }
 html, body, .wrapper {
-    height: 100%;
+    height: 100% ;
 }
 body {
     font-family: 'Quicksand', sans-serif !important;

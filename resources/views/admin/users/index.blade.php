@@ -5,7 +5,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card card-user">
                 <div class="card-header card-header-warning">
-                    <h4 class="card-title">Quản lý người dùng
+                    <h4 class="card-title">Manage user
                     </h4>
                     <!-- <p class="card-category">New employees on 15th September, 2016</p> -->
 

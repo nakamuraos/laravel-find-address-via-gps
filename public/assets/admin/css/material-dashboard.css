@@ -13588,7 +13588,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .page-header {
-  min-height: 100vh;
+  min-height: 70vh;
   max-height: 1000px;
   display: flex !important;
   height: 100%;

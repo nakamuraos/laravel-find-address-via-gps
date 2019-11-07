@@ -30,16 +30,16 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                        Tên địa chỉ
+                                                        Address Name
                                                     </span>
                                                 </div>
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="*Nhập địa chỉ của bạn" required>
+                                                    placeholder="*Enter name of your address" required>
                                             </div>
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                        Loại địa chỉ
+                                                        Address Type
                                                     </span>
                                                 </div>
                                                 <select name="addresstype_id" class="form-control">
@@ -52,7 +52,7 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                        Ảnh
+                                                        Image
                                                     </span>
                                                 </div>
                                                 <input style="opacity: 1; position: initial;line-height:29px;" type="file" name="photos[]" class="form-control"  multiple="multiple" accept="image/*">
@@ -60,12 +60,12 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                        Địa chỉ chi tiết
+                                                         Detail Address
                                                     </span>
                                                 </div>
                                                 <input type="text" name="detail" class="form-control"
                                                     placeholder="Địa chỉ chi tiết" required> 
-                                                <button class="btn col-3 btn-success ml-1" type="button" data-toggle="modal" data-target="#location" data-backdrop="static" data-keyboard="false" style="margin-left:0!important;border-radius:0 5px 5px 0;">Chọn trên bản đồ</button>
+                                                <button class="btn col-4 btn-success ml-1" type="button" data-toggle="modal" data-target="#location" data-backdrop="static" data-keyboard="false" style="margin-left:0!important;border-radius:0 5px 5px 0;">Chọn trên bản đồ</button>
                                             </div>
                                             <input type="hidden" name="location" class="form-control rounded-right" placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
                                         </div>
