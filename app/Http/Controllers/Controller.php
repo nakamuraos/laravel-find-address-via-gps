@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Type;
 use Validator;
 use Image;
+use App\Mail\SendMailActivation;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 class Controller extends BaseController
 {
@@ -62,5 +65,18 @@ class Controller extends BaseController
             }
         }
         return $photos;
+    }
+
+    public function sendMailActivation($data)
+    {
+        $obj = new \stdClass();
+        $obj->link_activation = route('verify') . '?token=' . $data->verify_token;
+        $obj->full_name = $data->full_name;
+ 
+        Mail::to($data->email)->send(new SendMailActivation($obj));
+    }
+
+    public function createVerifyToken($str) {
+        return substr(Crypt::encryptString(bcrypt($str . rand(1000, 9999))), 30);
     }
 }

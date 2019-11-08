@@ -56,21 +56,37 @@ class LoginController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $user_name = $request->user_name;
-            $password = $request->password;
-            if( Auth::attempt(['user_name' => $user_name, 'password' =>$password])) {
-                if(Auth::user()->role_id == 2 ) {
-                    return redirect()->intended('/admin/user');
-                } else if(Auth::user()->role_id == 3 ) {
-                    return redirect()->intended('/admin/address');
+            $input = ['password' => $request->password];
+            $input = array_merge($this->findUsername($request->user_name), $input);
+            
+            if(Auth::attempt($input)) {
+                if(Auth::user()->status && Auth::user()->verified) {
+                    return redirect()->route('home'); 
+                } else {
+                    if(!Auth::user()->verified) {
+                        $errors = new MessageBag(['errorlogin' => Lang::get('auth.notyet_verify', ['url_resend_mail' => '/account/verify/resend_mail', 'url_change_email' => '/account/verify/change_email'])]);
+                    } else if(!Auth::user()->status) {
+                        $errors = new MessageBag(['errorlogin' => Lang::get('auth.account_blocked')]);
+                    }
+                    Auth::logout();
+                    return redirect()->back()->withInput()->withErrors($errors);
                 }
-                return redirect()->intended('/manager/address');
-                
             } else {
-                $errors = new MessageBag(['errorlogin' => Lang::get('error.login_error')]);
-
+                $errors = new MessageBag(['errorlogin' => Lang::get('auth.login_error')]);
                 return redirect()->back()->withInput()->withErrors($errors);
             }
         }
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+
+    public function findUsername($user_name)
+    {
+        $fieldType = filter_var($user_name, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
+        return [$fieldType => $user_name];
     }
 }

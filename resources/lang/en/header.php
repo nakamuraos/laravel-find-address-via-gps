@@ -16,4 +16,8 @@ return [
     'title' => 'Find address via GPS',
     'link_maps' => 'Maps',
     'link_explore' => 'Explore',
+    'link_register_address' => 'Register Address',
+    'link_manage_address' => 'Manage Address',
+    'link_list_address' => 'List Address',
+    'link_manage_user' => 'Manage User',
 ];

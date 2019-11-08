@@ -22,15 +22,15 @@
                         </div>
                         <div class="card-body text-left text-white mt-4">
                         <h2 class="card-title">{{$address->name}}</h2>
-                            <p>Loại địa chỉ : {{$address->type_str}} </p>
-                            <p>Địa chỉ chi tiết : {{$address->detail}}</p>
-                            <p>Trạng thái :
+                            <p>@lang('address.address_type'): {{$address->type_str}} </p>
+                            <p>@lang('address.address_detail'): {{$address->detail}}</p>
+                            <p>@lang('address.status'):
                                 @if($address->verfied == 0)
-                                chưa xác minh
-                                @else đã xác minh
+                                @lang('address.notyet_verified')
+                                @else @lang('address.verified')
                                 @endif
                             </p>
-                            <p>Ngày đăng ký : 
+                            <p>@lang('address.register_date'): 
                                 {{$address->created_at}}
                             </p>
                         </div></div>
@@ -39,16 +39,17 @@
                         <div class="row">
                             <div class="col-md-2 card-btn">
                                 <button type="button" class="btn btn-success my-3 btn-edit"
-                                    data-href="/manager/address/{{$address->id}}">Update now</button>
+                                    data-href="/manager/address/{{$address->id}}">@lang('address.update')</button>
                             </div>
                         </div>
                         @endif
                         <div class="card-footer position-absolute">
                             <div class="stats">
+                                @lang('address.last_change')
                                 @if($address->updated_at == NULL)
-                                Last Change at {{$address->created_at}}
+                                    {{$address->created_at}}
                                 @else
-                                Last Change at {{$address->updated_at}}
+                                    {{$address->updated_at}}
                                 @endif
                             </div>
                         </div>

@@ -20,5 +20,6 @@ return [
     'resultsin'               => 'Kết quả dựa trên tiếng Việt',
     'noresults'               => 'Không có kết quả, thử lại với từ khóa ngắn hơn',
     'noresults_address'       => 'Không có địa chỉ yêu cầu quanh bạn',
-    'about'                   => 'Khoảng'
+    'about'                   => 'Khoảng',
+    'try_deapth_search'       => 'Thử tìm kiếm sâu',
 ];

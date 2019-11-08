@@ -14,7 +14,10 @@ return [
     */
 
     'title' => 'Hệ thống tìm kiếm địa chỉ',
-    'link_maps' => 'Maps',
-    'link_explore' => 'Explore',
-
+    'link_maps' => 'Bản đồ',
+    'link_explore' => 'Khám phá',
+    'link_register_address' => 'Thêm địa chỉ',
+    'link_manage_address' => 'Quản lý địa chỉ',
+    'link_list_address' => 'Danh sách địa chỉ',
+    'link_manage_user' => 'Quản lý người dùng',
 ];

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+
 class RegisterController extends Controller
 {
     /*
@@ -89,14 +91,19 @@ class RegisterController extends Controller
         }
     
         $newUser = new User();
-        $newUser->user_name = $request->user_name;    
+        $newUser->user_name = $request->user_name;
         $newUser->email = $request->email;
         $newUser->phone = $request->phone;
         $newUser->full_name = $request->full_name;
         $newUser->password = bcrypt($request->password);
         $newUser->role_id = 3;
+        $newUser->verify_token = $this->createVerifyToken($request->user_name . $request->email);
+        $newUser->verify_exprie = date('Y-m-d H:i:s', time() + 30 * 60); //30 minutes
         $newUser->save();
-    
-        return redirect('/login');
-     }
+
+        //if(config('app.env') === 'production') 
+        $this->sendMailActivation($newUser);
+
+        return redirect('/login')->with('success', \Lang::get('auth.register_success', ['url_verify' => '/account/verify']));
+    }
 }

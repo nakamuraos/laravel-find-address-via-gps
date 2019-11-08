@@ -14,8 +14,18 @@
                                         <div class="login-form">
                                             <form action="/login" method="POST">
                                                 @csrf
+                                                @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {!! session('success') !!}
+                                                </div>
+                                                @endif
+                                                @if(session('verified_successfully'))
+                                                <div class="alert alert-success">
+                                                    {{ session('verified_successfully') }}
+                                                </div>
+                                                @endif
                                                 @error('errorlogin')
-                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                <div class="alert alert-danger">{!! $message !!}</div>
                                                 @enderror
                                                 <input type="text" name="user_name" placeholder="@lang('auth.user_name')*" required>
                                                 <input type="password" name="password" placeholder="@lang('auth.password')*" required>
@@ -34,6 +44,4 @@
         </div>
     </section>
     <!-- breadcrumb section end -->
-
-   
 @endsection

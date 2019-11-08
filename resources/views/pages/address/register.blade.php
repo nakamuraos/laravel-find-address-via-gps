@@ -69,7 +69,7 @@
                                             </div>
                                             <input type="hidden" name="location" class="form-control rounded-right" placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
                                         </div>
-                                        <button type="submit" class="btn-submit rounded">@lang('address.register')</button> 
+                                        <button type="submit" class="btn-submit rounded">@lang('address.register_title')</button> 
                                     </form>
                                 </div>
                             </div>

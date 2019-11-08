@@ -20,5 +20,8 @@ return [
     'resultsin'               => 'Results are based on English',
     'noresults'               => 'No results, try again with shorter keywords',
     'noresults_address'       => 'No address nearby you',
-    'about'                   => 'About'
+    'about'                   => 'About',
+    'required_login'          => 'Login is required',
+    'required_login_desp'     => 'Please login or register at <a href="/register" class="text-danger">here</a>',
+    'try_depth_search'       => 'Try Depth search',
 ];
