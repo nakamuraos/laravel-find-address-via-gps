@@ -499,14 +499,15 @@ jQuery(function($) {
     }, 5000))
 });
 
+var widthNavBar = $('#sideBav').width() + 80;
+
 function openCloseToolbar() {
-    var w = document.getElementById("sideBav");
     var btn = document.getElementById("btn-toolbar-custom");
-    if(w.style.width && w.style.width=='0px') {
-        w.style.width = '400px';
+    if($('#sideBav').width() == 0) {
+        $('#sideBav').width(widthNavBar);
         btn.innerHTML = '&lang;';
     } else {
-        w.style.width = '0px';
+        $('#sideBav').width(0);
         btn.innerHTML = '&rang;';
     }
 }

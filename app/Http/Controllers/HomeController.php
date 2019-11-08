@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Address;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,12 @@ class HomeController extends Controller
     }
 
     public function maps(Request $request){
-        return view('pages.maps', ['maps' => true]);
+        $destination = $request->destination;
+        $address = '';
+        if($destination) {
+            $address = Address::where('location', $destination)->first();
+        }
+
+        return view('pages.maps', ['address' => $address, 'maps' => true]);
     }
 }

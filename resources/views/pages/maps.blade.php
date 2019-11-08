@@ -4,6 +4,9 @@
     <div id="sideBav" class="sidenav">
         <div class="container">
             <div class="row">
+                <div class="form-group" style="margin: 0;">
+                    <a href="/"><h3 style="color:white;display:inline-block;">{{config('app.name')}}</h3></a>
+                </div>
                 <div class="form-group">
                     <div class="mode-travel btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-success active mode-selector" title="test">
@@ -32,7 +35,7 @@
                                 <input type="text" class="form-control form-control-sm" placeholder="Your location" readonly name="location" data-addresstype="" autocomplete="off">
                             </div>
                             <div class="form-group" style="color:#666">
-                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" data-addresstype="" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" value="{{$address->name}}" data-addresstype="" autocomplete="off">
                                 <div class="spinner-grow float-right text-primary hide" role="status" id="loading_results" aria-hidden="true" style="margin-top:-28px;margin-right:5px;width:1.5em;height:1.5em"></div>
                                 <div class="result hide" id="listTypes" style="margin-top:0;"></div>
                                 <div class="result hide" id="listPlaces" style="margin-top:0;"></div>
@@ -42,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="overflow: auto;height: 67vh;">
+        <div class="container" style="overflow: auto;height: 66vh;">
             <div id="directions"></div>
         </div>
     </div>

@@ -33,6 +33,8 @@
         <div class="pin"></div>
         <div class="pulse"></div>
     </div>
+    @if (isset($maps) && $maps === true)
+    @else
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark @if (isset($maps) && $maps === true) fixed-top @else sticky-top @endif">
         <a class="navbar-brand" href="/">@lang('header.title')</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
@@ -77,6 +79,7 @@
             </ul>
         </div>
     </nav>
+    @endif
     @yield('content')
     <script src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.easing.1.3.js') }}"></script>
@@ -140,7 +143,7 @@
                     d.location,
                     '" href="/maps?destination=',
                     d.location,
-                    '" target="_blank">',
+                    window.location.href.indexOf("maps") > -1 ? '">' : '" target="_blank">',
                     '<div class="row">', //start row
                     '<div class="col-md-4"><div class="photo-result" style="background:url(', //photo
                     photo,
