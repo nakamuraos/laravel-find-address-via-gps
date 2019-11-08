@@ -45,13 +45,14 @@ class GoogleMaps extends GoogleController {
                 $location = $e->geometry->location->lat.','.$e->geometry->location->lng;
                 $find = Address::where('location', $location)->exists();
                 if(!$find) {
+                    $photos = null;
                     if(array_key_exists('photos', $e)) {
                         $photos = $this->savePhotos($e->photos);
                     }
                     $address = new Address();
                     $address->name = $e->name;
                     $address->location = $location;
-                    if(isset($photos)) $address->photos=$photos;
+                    if(!empty($photos)) $address->photos=$photos;
                     $address->detail = $e->vicinity;
                     $address->user_id = '1';
                     $address->verified = true;

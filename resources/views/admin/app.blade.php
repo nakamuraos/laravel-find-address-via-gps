@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/admin/img/favicon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Find address by GPS
+        Manage Area
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -54,7 +54,7 @@
                 </div>
                 <div class="collapse navbar-collapse pr-5">
                     <ul class="navbar-nav ml-auto">
-                    <li>
+                    <!-- <li>
                         <form action="" method="GET" class="form-group form-inline bmd-form-group" id="search">
                             @csrf
                             <input type="search" value="{{ request()->search }}" name="search" class="form-control"
@@ -63,7 +63,7 @@
                                 <i class="fa fa-search"></i>
                             </button>
                         </form>
-                    </li>
+                    </li> -->
                         <li class="nav-item dropdown ml-3">
                         @if(Auth::user())
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -102,8 +102,6 @@
     <script src="{{ asset('assets/admin/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{{ asset('assets/admin/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/admin/js/material-kit.js?v=2.0.5x') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>

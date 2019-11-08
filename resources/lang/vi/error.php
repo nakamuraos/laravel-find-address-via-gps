@@ -19,7 +19,6 @@ return [
     'gps_permission_prompt_desp' => '<p>Để các dịch vụ trên trang web này hoạt động, chúng tôi cần quyền truy cập vào vị trí của bạn.</p><p>Nếu bạn đồng ý, vui lòng nhấn vào Cấp quyền để tiếp tục.</p>',
     'grant' => 'Cấp quyền',
     'close' => 'Đóng',
-    'login_error' => 'Tên hoặc mật khẩu không đúng',
     'no_mode_directions' => 'Chế độ này hiện không khả dụng',
     'no_mode_directions_desp' => '<p>Loại điều hướng này hiện tại không có sẵn tại quốc gia của bạn.</p><p>Bạn có thể chuyển sang chế dộ điều hướng khác để tiếp tục sử dụng.</p>',
 ];

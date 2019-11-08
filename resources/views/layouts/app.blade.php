@@ -49,38 +49,31 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                @if(Auth::user())
+            @if(Auth::user())
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                         href="javascript:void(0)">{{Auth::user()->full_name}}</a>
-                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
                     @switch(Auth::user()->role->name)
                         @case('admin')
-                        <a class="dropdown-item" href="/admin/user"><i class="nc-icon nc-single-02"></i>&nbsp;
-                            User manager</a>
+                        <a class="dropdown-item" href="/admin/user"><i class="fa fa-user"></i> @lang('header.link_manage_user')</a>
                             @break
                         @case('addressmanager')
-                        <a class="dropdown-item" href="/admin/address"><i class="nc-icon nc-single-02"></i>&nbsp;
-                            Address manager</a>
+                        <a class="dropdown-item" href="/admin/address"><i class="fa fa-list"></i> @lang('header.link_manage_address')</a>
                             @break
                         @default
-                        <a class="dropdown-item" href="/manager/address"><i class="nc-icon nc-single-02"></i>&nbsp;
-                            Your address</a>
-                            <a class="dropdown-item" href="/user/profile"><i class="nc-icon nc-single-02"></i>&nbsp;
-                            Your profile</a>
-                            
+                        <a class="dropdown-item" href="/manager/address/register"><i class="fas fa-plus"></i> @lang('header.link_register_address')</a>
+                        <a class="dropdown-item" href="/manager/address"><i class="fa fa-list"></i> @lang('header.link_list_address')</a>
                     @endswitch
-                        
-                        <a class="dropdown-item" href="/logout"><i class="nc-icon nc-bookmark-2"></i>&nbsp;
-                            @lang('auth.logout')</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> @lang('auth.logout')</a>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/manager/address/register"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
-                @else
-                <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> @lang('auth.login')</a></li>
+            @else
+                <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> @lang('auth.login')</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('auth.register')</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-sign-out-alt"></i> Register Address</a></li>
-                @endif
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-plus"></i> @lang('header.link_register_address')</a></li>
+            @endif
             </ul>
         </div>
     </nav>
@@ -128,7 +121,9 @@
                 );
                 if(!depth) {
                     list.push(
-                        ' <button type="button" onclick="chooseType(this, true);" class="btn btn-secondary btn-sm btn-depth-search">Try Depth search</button>'
+                        ' <button type="button" onclick="chooseType(this, true);" class="btn btn-secondary btn-sm btn-depth-search">',
+                        "@lang('home.try_deapth_search')",
+                        '</button>',
                     );
                 }
                 list.push(
@@ -137,7 +132,7 @@
             }
             Object.keys(data).forEach(function (key) {
                 var d = data[key];
-                var photo = d.photos.length > 0 ? '{{config('files.uri.photo_encrypted')}}'+d.photos[0] : '/assets/img/default_geocode-2x.png';
+                var photo = d.photos != null && d.photos.length > 0 ? '{{config('files.uri.photo_encrypted')}}'+d.photos[0] : '/assets/img/default_geocode-2x.png';
                 list.push(
                     '<a class="list-group-item list-group-item-action" data-id="',
                     d.id,
@@ -250,14 +245,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Login is required</h4>
+                    <h4 class="modal-title">@lang('auth.login_required')</h4>
                 </div>
                 <div class="modal-body">
-                    Please login or register at <a href="/register" class="text-danger">here</a>
+                @lang('auth.login_required_desp', ['url' => '/register'])
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="/login" class="btn btn-success">Login now</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
+                    <a href="/login" class="btn btn-success">@lang('auth.login_now')</a>
                 </div>
 
             </div>

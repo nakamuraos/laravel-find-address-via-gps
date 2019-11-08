@@ -21,6 +21,16 @@ Route::post('/login','Auth\LoginController@login');
 Route::get('/register','Auth\RegisterController@index')->name('register');
 Route::post('/register','Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
+Route::prefix('account')->group(function () {
+    //verify action
+    Route::prefix('verify')->group(function () {
+        Route::get('/', 'Auth\VerifyController@index')->name('verify');
+        Route::get('resend_mail', 'Auth\VerifyController@resendMail')->name('verify.resend');
+        Route::post('resend_mail', 'Auth\VerifyController@processingResendMail');
+        Route::get('change_email', 'Auth\VerifyController@changeEmail')->name('verify.change_email');
+        Route::post('change_email', 'Auth\VerifyController@processingChangeEmail');
+    });
+});
 
 //------Profile
 Route::get('/user/profile','UserController@getProfile');
@@ -39,6 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('address')->middleware('role:addressmanager')->group(function () {
             Route::get('/','AddressController@index');
             Route::get('{id}','AddressController@show');
+            Route::put('/{id}/verify/{status}','AddressController@changeVerifyCode');
             Route::put('{id}','AddressController@update');
             Route::delete('{id}','AddressController@destroy');
             Route::put('{id}/verify/{verify_code}','AddressController@changeVerifyCode');

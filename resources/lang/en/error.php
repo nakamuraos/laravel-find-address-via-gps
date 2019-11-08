@@ -19,7 +19,6 @@ return [
     'gps_permission_prompt_desp' => '<p>To use the services on this site, we need access permission to your location.</p><p>If you agree, please click Grant to continue.</p>',
     'grant' => 'Grant',
     'close' => 'Close',
-    'login_error' => 'Username or Password is invalid!',
     'no_mode_directions' => 'This mode don\'t available',
     'no_mode_directions_desp' => '<p>This mode unavailable in your country</p><p>You can switch to other mode to continue use</p>',
 ];

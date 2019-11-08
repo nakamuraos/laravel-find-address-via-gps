@@ -16,12 +16,12 @@
                                             @include('common.errors')
                                             <form action="/register" class="row" method='post'>
                                                 @csrf
-                                                <input type="text" name="user_name" placeholder="@lang('auth.user_name')*"> <br/>
-                                                <input type="email" name="email" placeholder="@lang('auth.email')*"> <br/>
-                                                <input type="text"  name="phone" placeholder="@lang('auth.phone_number')*"> <br/>                    
-                                                <input type="text" name="full_name" placeholder="@lang('auth.full_name')*"> <br/>
-                                                <input type="password" name="password" placeholder="@lang('auth.password')*"> <br/>
-                                                <input type="password" name="password_confirmation" placeholder="@lang('auth.confirm_password')*"> <br/>
+                                                <input type="text" name="user_name" placeholder="@lang('auth.user_name')*" required> <br/>
+                                                <input type="email" name="email" placeholder="@lang('auth.email')*" required> <br/>
+                                                <input type="text"  name="phone" placeholder="@lang('auth.phone_number')*" required> <br/>                    
+                                                <input type="text" name="full_name" placeholder="@lang('auth.full_name')*" required> <br/>
+                                                <input type="password" name="password" placeholder="@lang('auth.password')*" required> <br/>
+                                                <input type="password" name="password_confirmation" placeholder="@lang('auth.confirm_password')*" required> <br/>
                                                 <button type="submit" class="btn-submit">@lang('auth.register')</button>
                                             </form>
                                         </div>

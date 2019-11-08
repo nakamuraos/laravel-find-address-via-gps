@@ -11,10 +11,11 @@
         "php": "^7.1.3",
         "alexpechkarev/google-maps": "5.8",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.4",
+        "intervention/image": "dev-master",
         "laravel/framework": "5.8.*",
         "laravel/passport": "^7.4",
-        "laravel/tinker": "^1.0",
-        "intervention/image": "dev-master"
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
