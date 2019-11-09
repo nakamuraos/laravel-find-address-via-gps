@@ -17,7 +17,7 @@ class CreateAddressesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('name_en')->nullable()->default(null);
-            $table->string('photos')->nullable();
+            $table->longText('photos')->nullable();
             $table->string('detail');
             $table->bigInteger('user_id')->unsigned();
             $table->boolean('verified')->default(0);

@@ -47,3 +47,17 @@ if(!function_exists('uriPhoto')) {
     }
   }
 }
+
+if(!function_exists('arrPhotos')) {
+  function arrUriPhotos($photos) {
+    $arr = [];
+    if(empty($photos)) {
+        $arr[] = '/assets/img/default_geocode-2x.png';
+    } else {
+      foreach($photos as $photo) {
+        $arr[] = config('files.uri.photo_encrypted') . $photo;
+      }
+    }
+    return $arr;
+  }
+}

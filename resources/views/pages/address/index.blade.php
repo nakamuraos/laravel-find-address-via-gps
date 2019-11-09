@@ -51,55 +51,21 @@
                             <td>{{$address->name}}</td>
                             <td class="td-actions text-center">
                                 <a style="color:#4caf50" href="address/{{$address->id}}">Detail</a>
-            </div>
-            <button type="button" rel="tooltip" data-href="address/{{$address->id}}"
-                class="btn btn-edit btn-sm btn-edit " data-original-title="Edit Task">
-                <i class="material-icons">edit</i>
-            </button>
-            <!-- <button type="button" rel="tooltip"  class="btn btn-remove btn-sm" 
-                                    data-toggle="modal" data-target="#modalDelete{{$address->id}}">
-                                    <i class="material-icons">close</i>
-                                </button> -->
-            <button type="button" rel="tooltip" class="btn btn btn-remove  btn-sm px-2" data-toggle="modal"
-                data-target="#modalDelete{{$address->id}}"><i class="material-icons">close</i></button>
-            <!-- Modal delete-->
-            <div id="modalDelete{{$address->id}}" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header" style="display: block;">
-                            <button type="button" class="close" data-dismiss="modal">&times;
-                            </button>
-                            <h4 class="modal-title">Xác nhận xóa</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Bạn có thực sự muốn xóa?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form action="/address/{{$address->id}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát
+                                <button type="button" rel="tooltip" data-href="address/{{$address->id}}"
+                                    class="btn btn-edit btn-sm btn-edit " data-original-title="Edit Task">
+                                    <i class="material-icons">edit</i>
                                 </button>
-                                <button type="submit" class="btn btn-danger">Xóa
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </td>
-            </tr>
-
-            @endforeach
-
-            </tbody>
-            </table>
+                                <button type="button" rel="tooltip" class="btn btn btn-remove  btn-sm px-2" data-toggle="modal"
+                                    data-target="#modalDelete" data-href="address/{{$address->id}}"><i class="material-icons">delete</i></button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             {{$addresses->links()}}
+            </div>
         </div>
     </div>
-    </div>
-
 </section>
 
 <!-- Modal edit -->
@@ -197,6 +163,33 @@
 
 <script>
     register = true;
-
+    
 </script>
+<!-- Modal delete-->
+<div id="modalDelete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display: block;">
+                <button type="button" class="close" data-dismiss="modal">&times;
+                </button>
+                <h4 class="modal-title">Xác nhận xóa</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có thực sự muốn xóa?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="delete" method="post" action="">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát
+                    </button>
+                    <button type="submit" class="btn btn-danger">Xóa
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

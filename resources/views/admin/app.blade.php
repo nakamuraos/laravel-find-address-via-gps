@@ -1,110 +1,548 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/admin/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/admin/img/favicon.png') }}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Manage Area
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- CSS Files -->
-    <link href="{{ asset('assets/admin/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('assets/admin/demo/demo.css') }}" rel="stylesheet" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Manage Area</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
+    <meta name="description" content="Choose between regular React Bootstrap tables or advanced dynamic ones.">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link href="/assets/admin/css/main.87c0748b313a1dda75f5.css" rel="stylesheet">
+    <link href="/assets/admin/css/style.css" rel="stylesheet">
 </head>
-
-<body class="landing-page sidebar-collapse">
-@if(session()->has("success"))
-<div class="alert alert-secondary alert-dismissible fade show " style="position: fixed; z-index: 999; right: 40%; top: -40%;">
-    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img"
-        style="width:30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-        class="svg-inline--fa fa-check-circle fa-w-16 fa-3x">
-        <path fill="currentColor"
-            d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
-            class=""></path>
-    </svg>
-    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-        <!-- <i class="nc-icon nc-simple-remove"></i> -->
-        <i class="material-icons">close</i>
-    </button>
-    <span> {{ session("success") }}</span>
-</div>
-@endif
-    <div class="fixed-top">
-        <div class="navbar  navbar-expand-lg navbar-transparent navbar-color-on-scroll d-flex flex-column"
-            color-on-scroll="100" id="sectionsNav">
-            <div class="container-fluid">
-                <div class="navbar-translate">
-                    @if(Auth::user()->id === 1)
-                    <h4 class="text-white"><b>Find address by GPS </b>|| Manage User</h4>
-                    @else 
-                        @if(Auth::user()->id === 2)
-                        <h4 class="text-white"><b>Find address by GPS</b> || Manage Address</h4>
-                        @endif
-                    @endif
+<body>
+    @if(session()->has("success"))
+    <div id="toast-container" class="toast-top-right autoHide">
+        <div class="toast toast-success alert-dismissible" aria-live="polite" style="">
+            <div class="toast-progress" style="width: 100%;"></div>
+            <div class="toast-message">{{session("success")}}</div>
+        </div>
+    </div>
+    @endif
+    <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <a href="/"><div class="logo-src"></div></a>
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="collapse navbar-collapse pr-5">
-                    <ul class="navbar-nav ml-auto">
-                    <!-- <li>
-                        <form action="" method="GET" class="form-group form-inline bmd-form-group" id="search">
-                            @csrf
-                            <input type="search" value="{{ request()->search }}" name="search" class="form-control"
-                                placeholder="Search">
-                            <button class="btn btn-round btn-fab btn-raised btn-white">
-                                <i class="fa fa-search"></i>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>    <div class="app-header__content">
+                <div class="app-header-right">
+                    <div class="header-dots">
+                        <div class="dropdown">
+                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-danger"></span>
+                                    <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
+                                    <span class="badge badge-dot badge-dot-sm badge-danger">Notifications</span>
+                                </span>
                             </button>
-                        </form>
-                    </li> -->
-                        <li class="nav-item dropdown ml-3">
-                        @if(Auth::user())
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown"
-                                href="javascript:void(0)">{{ Auth::user()->user_name }}</a>
-                            <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                                <a class="dropdown-item" href=""><i class="nc-icon nc-single-02"></i>&nbsp; Profile</a>
-                                <!-- <a class="dropdown-item" href="blog-posts.html"><i
-                                        class="nc-icon nc-bullet-list-67"></i>&nbsp; My posts</a> -->
-                                <a class="dropdown-item" href="/logout"><i class="nc-icon nc-bookmark-2"></i>&nbsp;
-                                    Logout</a>
-                            </ul>
-                        @endif
-                        </li>
-                    </ul>
+                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-menu-header mb-0">
+                                    <div class="dropdown-menu-header-inner bg-deep-blue">
+                                        <div class="menu-header-image opacity-1" style="background-image: url('/assets/images/dropdown-header/city3.jpg');"></div>
+                                        <div class="menu-header-content text-dark">
+                                            <h5 class="menu-header-title">Notifications</h5>
+                                            <h6 class="menu-header-subtitle">You have <b>21</b> unread messages</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-events-header" role="tabpanel">
+                                        <div class="scroll-area-sm">
+                                            <div class="scrollbar-container">
+                                                <div class="p-3">
+                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-success"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title">All Hands Meeting</h4>
+                                                                    <p>Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a></p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><p>Another meeting today, at <b class="text-danger">12:00 PM</b></p>
+                                                                    <p>Yet another one, at <span class="text-success">15:00 PM</span></p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title">Build the production release</h4>
+                                                                    <p>Lorem ipsum dolor sit amit,consectetur eiusmdd tempor incididunt ut labore et dolore magna elit enim at minim veniam quis nostrud</p><span
+                                                                            class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title text-success">Something not important</h4>
+                                                                    <p>Lorem ipsum dolor sit amit,consectetur elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-success"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title">All Hands Meeting</h4>
+                                                                    <p>Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a></p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><p>Another meeting today, at <b class="text-danger">12:00 PM</b></p>
+                                                                    <p>Yet another one, at <span class="text-success">15:00 PM</span></p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title">Build the production release</h4>
+                                                                    <p>Lorem ipsum dolor sit amit,consectetur eiusmdd tempor incididunt ut labore et dolore magna elit enim at minim veniam quis nostrud</p><span
+                                                                            class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
+                                                                <div class="vertical-timeline-element-content bounce-in"><h4 class="timeline-title text-success">Something not important</h4>
+                                                                    <p>Lorem ipsum dolor sit amit,consectetur elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item-divider nav-item"></li>
+                                    <li class="nav-item-btn text-center nav-item">
+                                        <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">Load More</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-focus"></span>
+                                    <span class="language-icon opacity-8 flag large @if(Config::get('app.locale')=='vi') VN @else US @endif"></span>
+                                </span>
+                            </button>
+                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-menu-header">
+                                    <div class="dropdown-menu-header-inner pt-4 pb-4 bg-focus">
+                                        <div class="menu-header-image opacity-05" style="background-image: url('/assets/images/dropdown-header/city2.jpg');"></div>
+                                        <div class="menu-header-content text-center text-white">
+                                            <h6 class="menu-header-subtitle mt-0">
+                                                Choose Language
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 tabindex="-1" class="dropdown-header">
+                                    All Languages
+                                </h6>
+                                <button onclick="location.href='/welcome/en';" type="button" tabindex="0" class="dropdown-item">
+                                    <span class="mr-3 opacity-8 flag large US"></span>
+                                    USA
+                                </button>
+                                <button onclick="location.href='/welcome/vi';" type="button" tabindex="0" class="dropdown-item">
+                                    <span class="mr-3 opacity-8 flag large VN"></span>
+                                    Vietnam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="header-btn-lg pr-0">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="btn-group">
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                            <img width="42" class="rounded-circle" src="/assets/images/avatars/2.jpg" alt="">
+                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                        </a>
+                                        <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                            <div class="dropdown-menu-header">
+                                                <div class="dropdown-menu-header-inner bg-info">
+                                                    <div class="menu-header-image opacity-2" style="background-image: url('/assets/images/dropdown-header/city3.jpg');"></div>
+                                                    <div class="menu-header-content text-left">
+                                                        <div class="widget-content p-0">
+                                                            <div class="widget-content-wrapper">
+                                                                <div class="widget-content-left mr-3">
+                                                                    <img width="42" class="rounded-circle"
+                                                                        src="/assets/images/avatars/2.jpg"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="widget-content-left">
+                                                                    <div class="widget-heading">{{Auth::user()->full_name}}
+                                                                    </div>
+                                                                    <div class="widget-subheading opacity-8">{{Auth::user()->email}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="widget-content-right mr-2">
+                                                                    <a href="/logout" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="scroll-area-xs" style="height: 150px;">
+                                                <div class="scrollbar-container ps">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item-header nav-item">My Account
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="/account/profile" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> My Profiles
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="/account/settings" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> Settings
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            @if(Auth::user()->hasRole('Supporter'))
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item-divider mb-0 nav-item"></li>
+                                            </ul>
+                                            <div class="grid-menu grid-menu-2col">
+                                                <div class="no-gutters row">
+                                                    <div class="col-sm-6">
+                                                        <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                                                            <i class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i>
+                                                            Message Inbox
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                                                            <i class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
+                                                            <b>Support Tickets</b>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item-divider nav-item">
+                                                </li>
+                                                <li class="nav-item-btn text-center nav-item">
+                                                    <button class="btn-wide btn btn-primary btn-sm">
+                                                        Open Messages
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content-left  ml-3 header-user-info">
+                                    <div class="widget-heading">
+                                        {{Auth::user()->full_name}}
+                                    </div>
+                                    <div class="widget-subheading">
+                                        {{Auth::user()->role->name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-           
+        </div>
+            <div class="app-main" style="overflow:auto;">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-header__mobile-menu">
+                        <div>
+                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+                    </div>    <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+                                <li class="app-sidebar__heading">Menu</li>
+                                @if(Auth::user()->role_id == 1)
+                                <li>
+                                    <a href="#">
+                                    <i class="metismenu-icon pe-7s-id"></i>
+                                        User manager
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="./user">
+                                                <i class="metismenu-icon"></i>All user
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="?status=1">
+                                                <i class="metismenu-icon"></i>Active user
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="?status=0">
+                                                <i class="metismenu-icon"></i>Blocked user
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @else
+                                <li>
+                                    <a href="#">
+                                    <i class="metismenu-icon pe-7s-way"></i>
+                                        Address manager
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="/admin/address">
+                                                <i class="metismenu-icon"></i>All address
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/address?verified=0">
+                                                <i class="metismenu-icon"></i>Not yet verify
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/address?verified=1">
+                                                <i class="metismenu-icon"></i>Verified
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/address?verified=2">
+                                                <i class="metismenu-icon"></i>Waiting user update
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-main__outer" style="overflow:hidden;word-break: break-word;">
+                    <div class="app-main__inner">
+                        @yield('content')
+                    </div>
+                </div>
         </div>
     </div>
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('assets/img/breadcrumb_bg.jpg') }}')">
+    <!-- Modal edit -->
+    <div class="modal fade" id="editModal" role="dialog" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                {{ method_field('PUT') }}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Update User</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row ">
+                            <div class="col-md-12 pr-1">
+                                <div class="form-group mt-4">
+                                    <label for="exampleInputEmail1">Status</label>
+                                    <select name="status" class="form-control">
+                                        <option value="0">Active</option>
+                                        <option value="1">Blocked</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                                <div class="form-group mt-4">
+                                    <label for="exampleInputEmail1">Type</label>
+                                    <select name="role_id" class="form-control">
+                                        <option value="1">Admin</option>
+                                        <option value="2">Address Manager</option>
+                                        <option value="3">User</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    @yield('content')
-    <footer class="footer footer-default " id="contact" style="padding-bottom:100px">
-        <div class="container">
-            <div class="row">
-               
+
+    <!-- Modal edit -->
+    <div class="modal fade" id="requestUpdateModal" role="dialog" aria-labelledby="requestUpdateModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                {{ method_field('PUT') }}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reuqestUpdateModalLabel">@lang('address.request_update')</h5>
+                    </div>
+                    <div class="modal-body">
+                        @lang('address.request_update_desp')
+                    </div>
+                    <div class="modal-footer" style="padding:1rem 0.5rem">
+                        <button type="button" class="btn btn-default mr-1" data-dismiss="modal">@lang('error.close')</button>
+                        <button type="submit" class="btn btn-primary">@lang('address.send_request_update')</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="modalDelete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="display: block;">
+                    <button type="button" class="close" data-dismiss="modal">&times;
+                    </button>
+                    <h4 class="modal-title">@lang('address.delete_prompt')</h4>
+                </div>
+                <div class="modal-body">
+                    @lang('address.delete_prompt_desp')
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteForm" action="" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('error.close')
+                        </button>
+                        <button type="submit" class="btn btn-danger">@lang('address.delete')
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+    <!-- Modal verify -->
+    <div id="modalVerify" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="display: block;">
+                    <button type="button" class="close" data-dismiss="modal">&times;
+                    </button>
+                    <h4 class="modal-title">@lang('address.verify_address')</h4>
+                </div>
+                <div class="modal-body">
+                    @lang('address.verify_address_desp')
+                </div>
+                <div class="modal-footer">
+                    <form id="verifyForm" action="" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('error.close')
+                        </button>
+                        <button type="submit" class="btn btn-danger">@lang('address.verify')
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-drawer-overlay d-none animated fadeIn"></div>
+    <style>
+    .autoHide {
+        -moz-animation: cssAnimation 5s forwards;
+        /* Firefox */
+        -webkit-animation: cssAnimation 5s forwards;
+        /* Safari and Chrome */
+        -o-animation: cssAnimation 5s forwards;
+        /* Opera */
+        animation: cssAnimation 5s forwards;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+    }
+    .toast-progress {
+        -webkit-animation: mymove 5s;  /* Safari 4.0 - 8.0 */
+        -webkit-animation-iteration-count: 1; /* Safari 4.0 - 8.0 */
+        animation: mymove 5s;
+        animation-iteration-count: 1;
+    }
+    .list-address-area .dropdown-menu-header .menu-header-content {
+        text-align: center;
+        position: absolute;
+        z-index: 10;
+        padding: 10px;
+        bottom: 10px;
+    }
+    @keyframes cssAnimation {
+        0%   {opacity: 1;}
+        90%  {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    @-webkit-keyframes cssAnimation {
+        0%   {opacity: 1;}
+        90%  {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    @-webkit-keyframes mymove {
+        from {width: 100%;}
+        to {width: 0%;}
+    }
+    @keyframes mymove {
+        from {width: 100%;}
+        to {width: 0%;}
+    }
+    </style>
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/admin/js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/admin/js/core/popper.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/admin/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/admin/js/plugins/moment.min.js') }}"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="{{ asset('assets/admin/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{{ asset('assets/admin/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
-    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('assets/admin/js/material-kit.js?v=2.0.5x') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-        @stack("scripts")
+    <script type="text/javascript" src="/assets/scripts/main.87c0748b313a1dda75f5.js"></script>
+    <script src="{{ asset('assets/admin/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+    @stack("scripts")
 </body>
 </html>

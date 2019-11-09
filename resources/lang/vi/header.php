@@ -20,4 +20,5 @@ return [
     'link_manage_address' => 'Quản lý địa chỉ',
     'link_list_address' => 'Danh sách địa chỉ',
     'link_manage_user' => 'Quản lý người dùng',
+    'link_profile' => 'Thông tin tài khoản'
 ];

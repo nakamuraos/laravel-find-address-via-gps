@@ -7,8 +7,15 @@ use App\Http\Requests\StoreUser;
 use Auth;
 class UserController extends Controller
 {
-    public function index(){
-        $users = User::orderBy('created_at','desc')->where('role_id', '!=', 1)->paginate(8);
+    public function index(Request $request){
+        if(isset($request->status) && in_array($request->status, [0, 1])) {
+            $users = User::where([
+                ['status', '=', $request->status],
+                ['role_id', '!=', 1],
+            ])->orderBy("created_at", "desc")->paginate(12);
+        } else {
+            $users = User::orderBy('created_at','desc')->where('role_id', '!=', 1)->paginate(12);
+        }
         return view('admin.users.index',compact('users'));
     }
     public function store(StoreUser $request)
@@ -43,10 +50,10 @@ class UserController extends Controller
     }
     public function updateProfile( Request $request){
         $user = Auth::user();
-        $user->user_name = $request->user_name;
+        //$user->user_name = $request->user_name;
         $user->full_name = $request->full_name;
         $user->phone = $request->phone;
-        $user->email = $request->email;
+        //$user->email = $request->email;
         $user->save();
         session()->flash("success", "Update Successfully");
          return back();

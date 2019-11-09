@@ -55,12 +55,6 @@ Version: 2.1
 #noti.dropdown-toggle::after{
     display: none !important;
 }
-.modal-dialog{
-    top:10% !important;
-}
-.modal-backdrop{
-    z-index: 0 !important;
-}
 .nav-tabs-wrapper{
     background-color: #4caf50 ;
     border-radius: 3px;

@@ -23,6 +23,10 @@ class Address extends Model
     public function types() {
         return $this->belongsToMany(Type::class);
     }
+    
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
     public function getTypeStrAttribute() {
         $arr = [];

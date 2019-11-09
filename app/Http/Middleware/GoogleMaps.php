@@ -28,7 +28,7 @@ class GoogleMaps extends GoogleController {
     public function terminate($request, $response) {
     }
 
-    public function nearbysearch($request) {
+    public function nearbysearch(\Illuminate\Http\Request $request) {
         $temp = json_decode(\GoogleMaps::load('nearbysearch')
                                         ->setParam ([
                                             'radius' => config('address.google_maps_api.radius') + 5000,

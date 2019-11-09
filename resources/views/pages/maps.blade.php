@@ -35,7 +35,7 @@
                                 <input type="text" class="form-control form-control-sm" placeholder="Your location" readonly name="location" data-addresstype="" autocomplete="off">
                             </div>
                             <div class="form-group" style="color:#666">
-                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" value="{{$address->name}}" data-addresstype="" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" value="@if(!empty($address)){{$address->name}}@endif" data-addresstype="" autocomplete="off">
                                 <div class="spinner-grow float-right text-primary hide" role="status" id="loading_results" aria-hidden="true" style="margin-top:-28px;margin-right:5px;width:1.5em;height:1.5em"></div>
                                 <div class="result hide" id="listTypes" style="margin-top:0;"></div>
                                 <div class="result hide" id="listPlaces" style="margin-top:0;"></div>

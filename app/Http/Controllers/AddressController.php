@@ -10,8 +10,12 @@ use Carbon\Carbon;
 class AddressController extends Controller
 {
 
-    public function index() {
-        $addresses = Address::orderBy("created_at", "desc")->paginate(8);
+    public function index(Request $request) {
+        if(isset($request->verified) && in_array($request->verified, [0, 1, 2])) {
+            $addresses = Address::where('verified', $request->verified)->orderBy("created_at", "desc")->paginate(12);
+        } else {
+            $addresses = Address::orderBy("created_at", "desc")->paginate(12);
+        }
         return view('admin.address.index',compact('addresses'));
     }
 
@@ -58,7 +62,7 @@ class AddressController extends Controller
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-        $maps = true;
+        $maps = false;
         return view('pages.address.register', compact('addresstypes', 'maps'));
     }
 
@@ -88,10 +92,10 @@ class AddressController extends Controller
         foreach($addresstypes as $e) {
             $e->name = __('addresstypes.'.$e->name);
         }
-        $data = Address::where("user_id",Auth::user()->id);
-        $addresses = $data->paginate(4);
+        $data = Address::where("user_id",Auth::user()->id)->orderBy('created_at', 'desc');
+        $addresses = $data->paginate(10);
         $notifications = $addresses->where('verified',2);
-        $maps = true;
+        $maps = false;
         return view('pages.address.index',compact('addresses','addresstypes','notifications','maps'));
 }
 

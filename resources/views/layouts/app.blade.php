@@ -35,7 +35,7 @@
     </div>
     @if (isset($maps) && $maps === true)
     @else
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark @if (isset($maps) && $maps === true) fixed-top @else sticky-top @endif">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark @if (isset($maps)) fixed-top @else sticky-top @endif">
         <a class="navbar-brand" href="/">@lang('header.title')</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
             style="outline: 0">
@@ -53,9 +53,16 @@
             <ul class="navbar-nav ml-auto">
             @if(Auth::user())
                 <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
+                        <li><a class="dropdown-item">No notification</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                         href="javascript:void(0)">{{Auth::user()->full_name}}</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
+                        <a class="dropdown-item" href="/account/profile"><i class="fa fa-address-card"></i> @lang('header.link_profile')</a>
                     @switch(Auth::user()->role->name)
                         @case('admin')
                         <a class="dropdown-item" href="/admin/user"><i class="fa fa-user"></i> @lang('header.link_manage_user')</a>
@@ -96,6 +103,32 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script>
+    $('.btn-edit').click(function (e) {
+        e.preventDefault();
+        resetFormModal($(this).data('href'));
+
+        // Fill default value
+        var row = $(this).parent().parent().parent();
+        var col = row.find('td');
+        console.log(row);
+        console.log(col);
+        // $('#editForm input[name="name"]').val(col[1].innerText.trim());
+        // $('#editForm input[name="email"]').val(col[2].innerText);
+
+        $('#editModal').modal({
+            backdrop: 'static',
+            show: true
+        });
+    });
+    $('.btn-remove').click(function (e) {
+        e.preventDefault();
+        //resetFormModal($(this).data('href'));
+        $('#delete').attr('action', $(this).data('href'));
+        $('#modalDelete').modal({
+            backdrop: 'static',
+            show: true
+        });
+    });
         function display_types(d) {
             var data = d.success == false ? [] : d.data;
             var list =
@@ -125,7 +158,7 @@
                 if(!depth) {
                     list.push(
                         ' <button type="button" onclick="chooseType(this, true);" class="btn btn-secondary btn-sm btn-depth-search">',
-                        "@lang('home.try_deapth_search')",
+                        "@lang('home.try_depth_search')",
                         '</button>',
                     );
                 }
@@ -192,7 +225,7 @@
     @endif
     <!-- permission denied -->
     <div class="modal fade" id="denied_permission" role="dialog" style="overflow-y: hidden">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -209,7 +242,7 @@
     </div>
     <!-- permission prompt -->
     <div class="modal fade" id="prompt_permission" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,7 +261,7 @@
     </div>
     <!-- no mode -->
     <div class="modal fade" id="no_mode_directions" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">

@@ -32,11 +32,6 @@ Route::prefix('account')->group(function () {
     });
 });
 
-//------Profile
-Route::get('/user/profile','UserController@getProfile');
-Route::put('/user/profile/update','UserController@updateProfile');
-//-------Notification
-// Route::get('/user/notification','UserController@getNotification');
 //--------------------------------------------------------------------------
 // MANAGEMENT AREA
 //--------------------------------------------------------------------------
@@ -69,18 +64,24 @@ Route::middleware('auth')->group(function () {
         //address manager
         Route::prefix('address')->group(function () {
             Route::get('/','AddressController@getListAddress');
-            Route::get('/register','AddressController@create');
+            Route::get('/register','AddressController@create')->name('address.register');
             Route::post('/register','AddressController@store');
             Route::get('/{id}','AddressController@showByUser');
             Route::put('/{id}','AddressController@update');
             Route::delete('/{id}','AddressController@destroy');
             // Route::put('/verify/{id}/{status}','AddressController@changeVerifyCode');
         });
-        //user manager
-        // Route::prefix('user')->group(function () {
-        //     Route::get('/','UserController@index');
-            
-        // });
+    });
+    
+    //--------------------------------------------------------------------------
+    // AREA: ALL USER LOGINED
+    //--------------------------------------------------------------------------
+    Route::prefix('account')->group(function () {
+        //------Profile
+        Route::get('profile','UserController@getProfile')->name('profile');
+        Route::put('profile','UserController@updateProfile');
+        //-------Notification
+        // Route::get('/user/notification','UserController@getNotification');
     });
 });
 
