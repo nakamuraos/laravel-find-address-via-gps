@@ -23,7 +23,7 @@ class CreateAddressesTable extends Migration
             $table->boolean('verified')->default(0);
             $table->bigInteger('verified_by')->nullable()->unsigned();
             $table->dateTime('verified_time')->nullable()->default(null);
-            $table->string('location', 50);
+            $table->string('location', 50)->unique();
             $table->float('rate', 2, 1)->nullable();
             $table->timestamps();
         });

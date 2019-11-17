@@ -23,7 +23,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        var map, myloc, register, marker;
+        var map, myloc, register, marker, popup, Popup, infowindow, myCircle;
         var mode_direction = 'DRIVING';
     </script>
 </head>
@@ -83,6 +83,13 @@
                 <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('auth.register')</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-plus"></i> @lang('header.link_register_address')</a></li>
             @endif
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
+                            <li><a class="dropdown-item" href="/welcome/en"><img src="/assets/fonts/US.svg" style="height:20px;width:20px"/> English</a></li>
+                            <li><a class="dropdown-item" href="/welcome/vi"><img src="/assets/fonts/VN.svg" style="height:20px;width:20px"/> Vietnamese</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -101,34 +108,26 @@
     <script src="{{ asset('assets/js/rater.min.js') }}"></script>
     <script src="{{ asset('assets/js/meanmenu.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/script.js') }}"></script> --}}
     <script>
-    $('.btn-edit').click(function (e) {
-        e.preventDefault();
-        resetFormModal($(this).data('href'));
+        $('.btn-edit').click(function (e) {
+            e.preventDefault();
+            resetFormModal($(this).data('href'));
 
-        // Fill default value
-        var row = $(this).parent().parent().parent();
-        var col = row.find('td');
-        console.log(row);
-        console.log(col);
-        // $('#editForm input[name="name"]').val(col[1].innerText.trim());
-        // $('#editForm input[name="email"]').val(col[2].innerText);
-
-        $('#editModal').modal({
-            backdrop: 'static',
-            show: true
+            $('#editModal').modal({
+                backdrop: 'static',
+                show: true
+            });
         });
-    });
-    $('.btn-remove').click(function (e) {
-        e.preventDefault();
-        //resetFormModal($(this).data('href'));
-        $('#delete').attr('action', $(this).data('href'));
-        $('#modalDelete').modal({
-            backdrop: 'static',
-            show: true
+        $('.btn-remove').click(function (e) {
+            e.preventDefault();
+            //resetFormModal($(this).data('href'));
+            $('#delete').attr('action', $(this).data('href'));
+            $('#modalDelete').modal({
+                backdrop: 'static',
+                show: true
+            });
         });
-    });
         function display_types(d) {
             var data = d.success == false ? [] : d.data;
             var list =
@@ -253,8 +252,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="getLocation(true);">@lang('error.grant')</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="getLocation(true);">@lang('error.grant')</button>
                 </div>
             </div>
         </div>
@@ -290,9 +288,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
                     <a href="/login" class="btn btn-success">@lang('auth.login_now')</a>
                 </div>
-
             </div>
-
         </div>
     </div>
     </div>

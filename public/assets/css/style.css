@@ -93,7 +93,7 @@ Version: 2.1
     padding: 0;
     position: relative;
 }
-.card  .card-icon, .card  .card-text {
+.profile-content .card  .card-icon, .profile-content .card  .card-text {
     border-radius: 3px;
     background-color: #fff;
     padding: 10px;
@@ -142,20 +142,44 @@ Version: 2.1
     position:relative;
     top: -9px;
     left: 1px;
-  }
-  .badge {
-    padding: 5px 12px;
-    padding: 5px ;
-    text-transform: uppercase;
-    font-size: 10px;
-    color: #fff;
-  }
-  .input-group-prepend {
-    margin-right: -1px;
-    width: 130px;
-  }
+}
+.badge {
+padding: 5px 12px;
+padding: 5px ;
+text-transform: uppercase;
+font-size: 10px;
+color: #fff;
+}
 
-.input-group-prepend span{
+/*dest photo*/
+.gm-style .gm-style-iw-c {
+    padding:0!important;
+}
+
+.adp, .adp table {
+    font-family: unset !important;
+    font-weight: 400 !important;
+}
+
+.adp b, .adp table b {
+    font-weight: 600;
+}
+
+.gm-iw {
+    padding: 5px;
+}
+
+.gm-style .gm-style-iw-d {
+    position: relative;
+    display: contents;
+}
+
+.register-area .input-group-prepend {
+margin-right: -1px;
+width: 130px;
+}
+
+.register-area .input-group-prepend span{
     border:none !important;
 }
 html, body, .wrapper {
@@ -168,7 +192,7 @@ body {
     line-height: 28px;
     font-weight: 400;
 }
-.input-group-text{
+.register-area .input-group-text{
     width: 130px ;
     background-color: #343a40;
     color: #fff;
@@ -252,6 +276,16 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 .adp-summary {
     font-weight: bold;
 }
+.adp-list {
+    margin-top: 10px;
+    padding: 0 !important;
+}
+.adp-list td {
+    padding: 5px;
+}
+.adp-list .adp-listinfo b {
+    display: block;
+}
 #floating-panel {
     position: absolute;
     top: 10px;
@@ -326,13 +360,63 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     top: 0;
     background: #fff;
     border-radius: 0 3px 3px 0;
-    padding: 0 4px;
+    padding: 0 5px;
     line-height: 50px;
 }
 
 .form-group {
     width: 100%;
 }
+
+/* The popup bubble styling. */
+.popup-bubble {
+    /* Position the bubble centred-above its parent. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    transform: translate(-50%, -135%);
+    /* Style the bubble. */
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    overflow-y: auto;
+    /* max-height: 60px; */
+    box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+  }
+  /* The parent of the bubble. A zero-height div at the top of the tip. */
+  .popup-bubble-anchor {
+    /* Position the div a fixed distance above the tip. */
+    position: absolute;
+    width: 100%;
+    bottom: /* TIP_HEIGHT= */ 8px;
+    left: 0;
+  }
+  /* This element draws the tip. */
+  .popup-bubble-anchor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Center the tip horizontally. */
+    transform: translate(-50%, -500%);
+    /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+    width: 0;
+    height: 0;
+    /* The tip is 8px high, and 12px wide. */
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: /* TIP_HEIGHT= */ 8px solid white;
+  }
+  /* JavaScript will position this div at the bottom of the popup tip. */
+  .popup-container {
+    cursor: auto;
+    height: 0;
+    position: absolute;
+    /* The max width of the info window. */
+    width: 200px;
+  }
 
 .directions-icon {
     background-image:url(/assets/img/directions.png);
@@ -638,7 +722,7 @@ h2 {
   color: #ffffff;
   font-size: 22px;
   height: 50px;
-  line-height: 54px;
+  line-height: 48px;
   right: 20px;
   text-align: center;
   width: 50px;

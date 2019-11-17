@@ -46,6 +46,16 @@ class AddressController extends BaseController {
     return $this->sendResponse($address->toArray(), 'Address retrieved successfully.');
   }
 
+  public function search(Request $request) {
+    $name = $request->keyword; //vnToUnicode($request->keyword);
+    if (is_null($name)) {
+      return $this->sendError('Address not found.');
+    }
+    $address = Address::where('name','like', '%'.$name.'%')->get();
+
+    return $this->sendResponse($address->toArray(), 'Address retrieved successfully.');
+  }
+
   public function nearby(Request $request) {
     $keyword = array_keys($this->filterTypes($request->keyword));
     if (empty($keyword)) {
@@ -100,26 +110,5 @@ class AddressController extends BaseController {
     $address->delete();
 
     return $this->sendResponse($address->toArray(), 'Address deleted successfully.');
-  }
-
-  private function scopeIsWithinMaxDistance($query, $location) {
-    $haversine = "ST_Distance_Sphere(
-                    point(
-                    TRIM(SUBSTRING_INDEX(location, ',', -1)),
-                    TRIM(SUBSTRING_INDEX(location, ',', 1))
-                    ),
-                    point(".$location['lng'].", ".$location['lat'].")
-                )";
-    return $query
-            ->select(
-              'id', 
-              'name', 
-              'photos', 
-              'location', 
-              'rate'
-            )
-            ->selectRaw("{$haversine} AS distance")
-            ->whereRaw("{$haversine} < ?", [config('address.google_maps_api.radius')])
-            ->orderBy('distance', 'asc');
   }
 }
