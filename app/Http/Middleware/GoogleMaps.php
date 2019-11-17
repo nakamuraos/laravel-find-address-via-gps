@@ -6,6 +6,7 @@ use Closure;
 use App\Models\Address;
 use App\Models\Type;
 use App\Models\BusinessHour;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\API\GoogleController;
 use Image;
 
@@ -43,8 +44,8 @@ class GoogleMaps extends GoogleController {
         if(!empty($data)) {
             foreach($data as $e) {
                 $location = $e->geometry->location->lat.','.$e->geometry->location->lng;
-                $find = Address::where('location', $location)->exists();
-                if(!$find) {
+                $find = Address::where('location', $location)->first();
+                if($find === null) {
                     $photos = null;
                     if(array_key_exists('photos', $e)) {
                         $photos = $this->savePhotos($e->photos);
@@ -60,6 +61,8 @@ class GoogleMaps extends GoogleController {
                     $address->verified_time = date('Y-m-d H:i:s');
                     $address->save();
 
+                    DB::table('address_google')->insert(['address_id' => $address->id, 'place_id' => $e->place_id]);
+
                     if(Type::whereIn('name', $e->types)->get()->count() != count($e->types)) {
                         foreach($e->types as $element) {
                             if(!Type::where('name', $element)->exists()) {
@@ -71,9 +74,8 @@ class GoogleMaps extends GoogleController {
                     }
                     $types = Type::whereIn('name', $e->types)->get();
                     $address->types()->attach($types);
-                    if(array_key_exists('opening_hours', $e) && !empty($e->opening_hours)) {
-                        $this->syncBusinessHours($e->place_id, $address);
-                    }
+                    //sync photos and business hours
+                    $this->syncPhotosAndBusinessHours($e->place_id, $address);
                 }
             }
         }
@@ -81,11 +83,13 @@ class GoogleMaps extends GoogleController {
 
     public function savePhotos($o) {
         $photos = [];
+        //$i = 0;
         foreach($o as $e) {
+            //if($i>=5) return $photos;
             $photo_file_name = $e->photo_reference . '.jpeg';
-            $photos[] = $photo_file_name;
             $path = public_path(config('files.paths.photo').$photo_file_name);
             if(!file_exists($path)) {
+                //echo $photo_file_name . "<hr/>";
                 $photo = \GoogleMaps::load('placephoto')
                                                 ->setParam ([
                                                     'photoreference' => $e->photo_reference,
@@ -93,13 +97,19 @@ class GoogleMaps extends GoogleController {
                                                     'maxheight' => '10000',
                                                 ])
                                                 ->get();
-                Image::make($photo)->save($path);
+                if($photo) {
+                    Image::make($photo)->save($path);
+                    $photos[] = $photo_file_name;
+                    //$i++;
+                }
+            } else {
+                $photos[] = $photo_file_name;
             }
         }
         return $photos;
     }
 
-    public function syncBusinessHours($place_id, $address) {
+    public function syncPhotosAndBusinessHours($place_id, $address) {
         $temp = json_decode(\GoogleMaps::load('placedetails')
                                         ->setParam ([
                                             'placeid' => $place_id,
@@ -118,6 +128,12 @@ class GoogleMaps extends GoogleController {
             }
             $address->business_hours()->saveMany($hours);
         }
-        $address->update(['detail'=>$placedetails->formatted_address]);
+        if(array_key_exists('photos', $placedetails)) {
+            //$photos = $this->savePhotos($placedetails->photos);
+        }
+
+        $updates = ['detail' => $placedetails->formatted_address];
+        //if(isset($photos)) $updates['photos'] = $photos;//array_unique(array_merge($address->photos, $photos));
+        $address->update($updates);
     }
 }

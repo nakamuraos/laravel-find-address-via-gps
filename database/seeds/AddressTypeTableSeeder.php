@@ -23,9 +23,5 @@ class AddressTypeTableSeeder extends Seeder
             "address_id" => 3,
             "type_id" => 76
         ]);
-        DB::table('address_type')->insert([
-            "address_id" => 4,
-            "type_id" => 76
-        ]);
     }
 }

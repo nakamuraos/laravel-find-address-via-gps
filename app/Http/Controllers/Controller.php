@@ -79,4 +79,26 @@ class Controller extends BaseController
     public function createVerifyToken($str) {
         return substr(Crypt::encryptString(bcrypt($str . rand(1000, 9999))), 30);
     }
+
+    public function scopeIsWithinMaxDistance($query, $location, $limit = true) {
+        $haversine = "ST_Distance_Sphere(
+                        point(
+                        TRIM(SUBSTRING_INDEX(location, ',', -1)),
+                        TRIM(SUBSTRING_INDEX(location, ',', 1))
+                        ),
+                        point(".$location['lng'].", ".$location['lat'].")
+                    )";
+        $query = $query
+                ->select(
+                  'id', 
+                  'name',
+                  'detail',
+                  'photos', 
+                  'location', 
+                  'rate'
+                )
+                ->selectRaw("{$haversine} AS distance");
+        if($limit) $query = $query->whereRaw("{$haversine} < ?", [config('address.google_maps_api.radius')]);
+        return $query->orderBy('distance', 'asc');
+      }
 }

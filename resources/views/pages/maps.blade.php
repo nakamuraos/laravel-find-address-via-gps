@@ -35,7 +35,7 @@
                                 <input type="text" class="form-control form-control-sm" placeholder="Your location" readonly name="location" data-addresstype="" autocomplete="off">
                             </div>
                             <div class="form-group" style="color:#666">
-                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" value="{{$address->name}}" data-addresstype="" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm" placeholder="@lang('home.typetosearch_example')" name="location" id="gps" value="@if(!empty($address)){{$address->name}}@endif" data-addresstype="" autocomplete="off" data-width="true">
                                 <div class="spinner-grow float-right text-primary hide" role="status" id="loading_results" aria-hidden="true" style="margin-top:-28px;margin-right:5px;width:1.5em;height:1.5em"></div>
                                 <div class="result hide" id="listTypes" style="margin-top:0;"></div>
                                 <div class="result hide" id="listPlaces" style="margin-top:0;"></div>
@@ -56,5 +56,29 @@
 .list-group-item {
     padding: .3rem .8rem;
 }
+.adp div:nth-child(2) .adp-marker2 {
+    content:url("/assets/fonts/pin.svg");
+}
+.adp div:nth-child(3) .adp-marker2 {
+    content:url("/assets/fonts/placeholder.svg");
+}
 </style>
+<script>
+    data_address = [@if(!empty($address)){!!$address!!}@endif];
+    stringInfo = `
+    @if(!empty($address))
+    <div id="content">
+        @if(empty($address->photos))
+        <b>{{$address->name}}</b>
+        @else
+        <div style="width:100px;height:100px;background:url({{uriPhoto($address->photos)}});background-size:cover;">
+            <div style="background-color:#00000033;color:#fff;text-shadow: 1px 1px #666;">
+                <b style="position: absolute; bottom: 15px; left: 0;padding:0 10px">{{$address->name}}</b>
+            </div>
+        </div>
+        @endif
+    </div>
+    @endif
+    `;
+</script>
 @endsection
