@@ -236,6 +236,156 @@ var id_position;
 
 //------------------------------------------
 
+
+$('.btn-edit').click(function (e) {
+  e.preventDefault();
+  resetFormModal($(this).data('href'));
+
+  $('#editModal').modal({
+      backdrop: 'static',
+      show: true
+  });
+});
+
+$('.btn-remove').click(function (e) {
+  e.preventDefault();
+  //resetFormModal($(this).data('href'));
+  $('#delete').attr('action', $(this).data('href'));
+  $('#modalDelete').modal({
+      backdrop: 'static',
+      show: true
+  });
+});
+
+function doModal(heading, formContent, btnText = '', strSubmitFunc = '')
+{
+    var html =  '<div id="modalDynamic" class="modal hide fade" role="dialog">';
+    html += '<div class="modal-dialog">';
+    html += '<div class="modal-content">';
+    html += '<div class="modal-header">';
+    //html += '<a class="close" data-dismiss="modal">×</a>';
+    html += '<h4 class="modal-title">'+heading+'</h4>'
+    html += '</div>';
+    html += '<div class="modal-body">';
+    //html += '<p>';
+    html += formContent;
+    html += '</div>';
+    html += '<div class="modal-footer">';
+    html += '<button class="btn btn-secondary" data-dismiss="modal" type="button" data-dismiss="modal">';
+    html += lang.close;
+    html += '</button>'; // close button
+    if (btnText!='') {
+        html += '<button type="button" data-dismiss="modal" class="btn btn-success"';
+        html += ' onClick="'+strSubmitFunc+'">'+btnText;
+        html += '</button>';
+    }
+    html += '</div>';  // footer
+    html += '</div>';  // content
+    html += '</div>';  // dialog
+    html += '</div>';  // modalWindow
+    $("#modal").html(html);
+    $("#modalDynamic").modal();
+    
+    $('#modalDynamic').on('hidden.bs.modal', function (e) {
+        $(this).remove();
+    });
+}
+
+function loginRequired() {
+  doModal(lang.login_required, lang.login_required_desp.replace(':url', '/register'), lang.login_now, 'window.location.href=\'/login\';');
+}
+
+function display_types(d) {
+  var data = d.success == false ? [] : d.data;
+  var list =
+      '<div class="list-group" style="padding:0;"><span class="list-group-item list-group-item-action"><b>' + (
+          data.length <= 0 ? lang.noresults : lang.resultsin + ':') + '</b></span>';
+  Object.keys(data).forEach(function (key) {
+      list +=
+          '<a class="list-group-item list-group-item-action" onclick="chooseType(this);" data-address="' +
+          key + '">' + data[key] + '</a>';
+  });
+  list += '</div>';
+  return list;
+}
+
+function display_addresses(d, depth = false) {
+  var data = d.success === false ? [] : d.data;
+  var list = [];
+  list.push(
+      '<div class="list-group" style="padding:0;">',
+  );
+  if(data.length <= 0) {
+      list.push(
+          '<span class="list-group-item list-group-item-action"><b>',
+          lang.noresults_address,
+          '</b>'
+      );
+      if(!depth) {
+          list.push(
+              ' <button type="button" onclick="chooseType(this, true);" class="btn btn-secondary btn-sm btn-depth-search">',
+              lang.try_depth_search,
+              '</button>',
+          );
+      }
+      list.push(
+          '</span>'
+      );
+  }
+  Object.keys(data).forEach(function (key) {
+      var d = data[key];
+      var photo = d.photos != null && d.photos.length > 0 ? uriPhoto+d.photos[0] : '/assets/img/default_geocode-2x.png';
+      list.push(
+          '<a class="list-group-item list-group-item-action" data-id="',
+          d.id,
+          '" data-location="',
+          d.location,
+          '" href="/maps?destination=',
+          d.location,
+          window.location.href.indexOf("maps") > -1 ? '">' : '" target="_blank">',
+          '<div class="row">', //start row
+          '<div class="col-md-4"><div class="photo-result" style="background:url(', //photo
+          photo,
+          ');"></div></div>',
+          '<div class="col-md-8"><div class="content-result"><b>', //name
+          d.name,
+          '</b><div class="rating-result">',
+      );
+      if(d.rate) {
+          var rate = 0;
+          for(i=1;i<=Math.floor(d.rate);i++) {
+              rate = i;
+              list.push(
+                  '<span class="fas fa-star star-rated"></span>',
+              );
+          }
+          if(d.rate != rate && d.rate - rate >= 0.5) {
+              list.push(
+                  '<span class="fas fa-star-half-alt star-rated"></span>',
+              );
+              rate++;
+          }
+          for(i=5;i>rate;i--) {
+              list.push(
+                  '<span class="far fa-star star-rated"></span>',
+              );
+          }
+          list.push(
+              ' ' + d.rate + '/5',
+          );
+      }
+      list.push(
+          '</div><div class="about-result">'+lang.about, //about
+          display_distance(d.distance),
+          '</div></div></div>',
+          '</div>', //end row
+          '</a>'
+      );
+  });
+  list.push('</div>');
+  return list.join('');
+}
+
 function display_distance(distance) {
     var temp = distance;
     if(distance >= 1000) {
@@ -288,7 +438,8 @@ function getLocation(allowed = false, direction = false) {
                 name: 'geolocation'
             }).then(function (PermissionStatus) {
                 if (allowed === false && 'prompt' === PermissionStatus.state) {
-                    $('#prompt_permission').modal();
+                    //$('#prompt_permission').modal();
+                    doModal(lang.gps_permission_prompt, lang.gps_permission_prompt_desp, lang.grant, 'getLocation(true);');
                     return reject();
                 } else {
                     if(direction) {
@@ -297,7 +448,8 @@ function getLocation(allowed = false, direction = false) {
                             return resolve([e.coords.latitude, e.coords.longitude]);
                         }, function (error) {
                             if (error.code == error.PERMISSION_DENIED) {
-                                $('#denied_permission').modal();
+                                //$('#denied_permission').modal();
+                                doModal(lang.gps_permission_denied, lang.gps_permission_denied_desp);
                                 return reject();
                             }
                         });
@@ -307,7 +459,8 @@ function getLocation(allowed = false, direction = false) {
                             return resolve([e.coords.latitude, e.coords.longitude]);
                         }, function (error) {
                             if (error.code == error.PERMISSION_DENIED) {
-                                $('#denied_permission').modal();
+                                //$('#denied_permission').modal();
+                                doModal(lang.gps_permission_denied, lang.gps_permission_denied_desp);
                                 return reject();
                             }
                         });
@@ -716,7 +869,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 // $('.adp-marker2')[0].attr('src', icons.start.url);
                 // $('.adp-marker2')[1].attr('src', icons.end.url);
             } else {
-                $('#no_mode_directions').modal();
+                //$('#no_mode_directions').modal();
+                doModal(lang.no_mode_directions, lang.no_mode_directions_desp);
             }
         });
     });
@@ -768,15 +922,15 @@ function resetFormModal(action){
 }
 
 // Click edit button
-$('.btn-edit').click(function (e) {
-    e.preventDefault();
-    resetFormModal($(this).data('href'));
+// $('.btn-edit').click(function (e) {
+//     e.preventDefault();
+//     resetFormModal($(this).data('href'));
 
-    $('#editModal').modal({
-        backdrop: 'static',
-        show: true
-    });
-});
+//     $('#editModal').modal({
+//         backdrop: 'static',
+//         show: true
+//     });
+// });
 $('#selectLocation').on('click', function() {
     var location = $(this).data('location');
     if(location!="") {

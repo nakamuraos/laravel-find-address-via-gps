@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{Config::get('app.locale')}}">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,8 +32,8 @@
         <div class="pin"></div>
         <div class="pulse"></div>
     </div>
-    @if (isset($maps) && $maps === true)
-    @else
+@if (isset($maps) && $maps === true)
+@else
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark @if (isset($maps)) fixed-top @else sticky-top @endif">
         <a class="navbar-brand" href="/">@lang('header.title')</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
@@ -81,7 +80,7 @@
             @else
                 <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> @lang('auth.login')</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user"></i> @lang('auth.register')</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#ModalLogin"><i class="fas fa-plus"></i> @lang('header.link_register_address')</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="loginRequired();"><i class="fas fa-plus"></i> @lang('header.link_register_address')</a></li>
             @endif
                 <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
@@ -93,8 +92,12 @@
             </ul>
         </div>
     </nav>
-    @endif
-    @yield('content')
+@endif
+@yield('content')
+    <script>
+        var lang = {!!json_encode(array_merge(app('translator')->getFromJson('home'), app('translator')->getFromJson('error'), app('translator')->getFromJson('auth')))!!};
+        var uriPhoto = '{{config('files.uri.photo_encrypted')}}';
+    </script>
     <script src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.easing.1.3.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
@@ -108,190 +111,9 @@
     <script src="{{ asset('assets/js/rater.min.js') }}"></script>
     <script src="{{ asset('assets/js/meanmenu.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/script.js') }}"></script> --}}
-    <script>
-        $('.btn-edit').click(function (e) {
-            e.preventDefault();
-            resetFormModal($(this).data('href'));
-
-            $('#editModal').modal({
-                backdrop: 'static',
-                show: true
-            });
-        });
-        $('.btn-remove').click(function (e) {
-            e.preventDefault();
-            //resetFormModal($(this).data('href'));
-            $('#delete').attr('action', $(this).data('href'));
-            $('#modalDelete').modal({
-                backdrop: 'static',
-                show: true
-            });
-        });
-        function display_types(d) {
-            var data = d.success == false ? [] : d.data;
-            var list =
-                '<div class="list-group" style="padding:0;"><span class="list-group-item list-group-item-action"><b>' + (
-                    data.length <= 0 ? '@lang('home.noresults')' : '@lang('home.resultsin'):') + '</b></span>';
-            Object.keys(data).forEach(function (key) {
-                list +=
-                    '<a class="list-group-item list-group-item-action" onclick="chooseType(this);" data-address="' +
-                    key + '">' + data[key] + '</a>';
-            });
-            list += '</div>';
-            return list;
-        }
-
-        function display_addresses(d, depth = false) {
-            var data = d.success === false ? [] : d.data;
-            var list = [];
-            list.push(
-                '<div class="list-group" style="padding:0;">',
-            );
-            if(data.length <= 0) {
-                list.push(
-                    '<span class="list-group-item list-group-item-action"><b>',
-                    '@lang('home.noresults_address')',
-                    '</b>'
-                );
-                if(!depth) {
-                    list.push(
-                        ' <button type="button" onclick="chooseType(this, true);" class="btn btn-secondary btn-sm btn-depth-search">',
-                        "@lang('home.try_depth_search')",
-                        '</button>',
-                    );
-                }
-                list.push(
-                    '</span>'
-                );
-            }
-            Object.keys(data).forEach(function (key) {
-                var d = data[key];
-                var photo = d.photos != null && d.photos.length > 0 ? '{{config('files.uri.photo_encrypted')}}'+d.photos[0] : '/assets/img/default_geocode-2x.png';
-                list.push(
-                    '<a class="list-group-item list-group-item-action" data-id="',
-                    d.id,
-                    '" data-location="',
-                    d.location,
-                    '" href="/maps?destination=',
-                    d.location,
-                    window.location.href.indexOf("maps") > -1 ? '">' : '" target="_blank">',
-                    '<div class="row">', //start row
-                    '<div class="col-md-4"><div class="photo-result" style="background:url(', //photo
-                    photo,
-                    ');"></div></div>',
-                    '<div class="col-md-8"><div class="content-result"><b>', //name
-                    d.name,
-                    '</b><div class="rating-result">',
-                );
-                if(d.rate) {
-                    var rate = 0;
-                    for(i=1;i<=Math.floor(d.rate);i++) {
-                        rate = i;
-                        list.push(
-                            '<span class="fas fa-star star-rated"></span>',
-                        );
-                    }
-                    if(d.rate != rate && d.rate - rate >= 0.5) {
-                        list.push(
-                            '<span class="fas fa-star-half-alt star-rated"></span>',
-                        );
-                        rate++;
-                    }
-                    for(i=5;i>rate;i--) {
-                        list.push(
-                            '<span class="far fa-star star-rated"></span>',
-                        );
-                    }
-                    list.push(
-                        ' ' + d.rate + '/5',
-                    );
-                }
-                list.push(
-                    '</div><div class="about-result">@lang('home.about') ', //about
-                    display_distance(d.distance),
-                    '</div></div></div>',
-                    '</div>', //end row
-                    '</a>'
-                );
-            });
-            list.push('</div>');
-            return list.join('');
-        }
-    </script>
-    @if (isset($maps))
+@if (isset($maps))
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('googlemaps.key_maps')}}&callback=initMap&language={{Config::get('app.locale')}}"></script>
-    @endif
-    <!-- permission denied -->
-    <div class="modal fade" id="denied_permission" role="dialog" style="overflow-y: hidden">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">@lang('error.gps_permission_denied')</h4>
-                </div>
-                <div class="modal-body">
-                    @lang('error.gps_permission_denied_desp')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- permission prompt -->
-    <div class="modal fade" id="prompt_permission" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">@lang('error.gps_permission_prompt')</h4>
-                </div>
-                <div class="modal-body">
-                    @lang('error.gps_permission_prompt_desp')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="getLocation(true);">@lang('error.grant')</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- no mode -->
-    <div class="modal fade" id="no_mode_directions" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">@lang('error.no_mode_directions')</h4>
-                </div>
-                <div class="modal-body">
-                    @lang('error.no_mode_directions_desp')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
-                </div>
-            </div>
-        </div>
-    </div>
-     <!-- modal login-->
-    <div class="modal fade" id="ModalLogin" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">@lang('auth.login_required')</h4>
-                </div>
-                <div class="modal-body">
-                @lang('auth.login_required_desp', ['url' => '/register'])
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
-                    <a href="/login" class="btn btn-success">@lang('auth.login_now')</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+@endif
+    <div id="modal"></div>
 </body>
-
 </html>
