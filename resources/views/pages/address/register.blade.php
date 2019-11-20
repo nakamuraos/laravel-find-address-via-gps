@@ -26,7 +26,7 @@
                                     <form action="/manager/address/register" class="row" method='post' enctype="multipart/form-data" onSubmit="return checkFormRegisterAddress();">
                                         @csrf
                                         
-                                        <div class="card-body">
+                                        <div class="card-body px-0">
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
@@ -108,6 +108,13 @@
 <style>
     body {
         height: auto;
+    }
+    .footer-section{
+        display:block !important;
+    }
+    .breadcrumb-banner{
+        margin-top:0 !important;
+        
     }
 </style>
 @endsection

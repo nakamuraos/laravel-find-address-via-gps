@@ -93,7 +93,7 @@ class AddressController extends Controller
             $e->name = __('addresstypes.'.$e->name);
         }
         $data = Address::where("user_id",Auth::user()->id)->orderBy('created_at', 'desc');
-        $addresses = $data->paginate(10);
+        $addresses = $data->paginate(5);
         $notifications = $addresses->where('verified',2);
         $maps = false;
         return view('pages.address.index',compact('addresses','addresstypes','notifications','maps'));

@@ -34,7 +34,7 @@
     </div>
 @if (isset($maps) && $maps === true)
 @else
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark @if (isset($maps)) fixed-top @else sticky-top @endif">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="/">@lang('header.title')</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
             style="outline: 0">
@@ -94,6 +94,17 @@
     </nav>
 @endif
 @yield('content')
+<footer class="footer-section @if (isset($maps)) d-none @else d-block @endif">
+        <div class="footer-bottom-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-sm-12">
+                        <span>©2019 rights reserved - Designed and Developed by Group26 - Hoang Van Thinh, Pham Thi Hien, Nguyen Van Nam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script>
         var lang = {!!json_encode(array_merge(app('translator')->getFromJson('home'), app('translator')->getFromJson('error'), app('translator')->getFromJson('auth')))!!};
         var uriPhoto = '{{config('files.uri.photo_encrypted')}}';

@@ -3,7 +3,7 @@
 <section class="breadcrumb-banner bg-cover parallax-2 page-header header-filter"
     style="margin-top: 50px;background-image: url({{asset(config('files.uri.background'))}});">
     <div class="col-lg-10 col-md-12 m-auto">
-        <div class="card mt-5" style="height:500px">
+        <div class="card mt-5" style="height:500px; background:none">
             <div class="card-header card-header-tabs card-header-primary ">
                 <div class="nav-tabs-wrapper row mx-1 py-3">
                     <div class="text-white col-10 text-left pl-4">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table" >
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -89,7 +89,7 @@
                                         Tên địa chỉ
                                     </span>
                                 </div>
-                                <input type="text" name="name" class="form-control" placeholder="*Nhập địa chỉ của bạn">
+                                <input type="text" name="name" class="form-control" placeholder="*Nhập địa chỉ của bạn" required>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend ">
@@ -191,5 +191,38 @@
         </div>
     </div>
 </div>
-
+<style>
+    body {
+        height: auto;
+    }
+    .footer-section{
+        display:block !important;
+    }
+    .breadcrumb-banner{
+        margin-top:0 !important;
+        
+    }
+    .table{
+        color: #fff !important;
+    }
+    .btn.btn-edit{
+        color:#fff;
+        background:none;
+    }
+    .btn.btn-remove{
+        color:#ea6161;
+    }
+    .pagination{
+        bottom: -25px !important;
+        right:0;
+    }
+    .page-link{
+        background:none !important;
+        border:none !important;
+        border-radius:30px !important;
+        width:38px !important;
+        text-align:center;
+        
+    }
+</style>
 @endsection

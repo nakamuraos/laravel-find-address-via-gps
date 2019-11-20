@@ -39,9 +39,25 @@ Version: 2.1
 * {
     box-sizing: border-box;
 }
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #4CAF50;
+}
+.alert-danger {
+    color: #eb172b !important;
+    background-color: #fae8ea !important;
+}
+.normal-icon{
+    width: 23px;
+    margin-bottom: 2px;
+    margin-right: 4px;
+}
+.btn:active,:focus{
+    outline:none !important;
+    box-shadow: none !important;
+}
 .table td , .table th{
     border: none !important;
-    border-bottom: 1px solid #dee2e6 !important;
+    border-bottom: 1px solid #484848 !important;
 }
 .pagination{
     position: absolute !important;
@@ -107,10 +123,9 @@ Version: 2.1
 }
 .pagination .page-item.active .page-link{
     background-color: #33cc66 !important;
-    border-color: #33cc66 !important ;
 }
 .pagination .page-item .page-link{
-    color: #f9a825 !important;
+    color: #fff !important;
     
 }
 
@@ -123,7 +138,7 @@ Version: 2.1
 .card-footer{
     bottom: 0;
     width: 95%;
-    border-top: 1px solid #bcb9b94d !important;
+    border-top: 1px solid #fff !important;
 }
 .card-header-icon h2{
     margin-top: 40px;
@@ -1320,7 +1335,7 @@ footer ul li {
     margin: 0;
 }
 .footer-bottom-section {
-    padding: 25px 0px;
+    padding: 15px 0px;
     background: #101010eb;
 }
 

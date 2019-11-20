@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateProfile;
 use Auth;
 class UserController extends Controller
 {
@@ -48,7 +49,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('pages.profile',compact('user'));
     }
-    public function updateProfile( Request $request){
+    public function updateProfile( updateProfile $request){
         $user = Auth::user();
         //$user->user_name = $request->user_name;
         $user->full_name = $request->full_name;
