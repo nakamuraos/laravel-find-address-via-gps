@@ -6,8 +6,8 @@
             <div class="page-title-icon">
                 <i class="pe-7s-science icon-gradient bg-happy-itmeo"></i>
             </div>
-            <div>User Manager
-                <div class="page-title-subheading">Manage user on system: verify, update, delete or block.
+            <div>@lang('auth.manage_user')
+                <div class="page-title-subheading">@lang('auth.desp_manage').
                 </div>
             </div>
         </div>
@@ -18,17 +18,17 @@
 <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav" id="filter">
     <li class="nav-item">
         <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" data-content="">
-            <span>All user</span>
+            <span>@lang('auth.all_user')</span>
         </a>
     </li>
     <li class="nav-item">
         <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" data-content="active">
-            <span>Active user</span>
+            <span>@lang('auth.active_user')</span>
         </a>
     </li>
     <li class="nav-item">
         <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" data-content="blocked">
-            <span>Blocked user</span>
+            <span>@lang('auth.blocked_user')</span>
         </a>
     </li>
 </ul>
@@ -39,13 +39,13 @@
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="text-success">
                         <tr>
-                            <th>User name</th>
-                            <th>Full name</th>
-                            <th>Phone</th>
+                            <th>@lang('auth.username')</th>
+                            <th>@lang('auth.fullname')</th>
+                            <th>@lang('auth.phone')</th>
                             <th>Email</th>
-                            <th>Status</th>
-                            <th>Role</th>
-                            <th>Options</th>
+                            <th>@lang('auth.status')</th>
+                            <th>@lang('auth.role')</th>
+                            <th>@lang('address.options')</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">

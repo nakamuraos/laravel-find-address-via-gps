@@ -7,8 +7,8 @@
                 <i class="lnr-apartment icon-gradient bg-sunny-morning">
                 </i>
             </div>
-            <div>Address Manager
-                <div class="page-title-subheading">Manage addresses on system: verify, update, delete or send a request update to user.
+            <div>@lang('address.address_manager')
+                <div class="page-title-subheading">@lang('address.desp_manager').
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left center-elem mr-2"><i class="lnr-user"></i></div>
                                                 <div class="widget-content-left">
-                                                    <div class="widget-heading">Owned by {{$address->user->full_name}}</div>
+                                                    <div class="widget-heading">@lang('address.owned_by') {{$address->user->full_name}}</div>
                                                 </div>
                                             </div>
                                         </div>

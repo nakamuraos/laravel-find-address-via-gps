@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="form-group" style="margin: 0;">
-                    <a href="/"><h3 style="color:white;display:inline-block;">{{config('app.name')}}</h3></a>
+                    <a href="/"><h3 style="color:white;display:inline-block;">Diachi.best</h3></a>
                 </div>
                 <div class="form-group">
                     <div class="mode-travel btn-group btn-group-toggle" data-toggle="buttons">
@@ -56,7 +56,7 @@
 .list-group-item {
     padding: .3rem .8rem;
 }
-.adp div:nth-child(2) .adp-marker2 {
+.adp div:nth-child(2) .adp-marker2 {    
     content:url("/assets/fonts/pin.svg");
 }
 .adp div:nth-child(3) .adp-marker2 {

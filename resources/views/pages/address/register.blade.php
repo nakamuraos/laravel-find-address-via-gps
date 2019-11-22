@@ -30,16 +30,16 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                        Address Name
+                                                        @lang('address.address_name')
                                                     </span>
                                                 </div>
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="*Enter name of your address" required>
+                                                    placeholder="@lang('address.enter_name')" required>
                                             </div>
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                        Address Type
+                                                        @lang('address.address_type')
                                                     </span>
                                                 </div>
                                                 <select name="addresstype_id" class="form-control">
@@ -52,7 +52,7 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                        Image
+                                                        @lang('address.image')
                                                     </span>
                                                 </div>
                                                 <input style="opacity: 1; position: initial;line-height:29px;" type="file" name="photos[]" class="form-control"  multiple="multiple" accept="image/*">
@@ -60,12 +60,12 @@
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text">
-                                                         Detail Address
+                                                         @lang('address.address_detail')
                                                     </span>
                                                 </div>
                                                 <input type="text" name="detail" class="form-control"
-                                                    placeholder="Địa chỉ chi tiết" required> 
-                                                <button class="btn btn-success ml-1" type="button" data-toggle="modal" data-target="#location" data-backdrop="static" data-keyboard="false" style="margin-left:0!important;border-radius:0 5px 5px 0;"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> Ghim địa chỉ</button>
+                                                    placeholder="@lang('address.address_detail')" required> 
+                                                <button class="btn btn-success ml-1" type="button" data-toggle="modal" data-target="#location" data-backdrop="static" data-keyboard="false" style="margin-left:0!important;border-radius:0 5px 5px 0;"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> @lang('address.pin_address')</button>
                                             </div>
                                             <input type="hidden" name="location" class="form-control rounded-right" placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
                                         </div>
@@ -89,14 +89,14 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Ghim một vị trí trên bản đồ</h4>
+                <h4 class="modal-title">@lang('address.pin_location')</h4>
             </div>
             <div class="modal-body" style="height:55vh;">
                 <div id="map"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary mr-auto" onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">Vị trí hiện tại</button>
-                <button type="button" class="btn btn-primary" data-location="" id="selectLocation" onclick="$('#returnLocation')">Chọn</button>
+                <button type="button" class="btn btn-primary mr-auto" onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">@lang('address.current_location')</button>
+                <button type="button" class="btn btn-primary" data-location="" id="selectLocation" onclick="$('#returnLocation')">@lang('address.choose')</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
             </div>
         </div>

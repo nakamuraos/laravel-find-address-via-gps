@@ -54,7 +54,7 @@
             @if(empty($addresses))
             <div class="flex-center position-ref full-height">
                     <div class="message" style="padding: 10px;">
-                        The address is not available         
+                        @lang('address.address_not_available')        
                     </div>
                 </div>
             @else
@@ -74,7 +74,7 @@
                                     <span class="align-middle"><i class="fa fa-map-marker-alt" aria-hidden="true"></i></span> <span class="align-middle">{{$address->detail}}</span>
                                 </div>
                                 <div class="">
-                                    <span class="align-middle"><i class="fas fa-clock"></i></span> <small class="">About {{ceil($address->distance/500)}} minutes driving</small>
+                                    <span class="align-middle"><i class="fas fa-clock"></i></span> <small class="">@lang('address.about') {{ceil($address->distance/500)}} @lang('address.minutes_driving')</small>
                                 </div>
                             </div>
                         </div>

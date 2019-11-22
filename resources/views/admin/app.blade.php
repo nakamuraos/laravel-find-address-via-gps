@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Manage Area</title>
+    <title>Find address via GPS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
     <meta name="description" content="Choose between regular React Bootstrap tables or advanced dynamic ones.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -57,14 +57,15 @@
                 <div class="app-header-right">
                     <div class="header-dots">
                         <div class="dropdown">
-                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
+                            <!-- <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
                                 <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                                     <span class="icon-wrapper-bg bg-danger"></span>
                                     <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
                                     <span class="badge badge-dot badge-dot-sm badge-danger">Notifications</span>
                                 </span>
-                            </button>
-                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
+                            </button> -->
+                            <!-- <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
+                               
                                 <div class="dropdown-menu-header mb-0">
                                     <div class="dropdown-menu-header-inner bg-deep-blue">
                                         <div class="menu-header-image opacity-1" style="background-image: url('/assets/images/dropdown-header/city3.jpg');"></div>
@@ -142,7 +143,7 @@
                                         <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">Load More</button>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="dropdown">
                             <button type="button" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
@@ -157,21 +158,21 @@
                                         <div class="menu-header-image opacity-05" style="background-image: url('/assets/images/dropdown-header/city2.jpg');"></div>
                                         <div class="menu-header-content text-center text-white">
                                             <h6 class="menu-header-subtitle mt-0">
-                                                Choose Language
+                                                @lang('header.choose_language')
                                             </h6>
                                         </div>
                                     </div>
                                 </div>
                                 <h6 tabindex="-1" class="dropdown-header">
-                                    All Languages
+                                   @lang('header.all_languages')
                                 </h6>
                                 <button onclick="location.href='/welcome/en';" type="button" tabindex="0" class="dropdown-item">
                                     <span class="mr-3 opacity-8 flag large US"></span>
-                                    USA
+                                    @lang('header.English')
                                 </button>
                                 <button onclick="location.href='/welcome/vi';" type="button" tabindex="0" class="dropdown-item">
                                     <span class="mr-3 opacity-8 flag large VN"></span>
-                                    Vietnam
+                                    @lang('header.Vietnamese')
                                 </button>
                             </div>
                         </div>
@@ -205,7 +206,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
-                                                                    <a href="/logout" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
+                                                                    <a href="/logout" class="btn-pill btn-shadow btn-shine btn btn-focus">@lang('auth.logout')
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -216,14 +217,14 @@
                                             <div class="scroll-area-xs" style="height: 150px;">
                                                 <div class="scrollbar-container ps">
                                                     <ul class="nav flex-column">
-                                                        <li class="nav-item-header nav-item">My Account
+                                                        <li class="nav-item-header nav-item">@lang('header.my_account')
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a href="/account/profile" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> My Profiles
+                                                            <a href="/account/profile" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> @lang('header.link_profile')
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a href="/account/settings" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> Settings
+                                                            <a href="#" class="nav-link"><i class="fa fa-fw" aria-hidden="true" title=""></i> @lang('header.setting')
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -315,23 +316,23 @@
                                 <li>
                                     <a href="#">
                                     <i class="metismenu-icon pe-7s-id"></i>
-                                        User manager
+                                        @lang('auth.manage_user')
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
                                         <li>
                                             <a href="./user">
-                                                <i class="metismenu-icon"></i>All user
+                                                <i class="metismenu-icon"></i> @lang('auth.all_user')
                                             </a>
                                         </li>
                                         <li>
                                             <a href="?status=1">
-                                                <i class="metismenu-icon"></i>Active user
+                                                <i class="metismenu-icon"></i> @lang('auth.active_user')
                                             </a>
                                         </li>
                                         <li>
                                             <a href="?status=0">
-                                                <i class="metismenu-icon"></i>Blocked user
+                                                <i class="metismenu-icon"></i> @lang('auth.blocked_user')
                                             </a>
                                         </li>
                                     </ul>
@@ -340,28 +341,28 @@
                                 <li>
                                     <a href="#">
                                     <i class="metismenu-icon pe-7s-way"></i>
-                                        Address manager
+                                        @lang('address.manage_address')
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
                                         <li>
                                             <a href="/admin/address">
-                                                <i class="metismenu-icon"></i>All address
+                                                <i class="metismenu-icon"></i>@lang('address.all_address')
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/admin/address?verified=0">
-                                                <i class="metismenu-icon"></i>Not yet verify
+                                                <i class="metismenu-icon"></i>@lang('address.not_verified')
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/admin/address?verified=1">
-                                                <i class="metismenu-icon"></i>Verified
+                                                <i class="metismenu-icon"></i>@lang('address.verified')
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/admin/address?verified=2">
-                                                <i class="metismenu-icon"></i>Waiting user update
+                                                <i class="metismenu-icon"></i>@lang('address.waiting_update')
                                             </a>
                                         </li>
                                     </ul>
@@ -386,34 +387,34 @@
                 {{ method_field('PUT') }}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Update User</h5>
+                        <h5 class="modal-title" id="editModalLabel">@lang('auth.update_user')</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row ">
                             <div class="col-md-12 pr-1">
                                 <div class="form-group mt-4">
-                                    <label for="exampleInputEmail1">Status</label>
+                                    <label for="exampleInputEmail1">@lang('auth.status')</label>
                                     <select name="status" class="form-control">
-                                        <option value="0">Active</option>
-                                        <option value="1">Blocked</option>
+                                        <option value="0">@lang('auth.active')</option>
+                                        <option value="1">@lang('auth.blocked')</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12 pr-1">
                                 <div class="form-group mt-4">
-                                    <label for="exampleInputEmail1">Type</label>
+                                    <label for="exampleInputEmail1">@lang('auth.type')</label>
                                     <select name="role_id" class="form-control">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Address Manager</option>
-                                        <option value="3">User</option>
+                                        <option value="1">@lang('auth.admin')</option>
+                                        <option value="2">@lang('auth.address_manager')</option>
+                                        <option value="3">@lang('auth.user')</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('auth.cancel')</button>
+                        <button type="submit" class="btn btn-primary">@lang('auth.update')</button>
                     </div>
                 </div>
             </form>

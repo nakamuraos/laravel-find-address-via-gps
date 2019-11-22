@@ -22,9 +22,9 @@
                         </div>
                         <div class="card-body text-left text-white mt-4">
                         <h2 class="card-title text-white">{{$address->name}}</h2>
-                            <p>@lang('address.address_type'): {{$address->type_str}} </p>
-                            <p>@lang('address.address_detail'): {{$address->detail}}</p>
-                            <p>@lang('address.status'):
+                            <p>@lang('address.address_type') : {{$address->type_str}} </p>
+                            <p>@lang('address.address_detail') : {{$address->detail}}</p>
+                            <p>@lang('address.status') :
                                 @if($address->verfied == 0)
                                 @lang('address.notyet_verified')
                                 @else @lang('address.verified')

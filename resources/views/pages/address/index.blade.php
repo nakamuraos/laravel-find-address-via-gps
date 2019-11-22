@@ -7,8 +7,8 @@
             <div class="card-header card-header-tabs card-header-primary ">
                 <div class="nav-tabs-wrapper row mx-1 py-3">
                     <div class="text-white col-10 text-left pl-4">
-                        <h4 class="nav-tabs-title text-white">Hi {{Auth::user()->full_name}}</h4>
-                        <span>This is your list address</span>
+                        <h4 class="nav-tabs-title text-white">@lang('address.hi') {{Auth::user()->full_name}}</h4>
+                        <span>@lang('address.your_list_address')</span>
                     </div>
 
                     <span class="float-right mt-0 col-2 dropdown">
@@ -24,9 +24,13 @@
                         
                         <span class="badge badge-notify">{{@count($notifications)}}</span>
                         <div class="dropdown-menu noti-dropdown px-3">
-                            <b>Notification</b>
+                            
+                            @if(!$notifications)<b> @lang('address.no') @lang('address.notification')</b>
+                            @else
+                            <b> @lang('address.notification')</b>
+                            @endif
                             @foreach($notifications as $n)
-                            <p class="dropdown-item border-bottom">You must update{{$n->name}}</p>
+                            <p class="dropdown-item border-bottom">@lang('address.you_must_update'){{$n->name}}</p>
                             @endforeach
                         </div>
                     </span>
@@ -37,8 +41,8 @@
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Name</td>
-                            <td class="text-center">Options</td>
+                            <td>@lang('address.address_name')</td>
+                            <td class="text-center">@lang('address.options')</td>
 
                         </tr>
                     </thead>
@@ -50,7 +54,7 @@
                             </td>
                             <td>{{$address->name}}</td>
                             <td class="td-actions text-center">
-                                <a style="color:#4caf50" href="address/{{$address->id}}">Detail</a>
+                                <a style="color:#4caf50" href="address/{{$address->id}}">@lang('address.detail')</a>
                                 <button type="button" rel="tooltip" data-href="address/{{$address->id}}"
                                     class="btn btn-edit btn-sm btn-edit " data-original-title="Edit Task">
                                     <i class="material-icons">edit</i>
@@ -76,7 +80,7 @@
             {{ method_field('PUT') }}
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Update Product</h5>
+                    <h5 class="modal-title" id="editModalLabel">@lang('address.update_address')</h5>
                 </div>
                 <div class="modal-body">
                     <form id="editForm" class="row" method="post" enctype="multipart/form-data"
@@ -86,15 +90,15 @@
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        Tên địa chỉ
+                                        @lang('address.address_name')
                                     </span>
                                 </div>
-                                <input type="text" name="name" class="form-control" placeholder="*Nhập địa chỉ của bạn" required>
+                                <input type="text" name="name" class="form-control" placeholder="@lang('address.enter_name')" required>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend ">
                                     <span class="input-group-text">
-                                        Loại địa chỉ
+                                        @lang('address.address_type')
                                     </span>
                                 </div>
                                 <select name="addresstype_id" class="form-control">
@@ -107,7 +111,7 @@
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        Ảnh
+                                        @lang('address.image')
                                     </span>
                                 </div>
                                 <input style="opacity: 1; position: initial;" type="file" name="file"
@@ -116,23 +120,23 @@
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        Địa chỉ chi tiết
+                                       @lang('address.address_detail')
                                     </span>
                                 </div>
-                                <input type="text" name="detail" class="form-control" placeholder="Địa chỉ chi tiết"
+                                <input type="text" name="detail" class="form-control" placeholder="@lang('address.address_detail')"
                                     required>
                                 <button class="btn col-4 btn-success ml-1" type="button" data-toggle="modal"
                                     data-target="#location" data-backdrop="static" data-keyboard="false"
-                                    style="margin-left:0!important;border-radius:0 5px 5px 0;">Chọn trên bản đồ</button>
+                                    style="margin-left:0!important;border-radius:0 5px 5px 0;">@lang('address.choose_on_map')</button>
                             </div>
                             <input type="hidden" name="location" class="form-control rounded-right"
-                                placeholder="Chọn vị trí trên bản đồ" readonly id="returnLocation">
+                                placeholder="@lang('address.choose_location')" readonly id="returnLocation">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer" style="padding:1rem 0.5rem">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('address.cancel')</button>
+                    <button type="submit" class="btn btn-success">@lang('address.update')</button>
                 </div>
             </div>
         </form>
@@ -144,17 +148,16 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Ghim một vị trí trên bản đồ</h4>
+                <h4 class="modal-title">@lang('address.pin_location')</h4>
             </div>
             <div class="modal-body" style="height:55vh;">
                 <div id="map"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary mr-auto"
-                    onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">Vị
-                    trí hiện tại</button>
+                    onclick="getLocation().then(data=>{$('#returnLocation').val(data[0]+','+data[1])});$('#location').modal('hide');">@lang('address.current_location')</button>
                 <button type="button" class="btn btn-primary" data-location="" id="selectLocation"
-                    onclick="$('#returnLocation')">Chọn</button>
+                    onclick="$('#returnLocation')">@lang('address.choose')</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('error.close')</button>
             </div>
         </div>
@@ -173,18 +176,18 @@
             <div class="modal-header" style="display: block;">
                 <button type="button" class="close" data-dismiss="modal">&times;
                 </button>
-                <h4 class="modal-title">Xác nhận xóa</h4>
+                <h4 class="modal-title">@lang('address.delete_prompt')
             </div>
             <div class="modal-body">
-                <p>Bạn có thực sự muốn xóa?</p>
+                <p>@lang('address.delete_prompt_desp')</p>
             </div>
             <div class="modal-footer">
                 <form id="delete" method="post" action="">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('address.cancel')
                     </button>
-                    <button type="submit" class="btn btn-danger">Xóa
+                    <button type="submit" class="btn btn-danger">@lang('address.delete')
                     </button>
                 </form>
             </div>

@@ -54,7 +54,7 @@
                 <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
-                        <li><a class="dropdown-item">No notification</a></li>
+                        <li><a class="dropdown-item">@lang('header.no_notification')</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -85,8 +85,8 @@
                 <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger fade">
-                            <li><a class="dropdown-item" href="/welcome/en"><img src="/assets/fonts/US.svg" style="height:20px;width:20px"/> English</a></li>
-                            <li><a class="dropdown-item" href="/welcome/vi"><img src="/assets/fonts/VN.svg" style="height:20px;width:20px"/> Vietnamese</a></li>
+                            <li><a class="dropdown-item" href="/welcome/en"><img src="/assets/fonts/US.svg" style="height:20px;width:20px"/> @lang('header.English')</a></li>
+                            <li><a class="dropdown-item" href="/welcome/vi"><img src="/assets/fonts/VN.svg" style="height:20px;width:20px"/> @lang('header.Vietnamese')</a></li>
                     </ul>
                 </li>
             </ul>

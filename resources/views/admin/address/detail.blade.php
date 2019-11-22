@@ -7,9 +7,9 @@
                 <i class="lnr-magic-wand icon-gradient bg-mixed-hopes"></i>
             </div>
             <div>
-                Address details
+                @lang('address.address_detail')
                 <div class="page-title-subheading">
-                    View details of address: verify, delete or send a request update to user.
+                    @lang('address.desp_detail')
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Details and Actions</h5>
+                <h5 class="card-title">@lang('address.detail_action')</h5>
                 <div class="row">
                     <div class="col">
                         <div class="vertical-time-icons vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title text-success">{{$address->name}}</h4>
-                                        <p>The name of address</p>
+                                        <p>@lang('address.name_of_address')</p>
 
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title">{{$address->detail}}</h4>
-                                        <p>Detail of address</p>
+                                        <p>@lang('address.detail_of_address')</p>
 
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title">{{$address->created_at}}</h4>
-                                        <p>Date of address creation</p>
+                                        <p>@lang('address.date_creation')</p>
 
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title">{{$address->user->full_name}}</h4>
-                                        <p>The person who owns this address</p>
+                                        <p>@lang('address.own_address')</p>
 
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                             <b>@lang('address.waiting_update')</b><br />
                                             @endswitch
                                         </h4>
-                                        <p>Status verify of address</p>
+                                        <p>@lang('address.status_address')</p>
 
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <a href="/maps?destination={{$address->location}}" class="text-secondary" target="_blank"><h4 class="timeline-title">{{$address->location}}</h4></a>
-                                        <p>Location of address</p>
+                                        <p>@lang('address.location_of_address')</p>
 
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                         @lang('address.verify')
                     </button>
                 @else
-                    No need to do anything here
+                    @lang('address.no_need_to_do')
                 @endif
                 </div>
             </div>
@@ -147,7 +147,7 @@
     <div class="col-md-12">     
         <div class="main-card mb-3 card">
             <div class="card-body">
-            <h5 class="card-title">Gallery photos</h5>
+            <h5 class="card-title">@lang('address.gallery_photos')</h5>
                 <div class="slick-slider-variable">
                     @foreach(arrUriPhotos($address->photos) as $photo)
                     <div style="display:none">

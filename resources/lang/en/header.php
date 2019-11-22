@@ -20,5 +20,12 @@ return [
     'link_manage_address' => 'Manage Address',
     'link_list_address' => 'List Address',
     'link_manage_user' => 'Manage User',
-    'link_profile' => 'My profile'
+    'link_profile' => 'My profile',
+    'no_notification' => 'No notification',
+    'choose_language' => 'Choose language',
+    'all_languages' => 'All languages',
+    'English' => 'English',
+    'Vietnamese' => 'Vienamese',
+    'my_account' => 'My account',
+    'setting' => 'Setting'
 ];
